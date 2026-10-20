@@ -24,20 +24,30 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // 新しいInput System (Keyboard.current) を使ったWASD / 矢印キーの入力取得
-        Keyboard keyboard = Keyboard.current;
-        if (keyboard == null) return; // キーボードが接続されていない場合の安全対策
+        // Xboxコントローラーの入力を取得
+        Gamepad gamepad = Gamepad.current;
 
         float moveX = 0f;
         float moveY = 0f;
 
-        // 左右の入力 (A/D または 左右矢印)
-        if (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed) moveX += 1f;
-        if (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed) moveX -= 1f;
-
-        // 上下の入力 (W/S または 上下矢印)
-        if (keyboard.wKey.isPressed || keyboard.upArrowKey.isPressed) moveY += 1f;
-        if (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed) moveY -= 1f;
+        if (gamepad != null)
+        {
+            // コントローラーが接続されている場合：左スティックの入力を取得
+            moveX = gamepad.leftStick.x.ReadValue();
+            moveY = gamepad.leftStick.y.ReadValue();
+        }
+        else
+        {
+            // 【おまけ】コントローラーが未接続のときだけ、テスト用にキーボード(WASD)でも動かせるようにするフォールバック
+            Keyboard keyboard = Keyboard.current;
+            if (keyboard != null)
+            {
+                if (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed) moveX += 1f;
+                if (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed) moveX -= 1f;
+                if (keyboard.wKey.isPressed || keyboard.upArrowKey.isPressed) moveY += 1f;
+                if (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed) moveY -= 1f;
+            }
+        }
 
         // 入力値をベクトルに格納（斜め移動時の速度が速くなりすぎないようにNormalized処理）
         moveInput = new Vector2(moveX, moveY).normalized;
@@ -45,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // 移動速度は PlayerStatus から取得した値（初期値: 5）を使う
+        // 移動速度は PlayerStatus から取得した値を使う
         rb.linearVelocity = moveInput * playerStatus.MoveSpeed;
     }
 }
