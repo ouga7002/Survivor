@@ -1,23 +1,25 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // 新しいInput Systemの名前空間
+using UnityEngine.InputSystem; // 新しいInput Systemを使用
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(PlayerStatus))] // プレイヤーのステータス管理が必須
 public class PlayerController : MonoBehaviour
 {
-    [Header("移動設定")]
-    [Tooltip("移動速度")]
-    public float moveSpeed = 5.0f;
-
     private Rigidbody2D rb;
+    private PlayerStatus playerStatus;
     private Vector2 moveInput;
 
     void Start()
     {
-        // Rigidbody2Dの参照を取得
+        // 必要なコンポーネントの参照を取得
         rb = GetComponent<Rigidbody2D>();
+        playerStatus = GetComponent<PlayerStatus>();
 
         // 2Dゲームで物理回転しないように固定（Z軸回転を凍結）
         rb.freezeRotation = true;
+
+        // 見下ろし型ゲームのため、重力を無効化（勝手に下に落ちないようにする）
+        rb.gravityScale = 0f;
     }
 
     void Update()
@@ -43,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // 物理演算を用いた移動処理
-        rb.linearVelocity = moveInput * moveSpeed;
+        // 移動速度は PlayerStatus から取得した値（初期値: 5）を使う
+        rb.linearVelocity = moveInput * playerStatus.MoveSpeed;
     }
 }
