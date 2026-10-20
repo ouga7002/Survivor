@@ -3,6 +3,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public float moveSpeed = 2f;
+    public float Attack = 1;
+    public float HP = 10;
 
     private Transform player;
     private Rigidbody2D rb;
