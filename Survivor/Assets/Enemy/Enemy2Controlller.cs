@@ -1,10 +1,12 @@
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class Enemy2Controller : MonoBehaviour
 {
-    public float moveSpeed = 2f;
+    public float moveSpeed;
     public float Attack = 1;
     public float HP = 10;
+
+    public int Spd;
 
     private Transform player;
     private Rigidbody2D rb;
@@ -19,6 +21,10 @@ public class EnemyController : MonoBehaviour
         {
             player = playerObject.transform;
         }
+
+        int Spd = Random.Range(1, 4);
+
+        moveSpeed = Spd;
     }
 
     void FixedUpdate()

@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6659047425086569569}
   - component: {fileID: 4669400947354630179}
-  - component: {fileID: -1263279050965484360}
   - component: {fileID: -4792256488481231500}
   - component: {fileID: 1391821744348701020}
-  m_Layer: 0
-  m_Name: Enemy_1
+  - component: {fileID: -565984632574307072}
+  m_Layer: 6
+  m_Name: Enemy_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,21 +94,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &-1263279050965484360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8400840812562903885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71d5179285097f3479d89e410e5eca6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  moveSpeed: 2
-  Attack: 1
-  HP: 10
 --- !u!50 &-4792256488481231500
 Rigidbody2D:
   serializedVersion: 5
@@ -182,3 +167,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-565984632574307072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8400840812562903885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f38bda5fc84a84d9e98389d8b14c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy2Controller
+  moveSpeed: 2
+  Attack: 1
+  HP: 10
+  Spd: 0
