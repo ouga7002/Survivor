@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f38bda5fc84a84d9e98389d8b14c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy2Controller
-  moveSpeed: 2
+  moveSpeed: 0
   Attack: 1
   HP: 10
   Spd: 0

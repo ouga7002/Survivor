@@ -33,4 +33,26 @@ public class PlayerStatus : MonoBehaviour
     {
         Debug.Log($"[PlayerStatus] HP: {CurrentHp}/{MaxHp} | ATK: {CurrentAtk} | SPEED: {MoveSpeed}");
     }
+
+    public void TakeDamage(float damage)
+    {
+        CurrentHp -= damage;
+
+        if (CurrentHp < 0)
+        {
+            CurrentHp = 0;
+        }
+
+        Debug.Log("プレイヤーHP：" + CurrentHp);
+
+        if (CurrentHp <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("プレイヤーが死亡しました");
+    }
 }
