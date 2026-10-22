@@ -4,7 +4,6 @@ public class Enemy2Controller : MonoBehaviour
 {
     public float moveSpeed;
     public float Attack = 1;
-    public float HP = 10;
 
     public int Spd;
 

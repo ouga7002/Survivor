@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -4792256488481231500}
   - component: {fileID: 1391821744348701020}
   - component: {fileID: 4721928999827020526}
+  - component: {fileID: -6084501132025563989}
   m_Layer: 6
   m_Name: Enemy_1
   m_TagString: Untagged
@@ -196,3 +197,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyContactAttack
   attackInterval: 0.5
+--- !u!114 &-6084501132025563989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8400840812562903885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e7fe1cfdb732049afde80aff24f887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHP: 10
