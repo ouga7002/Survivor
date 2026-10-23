@@ -54,5 +54,8 @@ public class PlayerStatus : MonoBehaviour
     void Die()
     {
         Debug.Log("プレイヤーが死亡しました");
+
+        // プレイヤー自身をゲーム上から消去する
+        Destroy(gameObject);
     }
 }
