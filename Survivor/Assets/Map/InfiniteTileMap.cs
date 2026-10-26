@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 /// <summary>
@@ -103,8 +102,9 @@ public class InfiniteTileMap : MonoBehaviour
         {
             for (int y = 0; y < gridCount; y++)
             {
-                int gridX = centerX + x - tileRadius;
-                int gridY = centerY + y - tileRadius;
+                // 配列のインデックスから、プレイヤーを中心としたワールド座標のオフセットを計算
+                int gridX = centerX + (x - tileRadius);
+                int gridY = centerY + (y - tileRadius);
 
                 tiles[x, y].transform.position =
                     new Vector3(
