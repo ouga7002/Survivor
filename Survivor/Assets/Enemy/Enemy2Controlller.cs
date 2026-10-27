@@ -3,16 +3,17 @@ using UnityEngine;
 public class Enemy2Controller : MonoBehaviour
 {
     public float moveSpeed;
-    public float Attack = 1;
 
     public int Spd;
 
     private Transform player;
     private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
@@ -36,5 +37,18 @@ public class Enemy2Controller : MonoBehaviour
 
         Vector2 direction = ((Vector2)player.position - rb.position).normalized;
         rb.linearVelocity = direction * moveSpeed;
+
+        // 左右の移動方向に合わせてスプライトを反転
+        if (spriteRenderer != null)
+        {
+            if (direction.x > 0.01f)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else if (direction.x < -0.01f)
+            {
+                spriteRenderer.flipX = true;
+            }
+        }
     }
 }

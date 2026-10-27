@@ -1,15 +1,16 @@
+
 using UnityEngine;
 
 public class EnemyContactAttack : MonoBehaviour
 {
     public float attackInterval = 1f;
 
-    private Enemy1Controller enemy;
+    private EnemyStatus enemyStatus;
     private float nextAttackTime = 0f;
 
-    void Start()
+    void Awake()
     {
-        enemy = GetComponent<Enemy1Controller>();
+        enemyStatus = GetComponent<EnemyStatus>();
     }
 
     void OnCollisionStay2D(Collision2D collision)
@@ -24,9 +25,9 @@ public class EnemyContactAttack : MonoBehaviour
             return;
         }
 
-        if (enemy == null)
+        if (enemyStatus == null)
         {
-            Debug.LogError("Enemy1Controller が見つかりません");
+            Debug.LogError("EnemyStatus が見つかりません", gameObject);
             return;
         }
 
@@ -39,7 +40,7 @@ public class EnemyContactAttack : MonoBehaviour
             return;
         }
 
-        playerStatus.TakeDamage(enemy.Attack);
+        playerStatus.TakeDamage(enemyStatus.Attack);
 
         nextAttackTime = Time.time + attackInterval;
     }

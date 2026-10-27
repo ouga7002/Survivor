@@ -13,12 +13,13 @@ GameObject:
   - component: {fileID: 8093736847640713990}
   - component: {fileID: 2590094384353065949}
   - component: {fileID: 5185940995251543881}
+  - component: {fileID: -7417097057997674399}
   - component: {fileID: 5597613117824740034}
   - component: {fileID: 2356201913418439328}
   - component: {fileID: 3191840654903499227}
   m_Layer: 6
-  m_Name: enemy3_0
-  m_TagString: Untagged
+  m_Name: enemy2
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,7 +111,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy2Controller
   moveSpeed: 0
-  Attack: 1
   Spd: 0
 --- !u!114 &2590094384353065949
 MonoBehaviour:
@@ -138,6 +138,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHP: 10
+--- !u!114 &-7417097057997674399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9153170164260028565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e2fc61206b3c9f4a849dc7424746c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
+  Attack: 1
 --- !u!50 &5597613117824740034
 Rigidbody2D:
   serializedVersion: 5

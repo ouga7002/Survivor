@@ -3,14 +3,15 @@
 public class Enemy1Controller : MonoBehaviour
 {
     public float moveSpeed = 2;
-    public float Attack = 1;
 
     private Transform player;
     private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
@@ -30,5 +31,18 @@ public class Enemy1Controller : MonoBehaviour
 
         Vector2 direction = ((Vector2)player.position - rb.position).normalized;
         rb.linearVelocity = direction * moveSpeed;
+
+        // 左右の移動方向に合わせてスプライトを反転
+        if (spriteRenderer != null)
+        {
+            if (direction.x > 0.01f)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else if (direction.x < -0.01f)
+            {
+                spriteRenderer.flipX = false;
+            }
+        }
     }
 }

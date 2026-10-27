@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5930325114726456842}
   - component: {fileID: 8383611883054376134}
   - component: {fileID: 6319140794785227936}
+  - component: {fileID: -6500654542399553579}
   - component: {fileID: 2749052641128123865}
   - component: {fileID: 1762989567973911905}
   - component: {fileID: 5746583193554820764}
@@ -20,7 +21,7 @@ GameObject:
   - component: {fileID: 7333534713688192173}
   m_Layer: 6
   m_Name: enemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +113,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy1Controller
   moveSpeed: 2
-  Attack: 1
 --- !u!114 &8383611883054376134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +139,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHP: 10
+--- !u!114 &-6500654542399553579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4818612936148183212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e2fc61206b3c9f4a849dc7424746c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
+  Attack: 1
 --- !u!61 &2749052641128123865
 BoxCollider2D:
   m_ObjectHideFlags: 0
