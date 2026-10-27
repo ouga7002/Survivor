@@ -399,8 +399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef2e87ea5bbe5dd49afe73c85c1b7cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InfiniteTileMap
-  player: {fileID: 0}
-  tileSize: 10
+  player: {fileID: 1418600290}
+  tileSize: 11
   tileRadius: 2
   groundColor: {r: 0.27735847, g: 1, b: 0.4101636, a: 1}
 --- !u!4 &732797524
@@ -589,6 +589,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6c2957c9ddd0ce46a71774fc6cad3ca, type: 3}
+--- !u!4 &1418600290 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1672311756124341919, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
+  m_PrefabInstance: {fileID: 1224246969}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1882597574
 PrefabInstance:
   m_ObjectHideFlags: 0
