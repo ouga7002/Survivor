@@ -3,31 +3,38 @@ using System.Collections;
 
 public class KnifeAttack : MonoBehaviour
 {
-    [Header("設定")]
-    [Tooltip("プレイヤーのトランスフォーム")]
+    [Header("参照設定（インスペクターで紐付け）")]
     [SerializeField] private Transform player;
-
-    [Tooltip("エイムカーソルのトランスフォーム")]
     [SerializeField] private Transform aimCursor;
 
+    [Header("攻撃パラメータ")]
     [Tooltip("攻撃間隔（秒）")]
     [SerializeField] private float attackInterval = 2.0f;
 
-    [Tooltip("攻撃（スイング）にかかる時間")]
-    [SerializeField] private float swingDuration = 0.2f;
+    [Tooltip("斬撃（スイング）にかかる時間")]
+    [SerializeField] private float swingDuration = 0.25f;
 
-    [Tooltip("カーソル位置からの飛び出し・スイング幅")]
-    [SerializeField] private float swingDistance = 0.4f;
+    [Tooltip("カーソルよりもどれくらい先（外側）で攻撃するか")]
+    [SerializeField] private float distanceAheadOfCursor = 0.4f;
+
+    [Tooltip("振る時のスイング角度幅")]
+    [SerializeField] private float swingAngleRange = 90f;
 
     private float attackTimer = 0f;
-    private SpriteRenderer spriteRenderer;
     private bool isAttacking = false;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // プレイヤーやカーソルの自動検索
+        // 待機時は非表示にしてカーソルと被らないようにする
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = false;
+        }
+
+        // 未設定時の自動検索保険
         if (player == null)
         {
             GameObject pObj = GameObject.Find("player2_0");
@@ -39,68 +46,67 @@ public class KnifeAttack : MonoBehaviour
             GameObject cObj = GameObject.Find("AimCursor");
             if (cObj != null) aimCursor = cObj.transform;
         }
-
-        // 普段はナイフを非表示にしておく
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.enabled = false;
-        }
     }
 
     void Update()
     {
         if (player == null || aimCursor == null) return;
 
-        // 攻撃中でないときは、タイマーを進める
+        // 攻撃中でないときはタイマーを進める
         if (!isAttacking)
         {
             attackTimer += Time.deltaTime;
-
             if (attackTimer >= attackInterval)
             {
                 attackTimer = 0f;
-                StartCoroutine(SwingKnifeRoutine());
+                StartCoroutine(SwingAheadOfCursorRoutine());
             }
         }
     }
 
-    IEnumerator SwingKnifeRoutine()
+    // カーソルの少し先（外側）で展開する斬撃スイングモーション
+    IEnumerator SwingAheadOfCursorRoutine()
     {
         isAttacking = true;
 
-        // 攻撃開始時にナイフを表示
         if (spriteRenderer != null)
         {
             spriteRenderer.enabled = true;
         }
 
-        // カーソルの位置と、プレイヤーからカーソルへの方向を取得
-        Vector3 cursorPosition = aimCursor.position;
-        Vector3 directionToCursor = (cursorPosition - player.position).normalized;
-
-        // 向き（角度）の計算
-        float angle = Mathf.Atan2(directionToCursor.y, directionToCursor.x) * Mathf.Rad2Deg;
-
         float elapsed = 0f;
 
-        // スイングモーション
+        // プレイヤーからカーソルへの方向と、現在のカーソルまでの距離を取得
+        Vector3 dirToCursor = (aimCursor.position - player.position).normalized;
+        float baseAngle = Mathf.Atan2(dirToCursor.y, dirToCursor.x) * Mathf.Rad2Deg;
+
+        // 「プレイヤーからカーソルまでの距離 + 先に出る分の距離」を計算
+        float cursorDist = Vector3.Distance(player.position, aimCursor.position);
+        float knifeRadius = cursorDist + distanceAheadOfCursor;
+
+        // カーソルの方角を中央にして、左右にスイングする角度を計算
+        float startAngle = baseAngle - (swingAngleRange / 2f);
+        float endAngle = baseAngle + (swingAngleRange / 2f);
+
         while (elapsed < swingDuration)
         {
             elapsed += Time.deltaTime;
             float t = elapsed / swingDuration;
 
-            // カーソルの位置を基準にして、前後にスイングさせる
-            float currentDist = Mathf.Sin(t * Mathf.PI) * swingDistance;
-            transform.position = cursorPosition + directionToCursor * currentDist;
+            // 滑らかなイージング
+            float smoothT = Mathf.SmoothStep(0f, 1f, t);
+            float currentAngle = Mathf.Lerp(startAngle, endAngle, smoothT);
 
-            // 刃が回転する「切ってる感じ」の演出
-            float currentAngle = angle - 45f + (Mathf.Sin(t * Mathf.PI) * 60f);
-            transform.rotation = Quaternion.Euler(0f, 0f, currentAngle);
+            // 計算した「先側の半径」を使って円周上の座標を算出
+            float rad = currentAngle * Mathf.Deg2Rad;
+            Vector3 offset = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f) * knifeRadius;
+
+            transform.position = player.position + offset;
+            transform.rotation = Quaternion.Euler(0f, 0f, currentAngle - 45f);
 
             yield return null;
         }
 
-        // 攻撃終了：ナイフを非表示に戻す
         if (spriteRenderer != null)
         {
             spriteRenderer.enabled = false;
