@@ -1,8 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// 無限ループ型の2Dマップを管理するクラス。
-/// 地面タイルを必要な数だけ生成し、プレイヤーの周囲で使い回す。
+/// 無限ループ型の2Dマップを管理するクラス（中心ズレ修正版）。
 /// </summary>
 public class InfiniteTileMap : MonoBehaviour
 {
@@ -10,108 +9,123 @@ public class InfiniteTileMap : MonoBehaviour
     [SerializeField] private Transform player;
 
     [Header("マップ設定")]
-    [SerializeField] private float tileSize = 10f;
-    [SerializeField] private int tileRadius = 2;
+    [Tooltip("タイルの基準サイズ（画像に合わせて自動調整されます）")]
+    [SerializeField] private float tileSize = 20f;
 
-    [Header("地面の色")]
-    [SerializeField]
-    private Color groundColor =
-        new Color(0.45f, 0.65f, 0.38f);
+    [Tooltip("プレイヤーの周囲に配置するタイルの半径（横方向）")]
+    [SerializeField] private int tileRadiusX = 4;
 
-    // 生成した地面タイルを保存する配列
+    [Tooltip("プレイヤーの周囲に配置するタイルの半径（縦方向）")]
+    [SerializeField] private int tileRadiusY = 3;
+
+    [Header("背景素材の設定")]
+    [Tooltip("使用したい背景のスプライト画像")]
+    [SerializeField] private Sprite customSprite;
+
+    [Tooltip("スプライトの色")]
+    [SerializeField] private Color groundColor = Color.white;
+
     private GameObject[,] tiles;
+    private Sprite defaultSquareSprite;
+    private int gridWidth;
+    private int gridHeight;
 
-    // タイルに使用する四角形のスプライト
-    private Sprite squareSprite;
-
-    private int gridCount;
+    private float tileWidth;
+    private float tileHeight;
 
     private void Start()
     {
-        // プレイヤーが設定されていなければ停止
         if (player == null)
         {
-            Debug.LogError("MapManagerにPlayerを設定してください。");
+            Debug.LogError("InfiniteTileMapにPlayerを設定してください。");
             enabled = false;
             return;
         }
 
-        // 1ユニットの白い四角形を作成
-        squareSprite = Sprite.Create(
+        defaultSquareSprite = Sprite.Create(
             Texture2D.whiteTexture,
             new Rect(0, 0, 2, 2),
             new Vector2(0.5f, 0.5f),
             2f
         );
 
-        // 中心の周囲にタイルを配置する
-        gridCount = tileRadius * 2 + 1;
-        tiles = new GameObject[gridCount, gridCount];
+        Sprite spriteToUse = customSprite != null ? customSprite : defaultSquareSprite;
 
-        for (int x = 0; x < gridCount; x++)
+        if (spriteToUse != null)
         {
-            for (int y = 0; y < gridCount; y++)
+            Vector2 spriteSize = spriteToUse.rect.size / spriteToUse.pixelsPerUnit;
+            if (spriteSize.x > 0 && spriteSize.y > 0)
             {
-                GameObject tile = new GameObject(
-                    $"GroundTile_{x}_{y}"
-                );
+                float scale = tileSize / spriteSize.x;
+                tileWidth = tileSize;
+                tileHeight = spriteSize.y * scale;
+            }
+            else
+            {
+                tileWidth = tileSize;
+                tileHeight = tileSize;
+            }
+        }
+        else
+        {
+            tileWidth = tileSize;
+            tileHeight = tileSize;
+        }
 
+        gridWidth = tileRadiusX * 2 + 1;
+        gridHeight = tileRadiusY * 2 + 1;
+        tiles = new GameObject[gridWidth, gridHeight];
+
+        for (int x = 0; x < gridWidth; x++)
+        {
+            for (int y = 0; y < gridHeight; y++)
+            {
+                GameObject tile = new GameObject($"GroundTile_{x}_{y}");
                 tile.transform.SetParent(transform);
 
-                // 描画用コンポーネントを追加
-                SpriteRenderer renderer =
-                    tile.AddComponent<SpriteRenderer>();
-
-                renderer.sprite = squareSprite;
+                SpriteRenderer renderer = tile.AddComponent<SpriteRenderer>();
+                renderer.sprite = spriteToUse;
                 renderer.color = groundColor;
-
-                // 地面をキャラクターより後ろに表示
                 renderer.sortingOrder = -10;
 
-                // タイルを設定した大きさにする
-                tile.transform.localScale =
-                    Vector3.one * tileSize;
+                if (spriteToUse != null)
+                {
+                    Vector2 spriteSize = spriteToUse.rect.size / spriteToUse.pixelsPerUnit;
+                    float scale = tileSize / spriteSize.x;
+                    tile.transform.localScale = new Vector3(scale, scale, 1f);
+                }
 
                 tiles[x, y] = tile;
             }
         }
 
-        // 最初の配置を行う
         UpdateTiles();
     }
 
     private void LateUpdate()
     {
-        // プレイヤーの移動後にタイルの位置を更新
+        if (player == null) return;
         UpdateTiles();
     }
 
     private void UpdateTiles()
     {
-        // プレイヤーがいるタイルの番号を計算
-        int centerX = Mathf.FloorToInt(
-            player.position.x / tileSize
-        );
+        // FloorToInt から RoundToInt に変更し、プレイヤーがタイルの中心にきやすくする
+        int centerX = Mathf.RoundToInt(player.position.x / tileWidth);
+        int centerY = Mathf.RoundToInt(player.position.y / tileHeight);
 
-        int centerY = Mathf.FloorToInt(
-            player.position.y / tileSize
-        );
-
-        // プレイヤーの周囲にタイルを並べる
-        for (int x = 0; x < gridCount; x++)
+        for (int x = 0; x < gridWidth; x++)
         {
-            for (int y = 0; y < gridCount; y++)
+            for (int y = 0; y < gridHeight; y++)
             {
-                // 配列のインデックスから、プレイヤーを中心としたワールド座標のオフセットを計算
-                int gridX = centerX + (x - tileRadius);
-                int gridY = centerY + (y - tileRadius);
+                int gridX = centerX + (x - tileRadiusX);
+                int gridY = centerY + (y - tileRadiusY);
 
-                tiles[x, y].transform.position =
-                    new Vector3(
-                        gridX * tileSize,
-                        gridY * tileSize,
-                        0f
-                    );
+                tiles[x, y].transform.position = new Vector3(
+                    gridX * tileWidth,
+                    gridY * tileHeight,
+                    0f
+                );
             }
         }
     }

@@ -342,7 +342,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 732797524}
-  - component: {fileID: 732797523}
+  - component: {fileID: 732797525}
   m_Layer: 0
   m_Name: MapManager
   m_TagString: Untagged
@@ -350,22 +350,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &732797523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 732797522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef2e87ea5bbe5dd49afe73c85c1b7cd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InfiniteTileMap
-  player: {fileID: 1418600290}
-  tileSize: 11
-  tileRadius: 2
-  groundColor: {r: 0.27735847, g: 1, b: 0.4101636, a: 1}
 --- !u!4 &732797524
 Transform:
   m_ObjectHideFlags: 0
@@ -381,6 +365,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &732797525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732797522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef2e87ea5bbe5dd49afe73c85c1b7cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InfiniteTileMap
+  player: {fileID: 1418600290}
+  tileSize: 10
+  tileRadiusX: 3
+  tileRadiusY: 2
+  customSprite: {fileID: -6281730360405387591, guid: b4fa1bd62a2f8914c99ff0d36a0cca1d, type: 3}
+  groundColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &1224246969
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -438,6 +440,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
+--- !u!1 &1328263939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1328263941}
+  - component: {fileID: 1328263940}
+  m_Layer: 0
+  m_Name: TimerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1328263940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328263939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71c4fa408b41f148a2a2415d9127c55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CountdownTimer
+  timerText: {fileID: 0}
+  totalTime: 300
+--- !u!4 &1328263941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328263939}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.70663, y: -0.51781, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1418600290 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1672311756124341919, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
@@ -506,6 +554,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 183993855}
   - {fileID: 732797524}
+  - {fileID: 1328263941}
   - {fileID: 1224246969}
   - {fileID: 3652812407404478737}
   - {fileID: 682210617}
