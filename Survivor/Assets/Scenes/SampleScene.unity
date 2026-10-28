@@ -1114,6 +1114,14 @@ PrefabInstance:
       propertyPath: orbitRadius
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7581150772905774888, guid: dfcd4d94b0de67f408a0925dbcc963ad, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581150772905774888, guid: dfcd4d94b0de67f408a0925dbcc963ad, type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1291,15 +1299,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1172661498968085640, guid: 767a7877007d37041a632aadb757e3ba, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9999965
       objectReference: {fileID: 0}
     - target: {fileID: 1172661498968085640, guid: 767a7877007d37041a632aadb757e3ba, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1172661498968085640, guid: 767a7877007d37041a632aadb757e3ba, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.0026520686
       objectReference: {fileID: 0}
     - target: {fileID: 1172661498968085640, guid: 767a7877007d37041a632aadb757e3ba, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1311,7 +1319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1172661498968085640, guid: 767a7877007d37041a632aadb757e3ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -0.304
       objectReference: {fileID: 0}
     - target: {fileID: 1172661498968085640, guid: 767a7877007d37041a632aadb757e3ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

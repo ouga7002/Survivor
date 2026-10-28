@@ -126,7 +126,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -173,6 +173,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B1_Bullet2
   moveSpeed: 4
+  BulletTrans: {fileID: 6293125616820045316}
+  PlayerTrans: {fileID: 0}
 --- !u!114 &-2838225284747244639
 MonoBehaviour:
   m_ObjectHideFlags: 0

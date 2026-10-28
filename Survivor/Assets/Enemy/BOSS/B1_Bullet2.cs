@@ -10,6 +10,8 @@ public class B1_Bullet2 : MonoBehaviour
 
     private EnemyStatus enemyStatus;
 
+    public Transform BulletTrans;
+
     void Awake()
     {
         enemyStatus = GetComponent<EnemyStatus>();
@@ -28,6 +30,13 @@ public class B1_Bullet2 : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        Vector3 dir = (player.position - BulletTrans.position);
+
+        BulletTrans.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+    }
+
     void FixedUpdate()
     {
         if (player == null)
@@ -42,14 +51,7 @@ public class B1_Bullet2 : MonoBehaviour
         // 左右の移動方向に合わせてスプライトを反転
         if (spriteRenderer != null)
         {
-            if (direction.x > 0.01f)
-            {
-                spriteRenderer.flipX = true;
-            }
-            else if (direction.x < -0.01f)
-            {
-                spriteRenderer.flipX = false;
-            }
+                spriteRenderer.flipY = true;           
         }
     }
 
