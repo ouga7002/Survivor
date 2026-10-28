@@ -8,8 +8,8 @@ public class KnifeAttack : MonoBehaviour
     [SerializeField] private Transform aimCursor;
 
     [Header("攻撃パラメータ")]
-    [Tooltip("攻撃力（ATK: 10）")]
-    [SerializeField] private float attackPower = 10f;
+    [Tooltip("攻撃力（ATK）")]
+    [SerializeField] private float attackPower = 3f; // ここを3などに設定
 
     [Tooltip("攻撃間隔（秒）")]
     [SerializeField] private float attackInterval = 2.0f;
@@ -117,13 +117,16 @@ public class KnifeAttack : MonoBehaviour
     // 敵にナイフが当たったときの処理
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 接触したオブジェクトに「Enemy」タグがついている、または名前に「enemy」が含まれている場合
         if (collision.CompareTag("Enemy") || collision.name.ToLower().Contains("enemy"))
         {
-            Debug.Log($"[攻撃成功] ナイフが敵にヒット！ ATK: {attackPower} のダメージ");
-
-            // 敵を消滅させる（キル処理）
-            Destroy(collision.gameObject);
+            // 敵にアタッチされている EnemyHealth コンポーネントを取得する
+            EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
+            if (enemyHealth != null)
+            {
+                // HPを減らす（敵側の TakeDamage で 0 になったら自動で Die() が呼ばれ、消滅します）
+                enemyHealth.TakeDamage(attackPower);
+                Debug.Log($"[攻撃成功] ナイフが敵にヒット！ ATK: {attackPower} のダメージを与えた");
+            }
         }
     }
 }

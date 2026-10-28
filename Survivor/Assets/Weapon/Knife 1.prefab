@@ -108,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::KnifeAttack
   player: {fileID: 1672311756124341919, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
   aimCursor: {fileID: 2595502452938164658, guid: 1cfcdb2be764e3c4ba1e47c658b28b28, type: 3}
+  attackPower: 2
   attackInterval: 2
   swingDuration: 0.2
   distanceAheadOfCursor: 1

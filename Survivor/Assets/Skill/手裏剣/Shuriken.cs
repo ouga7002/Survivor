@@ -2,10 +2,6 @@ using UnityEngine;
 
 public class Shuriken : MonoBehaviour
 {
-    [Header("参照設定")]
-    [Tooltip("プレイヤーのトランスフォーム")]
-    [SerializeField] private Transform player;
-
     [Header("手裏剣のパラメータ")]
     [Tooltip("攻撃力（ATK: 10）")]
     [SerializeField] private float attackPower = 10f;
@@ -13,66 +9,73 @@ public class Shuriken : MonoBehaviour
     [Tooltip("プレイヤーからの回転半径（距離）")]
     [SerializeField] private float orbitRadius = 1.8f;
 
-    [Tooltip("回転速度（1秒間に進む度数。例: 180なら2秒で1周）")]
+    [Tooltip("回転速度（1秒間に進む度数）")]
     [SerializeField] private float rotationSpeed = 180f;
 
-    [Tooltip("手裏剣自体の自転速度（クルクル回る見た目用）")]
+    [Tooltip("手裏剣自体の自転速度")]
     [SerializeField] private float selfRotationSpeed = 360f;
 
     private float currentAngle = 0f;
+    private Transform playerTransform;
 
     void Start()
     {
-        // 未設定の場合、自動でプレイヤーを探す
-        if (player == null)
+        // シーン内から「player2_0」または「Player」タグを持つオブジェクトを自動で安全に探す
+        GameObject pObj = GameObject.Find("player2_0");
+        if (pObj != null)
         {
-            GameObject pObj = GameObject.Find("player2_0");
-            if (pObj != null)
+            playerTransform = pObj.transform;
+        }
+        else
+        {
+            GameObject taggedPlayer = GameObject.FindWithTag("Player");
+            if (taggedPlayer != null)
             {
-                player = pObj.transform;
+                playerTransform = taggedPlayer.transform;
             }
             else
             {
-                Debug.LogError("【Shuriken】プレイヤーが見つかりませんでした！");
+                Debug.LogError("【Shuriken】プレイヤーが見つかりませんでした！プレイヤーの Tag を 'Player' に設定するか、名前を確認してください。");
             }
         }
     }
 
     void Update()
     {
-        if (player == null) return;
+        if (playerTransform == null) return;
 
-        // 1. 角度を時間経過とともに進めて円運動（公転）させる
+        // 1. 時間経過で公転角度を進める
         currentAngle += rotationSpeed * Time.deltaTime;
-
-        // 360度を超えたらループさせる
         if (currentAngle >= 360f)
         {
             currentAngle -= 360f;
         }
 
-        // ラジアンに変換して座標を計算
+        // 2. プレイヤーの位置を基準にして、ワールド座標上の円周上の位置を計算
         float rad = currentAngle * Mathf.Deg2Rad;
-        float x = player.position.x + Mathf.Cos(rad) * orbitRadius;
-        float y = player.position.y + Mathf.Sin(rad) * orbitRadius;
+        float x = playerTransform.position.x + Mathf.Cos(rad) * orbitRadius;
+        float y = playerTransform.position.y + Mathf.Sin(rad) * orbitRadius;
 
         // 手裏剣の位置を更新
         transform.position = new Vector3(x, y, 0f);
 
-        // 2. 手裏剣自体をクルクル自転させる（見た目の演出）
+        // 3. 手裏剣自体の自転（クルクル回る見た目）
         transform.Rotate(0f, 0f, selfRotationSpeed * Time.deltaTime);
     }
 
     // 敵に接触したときの判定
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 接触したオブジェクトが「Enemy」の場合
         if (collision.CompareTag("Enemy") || collision.name.ToLower().Contains("enemy"))
         {
-            Debug.Log($"[手裏剣ヒット] 敵に {attackPower} のダメージを与えて撃破！");
-
-            // 敵を消滅させる
-            Destroy(collision.gameObject);
+            // 敵にアタッチされている EnemyHealth コンポーネントを取得する
+            EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
+            if (enemyHealth != null)
+            {
+                // HPを減らす（0になったら敵側の Die() で自動消滅します）
+                enemyHealth.TakeDamage(attackPower);
+                Debug.Log($"[手裏剣ヒット] 敵に {attackPower} のダメージを与えた！");
+            }
         }
     }
 }
