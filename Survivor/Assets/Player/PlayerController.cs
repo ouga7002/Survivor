@@ -8,12 +8,14 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerStatus playerStatus;
     private Vector2 moveInput;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         // 必要なコンポーネントの参照を取得
         rb = GetComponent<Rigidbody2D>();
         playerStatus = GetComponent<PlayerStatus>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         // 2Dゲームで物理回転しないように固定（Z軸回転を凍結）
         rb.freezeRotation = true;
@@ -57,5 +59,18 @@ public class PlayerController : MonoBehaviour
     {
         // 移動速度は PlayerStatus から取得した値を使う
         rb.linearVelocity = moveInput * playerStatus.MoveSpeed;
+
+        // 左右の移動方向に合わせてスプライトを反転
+        if (spriteRenderer != null)
+        {
+            if (rb.linearVelocity.x > 0.01f)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else if (rb.linearVelocity.x < -0.01f)
+            {
+                spriteRenderer.flipX = true;
+            }
+        }
     }
 }
