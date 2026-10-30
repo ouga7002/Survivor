@@ -8,6 +8,10 @@ public class Boss1Controller : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
+    public GameObject bullet1;
+    public GameObject bullet2;
+    Vector3 createPosition;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -18,6 +22,20 @@ public class Boss1Controller : MonoBehaviour
         if (playerObject != null)
         {
             player = playerObject.transform;
+        }
+
+        // 2秒後から、5秒おきに DoSomething() を実行
+        InvokeRepeating(nameof(Attack), 2f, 5f);
+    }
+
+    void Attack()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            createPosition = transform.position;
+            createPosition.y += 1.0f; // プレイヤーのy座標 + 1の位置に弾を生成する
+
+            Instantiate(bullet2, createPosition, Quaternion.identity);
         }
     }
 

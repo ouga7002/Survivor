@@ -16,6 +16,9 @@ GameObject:
   - component: {fileID: 4735274930261651891}
   - component: {fileID: 5067308944894741637}
   - component: {fileID: 4812619813419040443}
+  - component: {fileID: -5611155039645421627}
+  - component: {fileID: 3329585333886466443}
+  - component: {fileID: 4756709080151119584}
   m_Layer: 6
   m_Name: "\u4E2D\u30DC\u30B9"
   m_TagString: Enemy
@@ -354,3 +357,44 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-5611155039645421627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536135667274760269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98ad6246372860b41a68640c86785f6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Boss1Controller
+  moveSpeed: 2
+  bullet1: {fileID: 0}
+  bullet2: {fileID: 7606331075079873860, guid: 7ed30077a30ef47468d2e38128be8667, type: 3}
+--- !u!114 &3329585333886466443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536135667274760269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3772746e69a0cea47a8564bf505eeb4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyContactAttack
+  attackInterval: 1
+--- !u!114 &4756709080151119584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536135667274760269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e2fc61206b3c9f4a849dc7424746c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
+  Attack: 1

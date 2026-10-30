@@ -119,6 +119,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &75896480 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1536135667274760269, guid: 767a7877007d37041a632aadb757e3ba, type: 3}
+  m_PrefabInstance: {fileID: 10922397928448840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &75896492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75896480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e7fe1cfdb732049afde80aff24f887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHP: 25
 --- !u!1 &183993852
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,6 +1132,14 @@ PrefabInstance:
       propertyPath: orbitRadius
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7581150772905774888, guid: dfcd4d94b0de67f408a0925dbcc963ad, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581150772905774888, guid: dfcd4d94b0de67f408a0925dbcc963ad, type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1291,15 +1317,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1172661498968085640, guid: 767a7877007d37041a632aadb757e3ba, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9999965
       objectReference: {fileID: 0}
     - target: {fileID: 1172661498968085640, guid: 767a7877007d37041a632aadb757e3ba, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1172661498968085640, guid: 767a7877007d37041a632aadb757e3ba, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.0026520686
       objectReference: {fileID: 0}
     - target: {fileID: 1172661498968085640, guid: 767a7877007d37041a632aadb757e3ba, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1311,7 +1337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1172661498968085640, guid: 767a7877007d37041a632aadb757e3ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -0.304
       objectReference: {fileID: 0}
     - target: {fileID: 1172661498968085640, guid: 767a7877007d37041a632aadb757e3ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1324,7 +1350,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1536135667274760269, guid: 767a7877007d37041a632aadb757e3ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 75896492}
   m_SourcePrefab: {fileID: 100100000, guid: 767a7877007d37041a632aadb757e3ba, type: 3}
 --- !u!1001 &3652812407404478737
 PrefabInstance:
