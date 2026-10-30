@@ -8,8 +8,8 @@ public class KnifeAttack : MonoBehaviour
     [SerializeField] private Transform aimCursor;
 
     [Header("攻撃パラメータ")]
-    [Tooltip("攻撃力（ATK）")]
-    [SerializeField] private float attackPower = 3f; // ここを3などに設定
+    [Tooltip("ナイフ自体の基本攻撃力")]
+    [SerializeField] private float baseWeaponAtk = 3f;
 
     [Tooltip("攻撃間隔（秒）")]
     [SerializeField] private float attackInterval = 2.0f;
@@ -27,6 +27,7 @@ public class KnifeAttack : MonoBehaviour
     private bool isAttacking = false;
     private SpriteRenderer spriteRenderer;
     private Collider2D knifeCollider;
+    private PlayerStatus playerStatus;
 
     void Start()
     {
@@ -37,11 +38,16 @@ public class KnifeAttack : MonoBehaviour
         if (spriteRenderer != null) spriteRenderer.enabled = false;
         if (knifeCollider != null) knifeCollider.enabled = false;
 
-        // 未設定時の自動検索保険
+        // 未設定時の自動検索保険（プレイヤーの取得）
         if (player == null)
         {
             GameObject pObj = GameObject.Find("player2_0");
             if (pObj != null) player = pObj.transform;
+        }
+
+        if (player != null)
+        {
+            playerStatus = player.GetComponent<PlayerStatus>();
         }
 
         if (aimCursor == null)
@@ -119,13 +125,19 @@ public class KnifeAttack : MonoBehaviour
     {
         if (collision.CompareTag("Enemy") || collision.name.ToLower().Contains("enemy"))
         {
-            // 敵にアタッチされている EnemyHealth コンポーネントを取得する
             EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
-                // HPを減らす（敵側の TakeDamage で 0 になったら自動で Die() が呼ばれ、消滅します）
-                enemyHealth.TakeDamage(attackPower);
-                Debug.Log($"[攻撃成功] ナイフが敵にヒット！ ATK: {attackPower} のダメージを与えた");
+                // プレイヤーの基礎ATKと、ナイフの基本威力を合計して最終ダメージを計算
+                float totalAtk = baseWeaponAtk;
+                if (playerStatus != null)
+                {
+                    totalAtk += playerStatus.CurrentAtk;
+                }
+
+                // 敵にダメージを与える
+                enemyHealth.TakeDamage(totalAtk);
+                Debug.Log($"[攻撃成功] ナイフが敵にヒット！ 総ダメージ: {totalAtk} (武器: {baseWeaponAtk} + プレイヤーATK: {(playerStatus != null ? playerStatus.CurrentAtk : 0)})");
             }
         }
     }

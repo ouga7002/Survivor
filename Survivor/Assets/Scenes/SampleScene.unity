@@ -900,7 +900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8929181863863241836, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
       propertyPath: baseAtk
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7524703554139864783, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
