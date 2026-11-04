@@ -6,22 +6,28 @@ public class EnemyHealth : MonoBehaviour
     [Header("敵のステータス")]
     public float maxHP = 10f;
 
+    [Header("経験値ドロップ")]
+    public int expDropAmount = 1;
+
     public float CurrentHP { get; private set; }
 
     private bool isDead = false;
+    private PooledEnemy pooledEnemy;
 
     void Awake()
     {
-        CurrentHP = maxHP;
+        pooledEnemy = GetComponent<PooledEnemy>();
     }
 
-    // ダメージを受ける処理
+    void OnEnable()
+    {
+        CurrentHP = maxHP;
+        isDead = false;
+    }
+
     public void TakeDamage(float damage)
     {
-        if (isDead)
-        {
-            return;
-        }
+        if (isDead) return;
 
         CurrentHP -= damage;
 
@@ -30,26 +36,36 @@ public class EnemyHealth : MonoBehaviour
             CurrentHP = 0;
         }
 
-        Debug.Log($"{gameObject.name} HP: {CurrentHP}/{maxHP}");
-
         if (CurrentHP <= 0)
         {
             Die();
         }
     }
 
-    // 死亡処理
-    protected virtual void Die()
+    void Die()
     {
-        if (isDead)
-        {
-            return;
-        }
+        if (isDead) return;
 
         isDead = true;
 
-        Debug.Log($"{gameObject.name} が倒された！");
+        // 経験値オーブを出現させる
+        if (expDropAmount > 0 &&
+            GPOrbPool.Instance != null)
+        {
+            GPOrbPool.Instance.Spawn(
+                transform.position,
+                expDropAmount
+            );
+        }
 
-        Destroy(gameObject);
+        // 敵をプールに返す
+        if (pooledEnemy != null)
+        {
+            pooledEnemy.ReturnToPool();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
