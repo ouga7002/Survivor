@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1131465762420378124}
+  - component: {fileID: -4724935807054432624}
   m_Layer: 0
   m_Name: BossSpawner
   m_TagString: Untagged
@@ -31,3 +32,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4724935807054432624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755765898988281265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0193f20a0b6fd7448b166b26edd5d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossSpawner
+  bosses:
+  - bossPrefab: {fileID: 0}
+    spawnTime: 0
+    hasSpawned: 0
+  minSpawnDistance: 7
+  maxSpawnDistance: 10
+  enemyPool: {fileID: 0}

@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -6,8 +5,8 @@ public class EnemyHealth : MonoBehaviour
     [Header("敵のステータス")]
     public float maxHP = 10f;
 
-    [Header("経験値ドロップ")]
-    public int expDropAmount = 1;
+    [Header("ガチャポイントドロップ")]
+    public int GPDropAmount = 1;
 
     public float CurrentHP { get; private set; }
 
@@ -48,13 +47,13 @@ public class EnemyHealth : MonoBehaviour
 
         isDead = true;
 
-        // 経験値オーブを出現させる
-        if (expDropAmount > 0 &&
+        // ガチャポイントを出現させる
+        if (GPDropAmount > 0 &&
             GPOrbPool.Instance != null)
         {
             GPOrbPool.Instance.Spawn(
                 transform.position,
-                expDropAmount
+                GPDropAmount
             );
         }
 
