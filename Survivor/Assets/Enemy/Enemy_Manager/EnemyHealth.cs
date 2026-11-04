@@ -8,6 +8,9 @@ public class EnemyHealth : MonoBehaviour
     [Header("ガチャポイントドロップ")]
     public int GPDropAmount = 1;
 
+    [Header("撃破エフェクト")]
+    public GameObject deathEffectPrefab;
+
     public float CurrentHP { get; private set; }
 
     private bool isDead = false;
@@ -47,17 +50,24 @@ public class EnemyHealth : MonoBehaviour
 
         isDead = true;
 
-        // ガチャポイントを出現させる
-        if (GPDropAmount > 0 &&
-            GPOrbPool.Instance != null)
+        // 経験値オーブを生成
+        if (GPDropAmount > 0 && GPOrbPool.Instance != null)
         {
-            GPOrbPool.Instance.Spawn(
+                GPOrbPool.Instance.Spawn(
                 transform.position,
                 GPDropAmount
             );
         }
 
-        // 敵をプールに返す
+        // 撃破エフェクトを生成
+        if (EnemyDeathEffectPool.Instance != null)
+        {
+            EnemyDeathEffectPool.Instance.Spawn(transform.position);
+        }
+
+        // 敵をプールに戻す
+        PooledEnemy pooledEnemy = GetComponent<PooledEnemy>();
+
         if (pooledEnemy != null)
         {
             pooledEnemy.ReturnToPool();
