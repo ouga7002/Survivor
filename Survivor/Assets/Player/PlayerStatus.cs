@@ -1,4 +1,5 @@
 using UnityEngine;
+
 public class PlayerStatus : MonoBehaviour
 {
     [Header("初期ステータス")]
@@ -60,6 +61,22 @@ public class PlayerStatus : MonoBehaviour
         {
             Die();
         }
+    }
+
+    // ★【追加】HPを回復するメソッド（吸血スキル等から呼び出されます）
+    public void Heal(float amount)
+    {
+        if (amount <= 0 || CurrentHp <= 0) return;
+
+        CurrentHp += amount;
+
+        // 最大HPを超えないように制限する
+        if (CurrentHp > MaxHp)
+        {
+            CurrentHp = MaxHp;
+        }
+
+        Debug.Log($"[PlayerStatus] HPが {amount} 回復した！ 現在のHP：{CurrentHp}/{MaxHp}");
     }
 
     void Die()
