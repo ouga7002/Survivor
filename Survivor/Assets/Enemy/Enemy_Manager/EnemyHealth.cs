@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -6,22 +5,28 @@ public class EnemyHealth : MonoBehaviour
     [Header("敵のステータス")]
     public float maxHP = 10f;
 
+    [Header("ガチャポイントドロップ")]
+    public int GPDropAmount = 1;
+
     public float CurrentHP { get; private set; }
 
     private bool isDead = false;
+    private PooledEnemy pooledEnemy;
 
     void Awake()
     {
-        CurrentHP = maxHP;
+        pooledEnemy = GetComponent<PooledEnemy>();
     }
 
-    // ダメージを受ける処理
+    void OnEnable()
+    {
+        CurrentHP = maxHP;
+        isDead = false;
+    }
+
     public void TakeDamage(float damage)
     {
-        if (isDead)
-        {
-            return;
-        }
+        if (isDead) return;
 
         CurrentHP -= damage;
 
@@ -30,26 +35,36 @@ public class EnemyHealth : MonoBehaviour
             CurrentHP = 0;
         }
 
-        Debug.Log($"{gameObject.name} HP: {CurrentHP}/{maxHP}");
-
         if (CurrentHP <= 0)
         {
             Die();
         }
     }
 
-    // 死亡処理
-    protected virtual void Die()
+    void Die()
     {
-        if (isDead)
-        {
-            return;
-        }
+        if (isDead) return;
 
         isDead = true;
 
-        Debug.Log($"{gameObject.name} が倒された！");
+        // ガチャポイントを出現させる
+        if (GPDropAmount > 0 &&
+            GPOrbPool.Instance != null)
+        {
+            GPOrbPool.Instance.Spawn(
+                transform.position,
+                GPDropAmount
+            );
+        }
 
-        Destroy(gameObject);
+        // 敵をプールに返す
+        if (pooledEnemy != null)
+        {
+            pooledEnemy.ReturnToPool();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

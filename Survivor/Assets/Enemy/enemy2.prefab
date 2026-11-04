@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHP: 10
+  expDropAmount: 3
 --- !u!114 &-7417097057997674399
 MonoBehaviour:
   m_ObjectHideFlags: 0
