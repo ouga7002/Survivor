@@ -411,5 +411,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e7fe1cfdb732049afde80aff24f887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHP: 25
-  expDropAmount: 1
+  maxHP: 100
+  GPDropAmount: 1

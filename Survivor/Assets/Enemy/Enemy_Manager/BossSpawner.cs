@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class BossSpawner : MonoBehaviour
@@ -25,7 +24,11 @@ public class BossSpawner : MonoBehaviour
     [Header("敵プール")]
     public EnemyPool enemyPool;
 
+    // ボスが生存しているかどうか
+    public static bool IsBossActive { get; private set; } = false;
+
     private Transform player;
+    private GameObject currentBoss;
     private float elapsedTime;
 
     void Start()
@@ -47,6 +50,23 @@ public class BossSpawner : MonoBehaviour
     {
         if (player == null || enemyPool == null) return;
 
+        // ボスが出現中なら撃破されたか確認
+        if (IsBossActive)
+        {
+            if (currentBoss == null || !currentBoss.activeInHierarchy)
+            {
+                IsBossActive = false;
+                currentBoss = null;
+
+                Debug.Log("ボス撃破！ゲームを再開します");
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        // ボスがいない間だけ時間を進める
         elapsedTime += Time.deltaTime;
 
         foreach (BossSpawnData data in bosses)
@@ -58,6 +78,9 @@ public class BossSpawner : MonoBehaviour
 
             SpawnBoss(data);
             data.hasSpawned = true;
+
+            // 1体出現したら、このフレームの処理を終了
+            break;
         }
     }
 
@@ -72,12 +95,15 @@ public class BossSpawner : MonoBehaviour
         Vector2 spawnPosition =
             (Vector2)player.position + direction * distance;
 
-        enemyPool.Spawn(
+        currentBoss = enemyPool.Spawn(
             data.bossPrefab,
             spawnPosition
         );
 
-        Debug.Log(data.bossPrefab.name + " が出現！");
+        if (currentBoss != null)
+        {
+            IsBossActive = true;
+            Debug.Log(data.bossPrefab.name + " が出現！");
+        }
     }
 }
-

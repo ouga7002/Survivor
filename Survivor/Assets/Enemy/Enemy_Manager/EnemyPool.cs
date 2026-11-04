@@ -58,11 +58,11 @@ public class EnemyPool : MonoBehaviour
         return pooledEnemy;
     }
 
-    public void Spawn(
-        GameObject prefab,
-        Vector2 position)
+    public GameObject Spawn(
+    GameObject prefab,
+    Vector2 position)
     {
-        if (prefab == null) return;
+        if (prefab == null) return null;
 
         if (!poolDictionary.ContainsKey(prefab))
         {
@@ -89,6 +89,8 @@ public class EnemyPool : MonoBehaviour
 
         enemy.gameObject.SetActive(true);
         ActiveCount++;
+
+        return enemy.gameObject;
     }
 
     public void Return(PooledEnemy enemy, GameObject prefab)
