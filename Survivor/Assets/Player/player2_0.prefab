@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8929181863863241836}
   - component: {fileID: 6801437165972227057}
   - component: {fileID: -1274610214884637425}
+  - component: {fileID: 8003001095448401533}
   m_Layer: 0
   m_Name: player2_0
   m_TagString: Player
@@ -203,3 +204,18 @@ MonoBehaviour:
   baseLightningAtk: 20
   attackInterval: 4
   displayDuration: 0.5
+  attackRadius: 2.5
+--- !u!114 &8003001095448401533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705623107557623577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fa9c2a3e7d1ed040af70ff56b5e3e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VampireSkill
+  healEffectPrefab: {fileID: 0}
+  healRate: 0.1
