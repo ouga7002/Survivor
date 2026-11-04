@@ -22,6 +22,9 @@ public class EnemySpawner : MonoBehaviour
     [Header("敵の最大数")]
     public int maxEnemyCount = 100;
 
+    [Header("敵プール")]
+    public EnemyPool enemyPool;
+
     private Transform player;
 
     void Start()
@@ -38,36 +41,36 @@ public class EnemySpawner : MonoBehaviour
             Debug.LogError("Playerタグのオブジェクトが見つかりません");
         }
 
-        // 敵ごとに最初の出現時刻を設定
         foreach (EnemySpawnData data in enemies)
         {
-            data.nextSpawnTime = Time.time + data.spawnInterval;
+            data.nextSpawnTime =
+                Time.time + data.spawnInterval;
         }
     }
 
     void Update()
     {
-        if (player == null) return;
+        if (player == null || enemyPool == null) return;
 
-        // 敵の最大数に達していたら出現させない
-        if (GameObject.FindGameObjectsWithTag("Enemy").Length
-            >= maxEnemyCount)
-        {
-            return;
-        }
-
-        // 敵ごとに独立してタイマーを確認
         foreach (EnemySpawnData data in enemies)
         {
             if (data.enemyPrefab == null) continue;
 
-            if (Time.time >= data.nextSpawnTime)
-            {
-                SpawnEnemy(data);
+            if (Time.time < data.nextSpawnTime) continue;
 
+            // 最大数に達していたら出現を延期
+            if (enemyPool.ActiveCount >= maxEnemyCount)
+            {
                 data.nextSpawnTime =
                     Time.time + data.spawnInterval;
+
+                continue;
             }
+
+            SpawnEnemy(data);
+
+            data.nextSpawnTime =
+                Time.time + data.spawnInterval;
         }
     }
 
@@ -82,10 +85,9 @@ public class EnemySpawner : MonoBehaviour
         Vector2 spawnPosition =
             (Vector2)player.position + direction * distance;
 
-        Instantiate(
+        enemyPool.Spawn(
             data.enemyPrefab,
-            spawnPosition,
-            Quaternion.identity
+            spawnPosition
         );
     }
 }
