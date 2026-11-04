@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -50,6 +51,9 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
+        // ボス出現中は通常敵をスポーンしない
+        if (BossSpawner.IsBossActive) return;
+
         if (player == null || enemyPool == null) return;
 
         foreach (EnemySpawnData data in enemies)
@@ -91,3 +95,4 @@ public class EnemySpawner : MonoBehaviour
         );
     }
 }
+
