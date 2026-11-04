@@ -1,0 +1,780 @@
+fileFormatVersion: 2
+guid: b5378aae342e4f445afca8387b613bfc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2079997101325439668
+    second: Exp_Orb_0
+  - first:
+      213: 3798251238622043411
+    second: Exp_Orb_1
+  - first:
+      213: 229989240140794647
+    second: Exp_Orb_2
+  - first:
+      213: 2423465524607310108
+    second: Exp_Orb_3
+  - first:
+      213: 1002452439350727635
+    second: Exp_Orb_4
+  - first:
+      213: -3930679889936032787
+    second: Exp_Orb_5
+  - first:
+      213: -4315876585477495375
+    second: Exp_Orb_6
+  - first:
+      213: 1337823001003515803
+    second: Exp_Orb_7
+  - first:
+      213: 6471902085432732726
+    second: Exp_Orb_8
+  - first:
+      213: 7823758407442501067
+    second: Exp_Orb_9
+  - first:
+      213: 6397367592191864295
+    second: Exp_Orb_10
+  - first:
+      213: -5191963755665986943
+    second: Exp_Orb_11
+  - first:
+      213: 7415672940492343084
+    second: Exp_Orb_12
+  - first:
+      213: 355526696193998318
+    second: Exp_Orb_13
+  - first:
+      213: 8487351583143925066
+    second: Exp_Orb_14
+  - first:
+      213: 1050066096253175220
+    second: Exp_Orb_15
+  - first:
+      213: 352518375840587915
+    second: Exp_Orb_16
+  - first:
+      213: -796952850755525446
+    second: Exp_Orb_17
+  - first:
+      213: 6642253027042376709
+    second: Exp_Orb_18
+  - first:
+      213: 8422708648912357945
+    second: Exp_Orb_19
+  - first:
+      213: 3342381216940176112
+    second: Exp_Orb_20
+  - first:
+      213: -5553275600030142152
+    second: Exp_Orb_21
+  - first:
+      213: -8603788243195905559
+    second: Exp_Orb_22
+  - first:
+      213: -7035716813160262970
+    second: Exp_Orb_23
+  - first:
+      213: -5779746291872085698
+    second: Exp_Orb_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Exp_Orb_0
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 818
+        width: 87
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4da7a918ad5223e0800000000000000
+      internalID: -2079997101325439668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_1
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 859
+        width: 185
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31d11c5a06916b430800000000000000
+      internalID: 3798251238622043411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_2
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 975
+        width: 39
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71b01c0def5113300800000000000000
+      internalID: 229989240140794647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_3
+      rect:
+        serializedVersion: 2
+        x: 1358
+        y: 909
+        width: 157
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c19df97fd01e1a120800000000000000
+      internalID: 2423465524607310108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_4
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 839
+        width: 59
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d359bfae2d69ed00800000000000000
+      internalID: 1002452439350727635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_5
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 895
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deb579a377b6379c0800000000000000
+      internalID: -3930679889936032787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_6
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 791
+        width: 77
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b5203cac1dea14c0800000000000000
+      internalID: -4315876585477495375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_7
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 801
+        width: 211
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9f592b6ee6e09210800000000000000
+      internalID: 1337823001003515803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_8
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 817
+        width: 309
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63ce35738a0d0d950800000000000000
+      internalID: 6471902085432732726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_9
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 903
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcd061cc1d2939c60800000000000000
+      internalID: 7823758407442501067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_10
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 863
+        width: 155
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ed213e2ee308c850800000000000000
+      internalID: 6397367592191864295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_11
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 780
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18a63d0f87072f7b0800000000000000
+      internalID: -5191963755665986943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_12
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 516
+        width: 283
+        height: 253
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c27c58cdf33c9e660800000000000000
+      internalID: 7415672940492343084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_13
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 335
+        width: 309
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eedbfc285a51fe400800000000000000
+      internalID: 355526696193998318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_14
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 417
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4594250c4129c570800000000000000
+      internalID: 8487351583143925066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_15
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 407
+        width: 19
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b50ad11d85929e00800000000000000
+      internalID: 1050066096253175220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_16
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 273
+        width: 367
+        height: 527
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b80a6c8589564e400800000000000000
+      internalID: 352518375840587915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_17
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 17
+        width: 389
+        height: 784
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab46bfbca97a0f4f0800000000000000
+      internalID: -796952850755525446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_18
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 431
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50cbf199fe50e2c50800000000000000
+      internalID: 6642253027042376709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_19
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 289
+        height: 322
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93a080904e873e470800000000000000
+      internalID: 8422708648912357945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_20
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 23
+        width: 235
+        height: 294
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f238a31206826e20800000000000000
+      internalID: 3342381216940176112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_21
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 23
+        width: 271
+        height: 295
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 831fb58a34dcee2b0800000000000000
+      internalID: -5553275600030142152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_22
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 156
+        width: 145
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e930a97d24399880800000000000000
+      internalID: -8603788243195905559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_23
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 47
+        width: 83
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c2d653d5dc1c5e90800000000000000
+      internalID: -7035716813160262970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exp_Orb_24
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 23
+        width: 67
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e394515be573acfa0800000000000000
+      internalID: -5779746291872085698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 8298ee1f3d614b34bb3a10a8b14d94ae
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Exp_Orb_0: -2079997101325439668
+      Exp_Orb_1: 3798251238622043411
+      Exp_Orb_10: 6397367592191864295
+      Exp_Orb_11: -5191963755665986943
+      Exp_Orb_12: 7415672940492343084
+      Exp_Orb_13: 355526696193998318
+      Exp_Orb_14: 8487351583143925066
+      Exp_Orb_15: 1050066096253175220
+      Exp_Orb_16: 352518375840587915
+      Exp_Orb_17: -796952850755525446
+      Exp_Orb_18: 6642253027042376709
+      Exp_Orb_19: 8422708648912357945
+      Exp_Orb_2: 229989240140794647
+      Exp_Orb_20: 3342381216940176112
+      Exp_Orb_21: -5553275600030142152
+      Exp_Orb_22: -8603788243195905559
+      Exp_Orb_23: -7035716813160262970
+      Exp_Orb_24: -5779746291872085698
+      Exp_Orb_3: 2423465524607310108
+      Exp_Orb_4: 1002452439350727635
+      Exp_Orb_5: -3930679889936032787
+      Exp_Orb_6: -4315876585477495375
+      Exp_Orb_7: 1337823001003515803
+      Exp_Orb_8: 6471902085432732726
+      Exp_Orb_9: 7823758407442501067
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
