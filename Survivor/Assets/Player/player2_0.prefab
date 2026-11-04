@@ -217,5 +217,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa9c2a3e7d1ed040af70ff56b5e3e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VampireSkill
-  healEffectPrefab: {fileID: 0}
+  healEffectPrefab: {fileID: 6643521140264408121, guid: 13ae8b4a741926a45953133f88904deb, type: 3}
   healRate: 0.1

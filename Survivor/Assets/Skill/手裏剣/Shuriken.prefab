@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33a3c657089c094382ad757eabc0017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shuriken
-  attackPower: 2
+  attackPower: 1
   orbitRadius: 1.8
   rotationSpeed: 180
   selfRotationSpeed: 360
