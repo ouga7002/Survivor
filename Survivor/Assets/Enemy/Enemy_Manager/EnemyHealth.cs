@@ -11,6 +11,9 @@ public class EnemyHealth : MonoBehaviour
     [Header("撃破エフェクト")]
     public GameObject deathEffectPrefab;
 
+    [Header("ドロップするオーブ")]
+    public OrbData dropOrbData;
+
     public float CurrentHP { get; private set; }
 
     private bool isDead = false;
