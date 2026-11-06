@@ -12,7 +12,7 @@ public class EnemyHealth : MonoBehaviour
     public GameObject deathEffectPrefab;
 
     [Header("ドロップするオーブ")]
-    public OrbData dropOrbData;
+    public GameObject dropOrbPrefab;
 
     public float CurrentHP { get; private set; }
 
@@ -47,18 +47,19 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+
     void Die()
     {
         if (isDead) return;
 
         isDead = true;
 
-        // 経験値オーブを生成
-        if (GPDropAmount > 0 && GPOrbPool.Instance != null)
+        // オーブを生成
+        if (dropOrbPrefab != null && GPOrbPool.Instance != null)
         {
-                GPOrbPool.Instance.Spawn(
-                transform.position,
-                GPDropAmount
+            GPOrbPool.Instance.Spawn(
+                dropOrbPrefab,
+                transform.position
             );
         }
 
