@@ -138,7 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHP: 10
-  expDropAmount: 3
+  GPDropAmount: 1
+  deathEffectPrefab: {fileID: 4507934178083678765, guid: 9fbec09751879cf4c801d0e7bd6face9, type: 3}
 --- !u!114 &-7417097057997674399
 MonoBehaviour:
   m_ObjectHideFlags: 0
