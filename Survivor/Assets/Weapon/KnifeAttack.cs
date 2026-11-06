@@ -138,12 +138,14 @@ public class KnifeAttack : MonoBehaviour
                 // 敵にダメージを与える
                 enemyHealth.TakeDamage(totalAtk);
 
+
                 // ★ここに吸血スキルへの通知を追加
                 VampireSkill vampire = FindFirstObjectByType<VampireSkill>();
                 if (vampire != null)
                 {
                     vampire.OnWeaponHit(totalAtk);
                 }
+
 
                 Debug.Log($"[攻撃成功] ナイフが敵にヒット！ 総ダメージ: {totalAtk} (武器: {baseWeaponAtk} + プレイヤーATK: {(playerStatus != null ? playerStatus.CurrentAtk : 0)})");
             }
