@@ -16,7 +16,7 @@ public class LightningSkill : MonoBehaviour
     [Tooltip("雷撃が表示されている時間（秒）")]
     [SerializeField] private float displayDuration = 0.5f;
 
-    [Tooltip("雷撃の攻撃範囲（半径）※ここを大きくすると巻き込める範囲が広がります")]
+    [Tooltip("雷撃の攻撃範囲（半径）")]
     [SerializeField] private float attackRadius = 2.5f;
 
     private float timer = 0f;
@@ -25,17 +25,33 @@ public class LightningSkill : MonoBehaviour
 
     void Start()
     {
-        // プレイヤーの取得とステータス参照の取得
+        // プレイヤーの取得とステータス参照の取得（手裏剣と同じ安全な検索処理）
         GameObject pObj = GameObject.Find("player2_0");
         if (pObj != null)
         {
             playerTransform = pObj.transform;
             playerStatus = pObj.GetComponent<PlayerStatus>();
         }
+        else
+        {
+            GameObject taggedPlayer = GameObject.FindWithTag("Player");
+            if (taggedPlayer != null)
+            {
+                playerTransform = taggedPlayer.transform;
+                playerStatus = taggedPlayer.GetComponent<PlayerStatus>();
+            }
+            else
+            {
+                Debug.LogError("【LightningSkill】プレイヤーが見つかりませんでした！");
+            }
+        }
     }
 
     void Update()
     {
+        // プレイヤーが見つからない場合は処理しない
+        if (playerTransform == null) return;
+
         // タイマーを進める
         timer += Time.deltaTime;
 

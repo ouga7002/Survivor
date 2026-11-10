@@ -32,9 +32,13 @@ public class B1_Bullet2 : MonoBehaviour
 
     void Update()
     {
-        Vector3 dir = (player.position - BulletTrans.position);
+        if (player == null || BulletTrans == null)
+            return;
 
-        BulletTrans.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+        Vector3 dir = player.position - BulletTrans.position;
+
+        BulletTrans.rotation =
+            Quaternion.FromToRotation(Vector3.up, dir);
     }
 
     void FixedUpdate()

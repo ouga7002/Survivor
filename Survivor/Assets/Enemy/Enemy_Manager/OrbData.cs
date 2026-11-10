@@ -1,12 +1,12 @@
 using UnityEngine;
 
-/*public enum OrbEffectType
+public enum OrbEffectType
 {
     Experience,
     Heal,
     AttackUp
 }
-*/
+
 [CreateAssetMenu(
     fileName = "NewOrbData",
     menuName = "Game/Orb Data"
