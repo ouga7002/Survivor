@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5597613117824740034}
   - component: {fileID: 2356201913418439328}
   - component: {fileID: 3191840654903499227}
+  - component: {fileID: -1749128634456292842}
   m_Layer: 6
   m_Name: enemy2
   m_TagString: Enemy
@@ -273,3 +274,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 4.935549, y: 4.5990343}
   m_EdgeRadius: 0
+--- !u!114 &-1749128634456292842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9153170164260028565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ab7f48a2504734ab2d8c282422020c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackManager

@@ -54,6 +54,15 @@ public class EnemyHealth : MonoBehaviour
 
         isDead = true;
 
+        // すべての敵の攻撃を停止
+        EnemyAttackManager attackManager =
+            GetComponent<EnemyAttackManager>();
+
+        if (attackManager != null)
+        {
+            attackManager.StopAllAttacks();
+        }
+
         // オーブを生成
         if (dropOrbPrefab != null && GPOrbPool.Instance != null)
         {
