@@ -6,6 +6,9 @@ public class PlayerStatus : MonoBehaviour
     [Tooltip("攻撃力（初期値: 100）")]
     [SerializeField] private float baseAtk = 100f;
 
+    private float attackUpMultiplier = 1f;
+    private float attackUpEndTime = 0f;
+
     [Tooltip("最大体力（初期値: 100）")]
     [SerializeField] private float baseHp = 100f;
 
@@ -77,6 +80,31 @@ public class PlayerStatus : MonoBehaviour
         }
 
         Debug.Log($"[PlayerStatus] HPが {amount} 回復した！ 現在のHP：{CurrentHp}/{MaxHp}");
+    }
+
+    public void ApplyAttackUp(float percent, float duration)
+    {
+        if (percent <= 0 || duration <= 0) return;
+
+        attackUpMultiplier = 1f + percent / 100f;
+
+        CurrentAtk = baseAtk * attackUpMultiplier;
+
+        attackUpEndTime = Time.time + duration;
+
+        Debug.Log($"攻撃力が{percent}%アップ！");
+    }
+
+    void Update()
+    {
+        if (attackUpMultiplier > 1f &&
+            Time.time >= attackUpEndTime)
+        {
+            attackUpMultiplier = 1f;
+            CurrentAtk = baseAtk;
+
+            Debug.Log("攻撃力アップ終了");
+        }
     }
 
     void Die()

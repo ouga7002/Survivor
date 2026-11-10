@@ -1,7 +1,22 @@
 using UnityEngine;
 
+public enum OrbEffectType
+{
+    GP,
+    Heal,
+    AttackUp
+}
+
 public class GPOrb : MonoBehaviour
 {
+    [Header("オーブの効果")]
+    public OrbEffectType effectType;
+
+    public float effectAmount = 5f;
+
+    [Tooltip("攻撃力アップの持続時間")]
+    public float duration = 10f;
+
     [Header("吸引設定")]
     public float attractionRange = 5f;
     public float moveSpeed = 8f;
@@ -11,7 +26,6 @@ public class GPOrb : MonoBehaviour
     private PlayerStatus playerStatus;
     private GPOrbPool pool;
 
-    private int expAmount;
     private bool isAttracted;
 
     public void Initialize(GPOrbPool orbPool)
@@ -19,9 +33,17 @@ public class GPOrb : MonoBehaviour
         pool = orbPool;
     }
 
-    public void Setup(int amount)
+    private GameObject originalPrefab;
+
+    public GameObject OriginalPrefab => originalPrefab;
+
+    public void SetOriginalPrefab(GameObject prefab)
     {
-        expAmount = amount;
+        originalPrefab = prefab;
+    }
+
+    public void Setup()
+    {
         isAttracted = false;
         player = null;
         playerStatus = null;
@@ -31,7 +53,8 @@ public class GPOrb : MonoBehaviour
     {
         if (player == null)
         {
-            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+            GameObject playerObject =
+                GameObject.FindGameObjectWithTag("Player");
 
             if (playerObject == null) return;
 
@@ -41,29 +64,52 @@ public class GPOrb : MonoBehaviour
 
         if (playerStatus == null) return;
 
-        Vector2 difference = (Vector2)player.position - (Vector2)transform.position;
+        Vector2 difference =
+            (Vector2)player.position - (Vector2)transform.position;
+
         float distanceSquared = difference.sqrMagnitude;
 
-        // 吸引範囲に入ったら吸引開始
         if (!isAttracted)
         {
-            if (distanceSquared > attractionRange * attractionRange) return;
+            if (distanceSquared > attractionRange * attractionRange)
+                return;
 
             isAttracted = true;
         }
 
-        // プレイヤーに向かって移動
         transform.position = Vector2.MoveTowards(
             transform.position,
             player.position,
             moveSpeed * Time.deltaTime
         );
 
-        // プレイヤーに接触したら経験値獲得
         if (distanceSquared <= pickupRange * pickupRange)
         {
-            playerStatus.AddGatyaPoint(expAmount);
+            ApplyEffect();
             pool.Return(this);
+        }
+    }
+
+    void ApplyEffect()
+    {
+        switch (effectType)
+        {
+            case OrbEffectType.GP:
+                playerStatus.AddGatyaPoint(
+                    Mathf.RoundToInt(effectAmount)
+                );
+                break;
+
+            case OrbEffectType.Heal:
+                playerStatus.Heal(effectAmount);
+                break;
+
+            case OrbEffectType.AttackUp:
+                playerStatus.ApplyAttackUp(
+                    effectAmount,
+                    duration
+                );
+                break;
         }
     }
 }
