@@ -10,33 +10,57 @@ public class Boss1Controller : MonoBehaviour
 
     public GameObject bullet1;
     public GameObject bullet2;
-    Vector3 createPosition;
+
+    // 弾の生成位置を頭上からどれだけ離すか
+    public float spawnHeight = 0.3f;
+
+    // 攻撃間隔
+    public float attackInterval = 5f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        GameObject playerObject =
+            GameObject.FindGameObjectWithTag("Player");
 
         if (playerObject != null)
         {
             player = playerObject.transform;
         }
 
-        // 2秒後から、5秒おきに DoSomething() を実行
-        InvokeRepeating(nameof(Attack), 2f, 5f);
+        // 2秒後から攻撃開始
+        InvokeRepeating(nameof(Attack), 2f, attackInterval);
     }
 
     void Attack()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (bullet2 == null)
+        {
+            Debug.LogError("Bullet2が設定されていません！");
+            return;
+        }
+
+        Vector3 createPosition;
+
+        if (spriteRenderer != null)
+        {
+            // ボスのスプライトの一番上を取得
+            createPosition = new Vector3(
+                spriteRenderer.bounds.center.x,
+                spriteRenderer.bounds.max.y + spawnHeight,
+                transform.position.z
+            );
+        }
+        else
         {
             createPosition = transform.position;
-            createPosition.y += 1.0f; // プレイヤーのy座標 + 1の位置に弾を生成する
-
-            Instantiate(bullet2, createPosition, Quaternion.identity);
+            createPosition.y += spawnHeight;
         }
+
+        // 弾を生成
+        Instantiate(bullet2, createPosition, Quaternion.identity);
     }
 
     void FixedUpdate()
@@ -47,10 +71,12 @@ public class Boss1Controller : MonoBehaviour
             return;
         }
 
-        Vector2 direction = ((Vector2)player.position - rb.position).normalized;
+        Vector2 direction =
+            ((Vector2)player.position - rb.position).normalized;
+
         rb.linearVelocity = direction * moveSpeed;
 
-        // 左右の移動方向に合わせてスプライトを反転
+        // 左右の移動方向に合わせて反転
         if (spriteRenderer != null)
         {
             if (direction.x > 0.01f)
