@@ -64,11 +64,11 @@ public class EnemyHealth : MonoBehaviour
         }
 
         // オーブを生成
-        if (GPOrbPool.Instance != null)
+        if (dropOrbPrefab != null && GPOrbPool.Instance != null)
         {
             GPOrbPool.Instance.Spawn(
-                transform.position,
-                GPDropAmount
+                dropOrbPrefab,
+                transform.position
             );
         }
 
