@@ -106,3 +106,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VampireSkill
   healEffectPrefab: {fileID: 6643521140264408121}
   healAmount: 1
+  effectScale: {x: 3, y: 3, z: 3}
+  sortingOrderOffset: 10
