@@ -180,6 +180,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shuriken
   attackPower: 1
-  orbitRadius: 1.8
+  orbitRadius: 5
   rotationSpeed: 180
   selfRotationSpeed: 360
+  activeDuration: 3
+  coolDownDuration: 3

@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 3329585333886466443}
   - component: {fileID: 4756709080151119584}
   - component: {fileID: 781829731719936188}
+  - component: {fileID: 4352492627891288680}
   m_Layer: 6
   m_Name: "\u4E2D\u30DC\u30B9"
   m_TagString: Enemy
@@ -451,6 +452,18 @@ MonoBehaviour:
   GPDropAmount: 1
   deathEffectPrefab: {fileID: 4507934178083678765, guid: 9fbec09751879cf4c801d0e7bd6face9, type: 3}
   dropOrbPrefab: {fileID: 7934304021674551781, guid: 9884841c9faeb2640bc0fce6302f11aa, type: 3}
+--- !u!114 &4352492627891288680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536135667274760269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ab7f48a2504734ab2d8c282422020c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackManager
 --- !u!1 &2826815309607636674
 GameObject:
   m_ObjectHideFlags: 0

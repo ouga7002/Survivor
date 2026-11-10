@@ -1,18 +1,22 @@
 using UnityEngine;
 
-public class Boss1Controller : MonoBehaviour
+public class Boss1Controller : MonoBehaviour, IEnemyAttack
 {
     public float moveSpeed = 2;
 
     private Transform player;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private EnemyAttackManager attackManager;
 
     public GameObject bullet1;
     public GameObject bullet2;
 
-    // 弾の生成位置を頭上からどれだけ離すか
-    public float spawnHeight = 0.3f;
+    // 弾の生成位置
+    public Transform bulletSpawnPoint;
+
+    // 生成位置が設定されていない場合の高さ
+    public float spawnHeight = 1.0f;
 
     // 攻撃間隔
     public float attackInterval = 5f;
@@ -30,8 +34,10 @@ public class Boss1Controller : MonoBehaviour
             player = playerObject.transform;
         }
 
-        // 2秒後から攻撃開始
+        // 2秒後から5秒おきに攻撃
         InvokeRepeating(nameof(Attack), 2f, attackInterval);
+
+        attackManager = GetComponent<EnemyAttackManager>();
     }
 
     void Attack()
@@ -44,23 +50,29 @@ public class Boss1Controller : MonoBehaviour
 
         Vector3 createPosition;
 
-        if (spriteRenderer != null)
+        // 専用の生成位置が設定されている場合
+        if (bulletSpawnPoint != null)
         {
-            // ボスのスプライトの一番上を取得
-            createPosition = new Vector3(
-                spriteRenderer.bounds.center.x,
-                spriteRenderer.bounds.max.y + spawnHeight,
-                transform.position.z
-            );
+            createPosition = bulletSpawnPoint.position;
         }
         else
         {
+            // ボスの頭上に生成
             createPosition = transform.position;
             createPosition.y += spawnHeight;
         }
 
-        // 弾を生成
-        Instantiate(bullet2, createPosition, Quaternion.identity);
+        GameObject bullet = Instantiate(
+    bullet2,
+    createPosition,
+    Quaternion.identity
+);
+
+        // 生成した弾を共通管理に登録
+        if (attackManager != null)
+        {
+            attackManager.RegisterBullet(bullet);
+        }
     }
 
     void FixedUpdate()
@@ -76,7 +88,7 @@ public class Boss1Controller : MonoBehaviour
 
         rb.linearVelocity = direction * moveSpeed;
 
-        // 左右の移動方向に合わせて反転
+        // 左右の移動方向に合わせてスプライトを反転
         if (spriteRenderer != null)
         {
             if (direction.x > 0.01f)
@@ -88,5 +100,9 @@ public class Boss1Controller : MonoBehaviour
                 spriteRenderer.flipX = true;
             }
         }
+    }
+    public void StopAttack()
+    {
+        CancelInvoke(nameof(Attack));
     }
 }
