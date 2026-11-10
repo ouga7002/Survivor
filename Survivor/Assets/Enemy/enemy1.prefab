@@ -142,7 +142,6 @@ MonoBehaviour:
   maxHP: 10
   GPDropAmount: 1
   deathEffectPrefab: {fileID: 4507934178083678765, guid: 9fbec09751879cf4c801d0e7bd6face9, type: 3}
-  dropOrbPrefab: {fileID: 373015031572606197, guid: 1cff645bcedb397418df59b368fd9305, type: 3}
 --- !u!114 &-6500654542399553579
 MonoBehaviour:
   m_ObjectHideFlags: 0

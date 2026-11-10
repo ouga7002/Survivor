@@ -5,44 +5,26 @@ public class GPOrbPool : MonoBehaviour
 {
     public static GPOrbPool Instance { get; private set; }
 
-    [System.Serializable]
-    public class OrbPoolData
-    {
-        public GameObject orbPrefab;
-        public int initialSize = 20;
-    }
+    [Header("オーブ設定")]
+    public GameObject orbPrefab;
+    public int initialSize = 50;
 
-    [Header("オーブのプール設定")]
-    public OrbPoolData[] orbPools;
-
-    private Dictionary<GameObject, Queue<GPOrb>> pools =
-        new Dictionary<GameObject, Queue<GPOrb>>();
+    private Queue<GPOrb> pool =
+        new Queue<GPOrb>();
 
     void Awake()
     {
         Instance = this;
 
-        foreach (OrbPoolData data in orbPools)
+        for (int i = 0; i < initialSize; i++)
         {
-            if (data.orbPrefab == null) continue;
-
-            if (pools.ContainsKey(data.orbPrefab)) continue;
-
-            pools.Add(
-                data.orbPrefab,
-                new Queue<GPOrb>()
-            );
-
-            for (int i = 0; i < data.initialSize; i++)
-            {
-                CreateOrb(data.orbPrefab);
-            }
+            CreateOrb();
         }
     }
 
-    void CreateOrb(GameObject prefab)
+    void CreateOrb()
     {
-        GameObject obj = Instantiate(prefab, transform);
+        GameObject obj = Instantiate(orbPrefab, transform);
 
         GPOrb orb = obj.GetComponent<GPOrb>();
 
@@ -54,26 +36,19 @@ public class GPOrbPool : MonoBehaviour
         }
 
         orb.Initialize(this);
-        orb.SetOriginalPrefab(prefab);
         obj.SetActive(false);
 
-        pools[prefab].Enqueue(orb);
+        pool.Enqueue(orb);
     }
 
-    public void Spawn(GameObject prefab, Vector2 position)
+    public void Spawn(Vector2 position, int amount)
     {
-        if (prefab == null) return;
+        if (orbPrefab == null) return;
 
-        if (!pools.ContainsKey(prefab))
-        {
-            pools.Add(prefab, new Queue<GPOrb>());
-        }
-
-        Queue<GPOrb> pool = pools[prefab];
-
+        // プールが空なら追加生成
         if (pool.Count == 0)
         {
-            CreateOrb(prefab);
+            CreateOrb();
         }
 
         if (pool.Count == 0) return;
@@ -81,7 +56,7 @@ public class GPOrbPool : MonoBehaviour
         GPOrb orb = pool.Dequeue();
 
         orb.transform.position = position;
-        orb.Setup();
+        orb.Setup(amount);
         orb.gameObject.SetActive(true);
     }
 
@@ -90,16 +65,7 @@ public class GPOrbPool : MonoBehaviour
         if (orb == null || !orb.gameObject.activeSelf) return;
 
         orb.gameObject.SetActive(false);
-
-        GameObject prefab = orb.OriginalPrefab;
-
-        if (prefab == null || !pools.ContainsKey(prefab)) return;
-
-        pools[prefab].Enqueue(orb);
-    }
-
-    public void RegisterPrefab(GPOrb orb, GameObject prefab)
-    {
-        orb.SetOriginalPrefab(prefab);
+        pool.Enqueue(orb);
     }
 }
+
