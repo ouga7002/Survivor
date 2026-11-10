@@ -140,7 +140,10 @@ MonoBehaviour:
   maxHP: 10
   GPDropAmount: 1
   deathEffectPrefab: {fileID: 4507934178083678765, guid: 9fbec09751879cf4c801d0e7bd6face9, type: 3}
+<<<<<<< Updated upstream
   dropOrbPrefab: {fileID: 5719624584010537925, guid: a97bcf08cb9f8764d9e7ea4ca7afb183, type: 3}
+=======
+>>>>>>> Stashed changes
 --- !u!114 &-7417097057997674399
 MonoBehaviour:
   m_ObjectHideFlags: 0
