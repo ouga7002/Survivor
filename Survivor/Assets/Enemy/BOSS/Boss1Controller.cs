@@ -9,17 +9,22 @@ public class Boss1Controller : MonoBehaviour, IEnemyAttack
     private SpriteRenderer spriteRenderer;
     private EnemyAttackManager attackManager;
 
-    public GameObject bullet1;
-    public GameObject bullet2;
+    [Header("弾のPrefab")]
+    public GameObject bullet1; // 3方向直進弾
+    public GameObject bullet2; // 既存の追尾弾
 
-    // 弾の生成位置
+    // 既存の追尾弾の生成位置
     public Transform bulletSpawnPoint;
 
-    // 生成位置が設定されていない場合の高さ
     public float spawnHeight = 1.0f;
 
-    // 攻撃間隔
+    [Header("攻撃設定")]
     public float attackInterval = 5f;
+
+    [Header("3方向直進弾の設定")]
+    public int straightBulletCount = 3;
+    public float straightBulletSpreadAngle = 15f;
+    public float straightBulletSpawnDistance = 1.0f;
 
     void Start()
     {
@@ -42,36 +47,107 @@ public class Boss1Controller : MonoBehaviour, IEnemyAttack
 
     void Attack()
     {
-        if (bullet2 == null)
+        if (player == null) return;
+
+        // どちらの攻撃を使うかランダムに決定
+        bool useStraightAttack =
+            bullet1 != null &&
+            (bullet2 == null || Random.value < 0.5f);
+
+        if (useStraightAttack)
         {
-            Debug.LogError("Bullet2が設定されていません！");
-            return;
+            AttackStraight();
         }
+        else
+        {
+            AttackHoming();
+        }
+    }
+
+    // 既存の追尾弾攻撃
+    void AttackHoming()
+    {
+        if (bullet2 == null) return;
 
         Vector3 createPosition;
 
-        // 専用の生成位置が設定されている場合
         if (bulletSpawnPoint != null)
         {
             createPosition = bulletSpawnPoint.position;
         }
         else
         {
-            // ボスの頭上に生成
             createPosition = transform.position;
             createPosition.y += spawnHeight;
         }
 
         GameObject bullet = Instantiate(
-    bullet2,
-    createPosition,
-    Quaternion.identity
-);
+            bullet2,
+            createPosition,
+            Quaternion.identity
+        );
 
-        // 生成した弾を共通管理に登録
         if (attackManager != null)
         {
             attackManager.RegisterBullet(bullet);
+        }
+    }
+
+    // 3方向直進弾攻撃
+    void AttackStraight()
+    {
+        if (bullet1 == null) return;
+
+        // プレイヤーに向かう方向
+        Vector2 direction =
+            ((Vector2)player.position - (Vector2)transform.position).normalized;
+
+        // ボスの目の前に生成
+        Vector2 spawnPosition =
+            (Vector2)transform.position +
+            direction * straightBulletSpawnDistance;
+
+        for (int i = 0; i < straightBulletCount; i++)
+        {
+            // 3発の角度を均等にずらす
+            float angle = 0f;
+
+            if (straightBulletCount > 1)
+            {
+                float t = (float)i / (straightBulletCount - 1);
+                angle = Mathf.Lerp(
+                    -straightBulletSpreadAngle,
+                    straightBulletSpreadAngle,
+                    t
+                );
+            }
+
+            Vector2 shotDirection =
+                Quaternion.Euler(0, 0, angle) * direction;
+
+            GameObject bullet = Instantiate(
+                bullet1,
+                spawnPosition,
+                Quaternion.identity
+            );
+
+            B1_Bullet1 straightBullet =
+                bullet.GetComponent<B1_Bullet1>();
+
+            if (straightBullet != null)
+            {
+                straightBullet.Initialize(shotDirection);
+            }
+            else
+            {
+                Debug.LogError(
+                    "Bullet1にB1_StraightBulletが設定されていません！");
+            }
+
+            if (attackManager != null)
+            {
+                attackManager.RegisterBullet(bullet);
+            }
         }
     }
 
@@ -101,6 +177,7 @@ public class Boss1Controller : MonoBehaviour, IEnemyAttack
             }
         }
     }
+
     public void StopAttack()
     {
         CancelInvoke(nameof(Attack));
