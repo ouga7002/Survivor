@@ -47,5 +47,5 @@ MonoBehaviour:
   pools:
   - enemyPrefab: {fileID: 4818612936148183212, guid: e6c2957c9ddd0ce46a71774fc6cad3ca, type: 3}
     initialSize: 20
-  - enemyPrefab: {fileID: 9153170164260028565, guid: bd48b52748ad84b4b848d9e8a609a268, type: 3}
+  - enemyPrefab: {fileID: 2847073272372498978, guid: bd48b52748ad84b4b848d9e8a609a268, type: 3}
     initialSize: 20
