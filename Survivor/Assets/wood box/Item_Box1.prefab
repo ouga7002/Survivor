@@ -133,7 +133,7 @@ MonoBehaviour:
   maxHP: 1
   GPDropAmount: 1
   deathEffectPrefab: {fileID: 0}
-  dropOrbPrefab: {fileID: 7934304021674551781, guid: 9884841c9faeb2640bc0fce6302f11aa, type: 3}
+  dropOrbPrefab: {fileID: 1214922664183747227, guid: 358183ced6e9bfd4980e2e987646b580, type: 3}
 --- !u!50 &-379672574822526319
 Rigidbody2D:
   serializedVersion: 5

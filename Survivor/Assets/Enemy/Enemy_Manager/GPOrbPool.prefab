@@ -44,5 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c40c3c106e50cb4fa25ab41238e22c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GPOrbPool
-  orbPrefab: {fileID: 373015031572606197, guid: 1cff645bcedb397418df59b368fd9305, type: 3}
-  initialSize: 50
+  orbPools:
+  - orbPrefab: {fileID: 373015031572606197, guid: 1cff645bcedb397418df59b368fd9305, type: 3}
+    initialSize: 30
+  - orbPrefab: {fileID: 5719624584010537925, guid: a97bcf08cb9f8764d9e7ea4ca7afb183, type: 3}
+    initialSize: 30
+  - orbPrefab: {fileID: 7934304021674551781, guid: 9884841c9faeb2640bc0fce6302f11aa, type: 3}
+    initialSize: 10
