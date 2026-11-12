@@ -15,6 +15,9 @@ public class PlayerStatus : MonoBehaviour
     [Header("ガチャポイント")]
     public int CurrentGP { get; private set; } = 0;
 
+    [Header("スコア")]
+    public int CurrentScore { get; private set; } = 0;
+
     // 現在のステータス
     public float CurrentAtk { get; private set; }
     public float MaxHp { get; private set; }
@@ -89,6 +92,16 @@ public class PlayerStatus : MonoBehaviour
         Debug.Log(
             $"攻撃力が{percent}%アップ！ 現在の攻撃力：{CurrentAtk}"
         );
+    }
+
+    // スコアを獲得
+    public void AddScore(int amount)
+    {
+        if (amount <= 0) return;
+
+        CurrentScore += amount;
+
+        Debug.Log($"スコアを{amount}獲得！ 現在のスコア：{CurrentScore}");
     }
 
     // ダメージを受ける

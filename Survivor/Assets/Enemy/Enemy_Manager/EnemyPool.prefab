@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPool
   pools:
   - enemyPrefab: {fileID: 4818612936148183212, guid: e6c2957c9ddd0ce46a71774fc6cad3ca, type: 3}
-    initialSize: 20
+    initialSize: 30
   - enemyPrefab: {fileID: 2847073272372498978, guid: bd48b52748ad84b4b848d9e8a609a268, type: 3}
+    initialSize: 30
+  - enemyPrefab: {fileID: 8772636149481982011, guid: fcbad8c0906fb24478996bff8e42e0fd, type: 3}
     initialSize: 20

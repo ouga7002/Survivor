@@ -14,6 +14,9 @@ public class EnemyHealth : MonoBehaviour
     [Header("ドロップするオーブ")]
     public GameObject dropOrbPrefab;
 
+    [Header("撃破スコア")]
+    public int scoreReward = 10;
+
     public float CurrentHP { get; private set; }
 
     private bool isDead = false;
@@ -53,6 +56,21 @@ public class EnemyHealth : MonoBehaviour
         if (isDead) return;
 
         isDead = true;
+
+        // プレイヤーにスコアを加算
+        GameObject playerObject =
+            GameObject.FindGameObjectWithTag("Player");
+
+        if (playerObject != null)
+        {
+            PlayerStatus playerStatus =
+                playerObject.GetComponent<PlayerStatus>();
+
+            if (playerStatus != null)
+            {
+                playerStatus.AddScore(scoreReward);
+            }
+        }
 
         // すべての敵の攻撃を停止
         EnemyAttackManager attackManager =

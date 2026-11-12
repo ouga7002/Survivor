@@ -51,3 +51,5 @@ MonoBehaviour:
     initialSize: 30
   - orbPrefab: {fileID: 7934304021674551781, guid: 9884841c9faeb2640bc0fce6302f11aa, type: 3}
     initialSize: 10
+  - orbPrefab: {fileID: 1214922664183747227, guid: 358183ced6e9bfd4980e2e987646b580, type: 3}
+    initialSize: 10
