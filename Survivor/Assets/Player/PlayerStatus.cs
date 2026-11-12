@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStatus : MonoBehaviour
 {
@@ -134,6 +135,10 @@ public class PlayerStatus : MonoBehaviour
     void Die()
     {
         Debug.Log("プレイヤーが死亡しました");
-        Destroy(gameObject);
+
+        // "ResultScene" の部分は実際のリザルト画面のシーン名に書き換えてください
+        SceneManager.LoadScene("ResultScene");
+
+        //Destroy(gameObject);
     }
 }
