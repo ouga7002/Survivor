@@ -41,7 +41,7 @@ public class EnemyPool : MonoBehaviour
 
     PooledEnemy CreateEnemy(GameObject prefab)
     {
-        GameObject obj = Instantiate(prefab, transform);
+        GameObject obj = Instantiate(prefab);
         obj.SetActive(false);
 
         PooledEnemy pooledEnemy = obj.GetComponent<PooledEnemy>();
