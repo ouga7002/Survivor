@@ -286,4 +286,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e2fc61206b3c9f4a849dc7424746c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
-  Attack: 1
+  Attack: 2
