@@ -10,66 +10,54 @@ public class Shuriken : MonoBehaviour
     [SerializeField] private float activeDuration = 5.0f;
     [SerializeField] private float coolDownDuration = 3.0f;
 
+    [Header("手裏剣の見た目設定")]
+    [Tooltip("手裏剣として表示するスプライト画像があればここにアタッチ")]
+    [SerializeField] private Sprite shurikenSprite;
+
+    public bool isUnlocked = false;
+
     private float currentAngle = 0f;
-    private Transform playerTransform;
     private float stateTimer = 0f;
     private bool isActiveState = true;
-    private SpriteRenderer spriteRenderer;
+
+    // プレイヤー本体のSpriteRendererを巻き込まないように専用のオブジェクトを作るか、自分自身を回さないようにする
+    private Transform visualChild;
+    private SpriteRenderer visualSr;
     private Collider2D col2d;
-
-    void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        // 正しい Collider2D を取得するように修正しました
-        col2d = GetComponent<Collider2D>();
-    }
-
-    // ガチャで有効化された瞬間に呼ばれる
-    void OnEnable()
-    {
-        FindPlayer();
-        stateTimer = 0f;
-        isActiveState = true;
-        SetShurikenActive(true);
-    }
 
     void Start()
     {
-        FindPlayer();
-    }
+        // プレイヤー自身に付いている Collider2D を誤って消さないよう、
+        // 自身のトリガー用コライダー（または手裏剣用）を安全に取得・追加する
+        col2d = GetComponent<Collider2D>();
 
-    void FindPlayer()
-    {
-        GameObject pObj = GameObject.Find("player2_0");
-        if (pObj != null) playerTransform = pObj.transform;
+        // 手裏剣の見た目用の孫（または子）オブジェクトがなければ自動生成する
+        Transform existingVisual = transform.Find("ShurikenVisual");
+        if (existingVisual != null)
+        {
+            visualChild = existingVisual;
+            visualSr = visualChild.GetComponent<SpriteRenderer>();
+        }
         else
         {
-            GameObject taggedPlayer = GameObject.FindWithTag("Player");
-            if (taggedPlayer != null) playerTransform = taggedPlayer.transform;
+            GameObject visualObj = new GameObject("ShurikenVisual");
+            visualObj.transform.SetParent(transform);
+            visualObj.transform.localPosition = Vector3.zero;
+            visualSr = visualObj.AddComponent<SpriteRenderer>();
+            if (shurikenSprite != null) visualSr.sprite = shurikenSprite;
+            visualChild = visualObj.transform;
         }
+
+        SetShurikenActive(false);
     }
 
     void Update()
     {
-        if (playerTransform == null)
-        {
-            FindPlayer();
-            if (playerTransform == null) return;
-        }
+        if (!isUnlocked) return;
 
-        stateTimer += Time.deltaTime;
-
-        if (isActiveState)
+        if (!isActiveState)
         {
-            if (stateTimer >= activeDuration)
-            {
-                isActiveState = false;
-                stateTimer = 0f;
-                SetShurikenActive(false);
-            }
-        }
-        else
-        {
+            stateTimer += Time.deltaTime;
             if (stateTimer >= coolDownDuration)
             {
                 isActiveState = true;
@@ -79,26 +67,39 @@ public class Shuriken : MonoBehaviour
             return;
         }
 
+        stateTimer += Time.deltaTime;
+        if (stateTimer >= activeDuration)
+        {
+            isActiveState = false;
+            stateTimer = 0f;
+            SetShurikenActive(false);
+            return;
+        }
+
+        // プレイヤーの周囲を回転させる
         currentAngle += rotationSpeed * Time.deltaTime;
         if (currentAngle >= 360f) currentAngle -= 360f;
 
         float rad = currentAngle * Mathf.Deg2Rad;
-        float x = playerTransform.position.x + Mathf.Cos(rad) * orbitRadius;
-        float y = playerTransform.position.y + Mathf.Sin(rad) * orbitRadius;
+        float x = Mathf.Cos(rad) * orbitRadius;
+        float y = Mathf.Sin(rad) * orbitRadius;
 
-        transform.position = new Vector3(x, y, 0f);
-        transform.Rotate(0f, 0f, selfRotationSpeed * Time.deltaTime);
+        if (visualChild != null)
+        {
+            visualChild.localPosition = new Vector3(x, y, 0f);
+            visualChild.Rotate(0f, 0f, selfRotationSpeed * Time.deltaTime);
+        }
     }
 
     void SetShurikenActive(bool active)
     {
-        if (spriteRenderer != null) spriteRenderer.enabled = active;
-        if (col2d != null) col2d.enabled = active;
+        if (visualSr != null) visualSr.enabled = active;
+        // ※もしプレイヤーのコライダーまで消えてしまっている場合はここのコメントアウトを調整
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isActiveState) return;
+        if (!isUnlocked || !isActiveState) return;
 
         if (collision.CompareTag("Enemy") || collision.name.ToLower().Contains("enemy"))
         {

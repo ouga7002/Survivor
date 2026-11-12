@@ -8,47 +8,20 @@ public class LightningSkill : MonoBehaviour
     [SerializeField] private float displayDuration = 0.5f;
     [SerializeField] private float attackRadius = 2.5f;
 
-    private float timer = 0f;
-    private Transform playerTransform;
-    private PlayerStatus playerStatus;
+    public bool isUnlocked = false;
 
-    void OnEnable()
-    {
-        FindPlayerAndStatus();
-        timer = 0f;
-    }
+    private float timer = 0f;
+    private PlayerStatus playerStatus;
 
     void Start()
     {
-        FindPlayerAndStatus();
-    }
-
-    void FindPlayerAndStatus()
-    {
-        GameObject pObj = GameObject.Find("player2_0");
-        if (pObj != null)
-        {
-            playerTransform = pObj.transform;
-            playerStatus = pObj.GetComponent<PlayerStatus>();
-        }
-        else
-        {
-            GameObject taggedPlayer = GameObject.FindWithTag("Player");
-            if (taggedPlayer != null)
-            {
-                playerTransform = taggedPlayer.transform;
-                playerStatus = taggedPlayer.GetComponent<PlayerStatus>();
-            }
-        }
+        playerStatus = GetComponent<PlayerStatus>();
+        timer = 0f;
     }
 
     void Update()
     {
-        if (playerTransform == null)
-        {
-            FindPlayerAndStatus();
-            if (playerTransform == null) return;
-        }
+        if (!isUnlocked) return;
 
         timer += Time.deltaTime;
 

@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2372783811166468067
 Transform:
   m_ObjectHideFlags: 0
@@ -108,3 +108,4 @@ MonoBehaviour:
   healAmount: 1
   effectScale: {x: 3, y: 3, z: 3}
   sortingOrderOffset: 10
+  isUnlocked: 0

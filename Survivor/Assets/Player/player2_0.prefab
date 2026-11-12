@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 2457500969386592243}
   - component: {fileID: 8929181863863241836}
   - component: {fileID: 6801437165972227057}
+  - component: {fileID: -708092690547096358}
+  - component: {fileID: 725562251882949114}
+  - component: {fileID: -5461646630854042477}
   m_Layer: 0
   m_Name: player2_0
   m_TagString: Player
@@ -186,3 +189,57 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 4.2499995, y: 7.0699997}
   m_Direction: 0
+--- !u!114 &-708092690547096358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705623107557623577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33a3c657089c094382ad757eabc0017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shuriken
+  attackPower: 10
+  orbitRadius: 1.8
+  rotationSpeed: 180
+  selfRotationSpeed: 360
+  activeDuration: 5
+  coolDownDuration: 3
+  isUnlocked: 0
+--- !u!114 &725562251882949114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705623107557623577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fa9c2a3e7d1ed040af70ff56b5e3e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VampireSkill
+  healEffectPrefab: {fileID: 6643521140264408121, guid: 13ae8b4a741926a45953133f88904deb, type: 3}
+  healAmount: 1
+  effectScale: {x: 1, y: 1, z: 1}
+  sortingOrderOffset: 10
+  isUnlocked: 0
+--- !u!114 &-5461646630854042477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705623107557623577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c96d769b4702d494fa60ec0cb74f7bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightningSkill
+  lightningPrefab: {fileID: 5015114588549358431, guid: dcda9c101c0d2f7498a6c1727b549a1f, type: 3}
+  baseLightningAtk: 20
+  attackInterval: 4
+  displayDuration: 0.5
+  attackRadius: 2.5
+  isUnlocked: 0

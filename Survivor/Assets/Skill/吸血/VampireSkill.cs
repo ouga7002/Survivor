@@ -3,7 +3,6 @@ using UnityEngine;
 public class VampireSkill : MonoBehaviour
 {
     [Header("参照設定")]
-    [Tooltip("回復時にプレイヤーの頭上などに表示するエフェクトのプレハブ")]
     [SerializeField] private GameObject healEffectPrefab;
 
     [Header("吸血パラメータ")]
@@ -11,74 +10,45 @@ public class VampireSkill : MonoBehaviour
     [SerializeField] private Vector3 effectScale = new Vector3(1f, 1f, 1f);
     [SerializeField] private int sortingOrderOffset = 10;
 
-    private Transform playerTransform;
+    public bool isUnlocked = false;
+
     private PlayerStatus playerStatus;
     private float effectCooldownTimer = 0f;
 
-    void OnEnable()
-    {
-        FindPlayerAndStatus();
-        effectCooldownTimer = 0f;
-    }
-
     void Start()
     {
-        FindPlayerAndStatus();
+        playerStatus = GetComponent<PlayerStatus>();
     }
 
     void Update()
     {
-        // プレイヤーが見つからない場合は毎フレーム探し直す
-        if (playerTransform == null || playerStatus == null)
-        {
-            FindPlayerAndStatus();
-        }
+        if (!isUnlocked) return;
 
-        // エフェクト生成用のクールダウンタイマーを減らす
         if (effectCooldownTimer > 0f)
         {
             effectCooldownTimer -= Time.deltaTime;
         }
     }
 
-    void FindPlayerAndStatus()
-    {
-        GameObject pObj = GameObject.Find("player2_0");
-        if (pObj != null)
-        {
-            playerTransform = pObj.transform;
-            playerStatus = pObj.GetComponent<PlayerStatus>();
-        }
-        else
-        {
-            GameObject taggedPlayer = GameObject.FindWithTag("Player");
-            if (taggedPlayer != null)
-            {
-                playerTransform = taggedPlayer.transform;
-                playerStatus = taggedPlayer.GetComponent<PlayerStatus>();
-            }
-        }
-    }
-
     // 各武器のヒット時に呼び出される吸血処理
     public void OnWeaponHit(float dealtDamage)
     {
+        if (!isUnlocked) return;
+
         if (playerStatus == null)
         {
-            FindPlayerAndStatus();
+            playerStatus = GetComponent<PlayerStatus>();
             if (playerStatus == null) return;
         }
 
-        // 1. HP回復は常に行う
         playerStatus.Heal(healAmount);
 
-        // 2. クールダウン中でなければエフェクトを生成する（連続発動でのバグを防ぐ）
-        if (effectCooldownTimer <= 0f && healEffectPrefab != null && playerTransform != null)
+        if (effectCooldownTimer <= 0f && healEffectPrefab != null)
         {
-            effectCooldownTimer = 0.2f; // 0.2秒間はエフェクトの連続生成をガード
+            effectCooldownTimer = 0.2f;
 
-            GameObject effect = Instantiate(healEffectPrefab, playerTransform.position, Quaternion.identity);
-            effect.transform.SetParent(playerTransform);
+            GameObject effect = Instantiate(healEffectPrefab, transform.position, Quaternion.identity);
+            effect.transform.SetParent(transform);
             effect.transform.localScale = effectScale;
 
             SpriteRenderer[] srs = effect.GetComponentsInChildren<SpriteRenderer>(true);
