@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// 無限ループ型の2Dマップを管理するクラス（ボス背景自動切り替え対応版）。
+/// 無限ループ型の2Dマップを管理するクラス（ボス背景自動切り替え・修正版）。
 /// </summary>
 public class InfiniteTileMap : MonoBehaviour
 {
@@ -108,13 +108,27 @@ public class InfiniteTileMap : MonoBehaviour
 
     private void UpdateBossBackground()
     {
-        GameObject boss = GameObject.FindWithTag(bossTag);
+        // シーン内から "Boss" タグを持つオブジェクトをすべて取得し、
+        // 「実際にアクティブ（画面上にスポーンして存在している）なもの」だけを厳密に探す
+        GameObject activeBoss = null;
+        GameObject[] bosses = GameObject.FindGameObjectsWithTag(bossTag);
+
+        foreach (GameObject b in bosses)
+        {
+            if (b != null && b.activeInHierarchy)
+            {
+                activeBoss = b;
+                break;
+            }
+        }
+
         Sprite targetSprite = customSprite != null ? customSprite : defaultSquareSprite;
 
-        if (boss != null)
+        // アクティブなボスがスポーンしている場合のみ背景を切り替える
+        if (activeBoss != null)
         {
-            // ボスの名前や種類によって中ボス・ラスボスを判別
-            if (boss.name.Contains("Final") || boss.name.Contains("ラスボス"))
+            // ボスの名前によって中ボス・ラスボスを判別
+            if (activeBoss.name.Contains("Final") || activeBoss.name.Contains("ラスボス"))
             {
                 if (finalBossSprite != null) targetSprite = finalBossSprite;
             }
@@ -124,7 +138,7 @@ public class InfiniteTileMap : MonoBehaviour
             }
         }
 
-        // 画像が切り替わったときだけ再描画を実行
+        // 画像が切り替われたときだけ再描画を実行
         if (targetSprite != currentAppliedSprite)
         {
             ChangeBackground(targetSprite);
