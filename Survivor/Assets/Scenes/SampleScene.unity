@@ -534,6 +534,9 @@ MonoBehaviour:
   tileRadiusY: 3
   customSprite: {fileID: 1420819563496527457, guid: 097dcf7aeaff5324280f1e223f99d602, type: 3}
   groundColor: {r: 1, g: 1, b: 1, a: 1}
+  miniBossSprite: {fileID: 0}
+  finalBossSprite: {fileID: 0}
+  bossTag: Boss
 --- !u!1001 &827590631
 PrefabInstance:
   m_ObjectHideFlags: 0
