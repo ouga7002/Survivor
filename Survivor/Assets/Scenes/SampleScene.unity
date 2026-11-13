@@ -1440,7 +1440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CountdownTimer
   timerText: {fileID: 888696581}
-  totalTime: 120
+  totalTime: 60
   resultSceneName: ResultScene
 --- !u!4 &1328263941
 Transform:
