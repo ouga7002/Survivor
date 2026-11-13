@@ -1440,7 +1440,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CountdownTimer
   timerText: {fileID: 888696581}
-  totalTime: 300
+  totalTime: 120
+  resultSceneName: ResultScene
 --- !u!4 &1328263941
 Transform:
   m_ObjectHideFlags: 0
@@ -1832,6 +1833,10 @@ PrefabInstance:
       propertyPath: enemyPool
       value: 
       objectReference: {fileID: 1909678180}
+    - target: {fileID: -4724935807054432624, guid: 5d5d0418aa9019644bfd2af8a8d51452, type: 3}
+      propertyPath: bosses.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4724935807054432624, guid: 5d5d0418aa9019644bfd2af8a8d51452, type: 3}
       propertyPath: bosses.Array.data[0].spawnTime
       value: 30
