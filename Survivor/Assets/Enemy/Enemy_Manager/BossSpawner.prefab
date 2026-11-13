@@ -46,7 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossSpawner
   bosses:
   - bossPrefab: {fileID: 1536135667274760269, guid: 767a7877007d37041a632aadb757e3ba, type: 3}
-    spawnTime: 0
+    spawnTime: 30
+    hasSpawned: 0
+  - bossPrefab: {fileID: 1536135667274760269, guid: ca6a81415726d9c4ab7344133e9065aa, type: 3}
+    spawnTime: 300
     hasSpawned: 0
   minSpawnDistance: 7
   maxSpawnDistance: 10
