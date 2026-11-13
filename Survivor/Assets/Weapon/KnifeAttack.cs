@@ -120,10 +120,14 @@ public class KnifeAttack : MonoBehaviour
         isAttacking = false;
     }
 
-    // 敵にナイフが当たったときの処理
+    // 敵やボスにナイフが当たったときの処理
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy") || collision.name.ToLower().Contains("enemy"))
+        string objName = collision.name.ToLower();
+
+        // ★Bossタグや「boss」「中ボス」の名前も判定対象に追加
+        if (collision.CompareTag("Enemy") || collision.CompareTag("Boss") ||
+            objName.Contains("enemy") || objName.Contains("boss") || objName.Contains("中ボス"))
         {
             EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
@@ -135,17 +139,17 @@ public class KnifeAttack : MonoBehaviour
                     totalAtk += playerStatus.CurrentAtk;
                 }
 
-                // 敵にダメージを与える
+                // 敵（ボス）にダメージを与える
                 enemyHealth.TakeDamage(totalAtk);
 
-                // ★ここに吸血スキルへの通知を追加
+                // 吸血スキルへの通知
                 VampireSkill vampire = FindFirstObjectByType<VampireSkill>();
                 if (vampire != null)
                 {
                     vampire.OnWeaponHit(totalAtk);
                 }
 
-                Debug.Log($"[攻撃成功] ナイフが敵にヒット！ 総ダメージ: {totalAtk} (武器: {baseWeaponAtk} + プレイヤーATK: {(playerStatus != null ? playerStatus.CurrentAtk : 0)})");
+                Debug.Log($"[攻撃成功] ナイフが {collision.name} にヒット！ 総ダメージ: {totalAtk}");
             }
         }
     }
