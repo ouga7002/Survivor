@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class LightningSkill : MonoBehaviour
 {
@@ -36,10 +37,33 @@ public class LightningSkill : MonoBehaviour
     {
         if (lightningPrefab == null) return;
 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if (enemies.Length == 0) return;
+        // ★敵（Enemy）とボス（Boss）の両方からターゲット候補を集める
+        List<GameObject> targets = new List<GameObject>();
 
-        GameObject targetEnemy = enemies[Random.Range(0, enemies.Length)];
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if (enemies != null) targets.AddRange(enemies);
+
+        GameObject[] bosses = GameObject.FindGameObjectsWithTag("Boss");
+        if (bosses != null) targets.AddRange(bosses);
+
+        // もしタグで見つからない場合の保険として名前検索も追加
+        foreach (GameObject obj in GameObject.FindObjectsByType<GameObject>(FindObjectsSortMode.None))
+        {
+            string objName = obj.name.ToLower();
+            if ((objName.Contains("enemy") || objName.Contains("boss") || objName.Contains("中ボス")) && !targets.Contains(obj))
+            {
+                // プレイヤー自身や弾などは除外する
+                if (obj != gameObject && !obj.name.Contains("Player"))
+                {
+                    targets.Add(obj);
+                }
+            }
+        }
+
+        if (targets.Count == 0) return;
+
+        // 候補の中からランダムに1体選ぶ
+        GameObject targetEnemy = targets[Random.Range(0, targets.Count)];
 
         if (targetEnemy != null)
         {
@@ -49,13 +73,21 @@ public class LightningSkill : MonoBehaviour
             float totalAtk = baseLightningAtk;
             if (playerStatus != null) totalAtk += playerStatus.CurrentAtk;
 
+            // 雷の爆発範囲（円内）にいる敵やボス全員にダメージを与える
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(spawnPos, attackRadius);
             foreach (var hit in hitColliders)
             {
-                if (hit.CompareTag("Enemy") || hit.name.ToLower().Contains("enemy"))
+                string hitName = hit.name.ToLower();
+
+                // ★敵またはボス、あるいは名前やタグにそれらを含むものを対象にする
+                if (hit.CompareTag("Enemy") || hit.CompareTag("Boss") ||
+                    hitName.Contains("enemy") || hitName.Contains("boss") || hitName.Contains("中ボス"))
                 {
                     EnemyHealth enemyHealth = hit.GetComponent<EnemyHealth>();
-                    if (enemyHealth != null) enemyHealth.TakeDamage(totalAtk);
+                    if (enemyHealth != null)
+                    {
+                        enemyHealth.TakeDamage(totalAtk);
+                    }
                 }
             }
 
