@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d3391162128c745aedc2da6a3ea473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B1_Bullet2
-  moveSpeed: 4
+  moveSpeed: 3.5
   BulletTrans: {fileID: 6293125616820045316}
 --- !u!114 &-2838225284747244639
 MonoBehaviour:
@@ -200,6 +200,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHP: 10
-  GPDropAmount: 1
+  GPDropAmount: 0
   deathEffectPrefab: {fileID: 0}
   dropOrbPrefab: {fileID: 0}

@@ -405,11 +405,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss1Controller
   moveSpeed: 2
-  bullet1: {fileID: 0}
+  bullet1: {fileID: 3639169759883516571, guid: 5f308b1578933174483a572862439301, type: 3}
   bullet2: {fileID: 7606331075079873860, guid: 7ed30077a30ef47468d2e38128be8667, type: 3}
   bulletSpawnPoint: {fileID: 0}
   spawnHeight: 1
   attackInterval: 5
+  straightBulletCount: 3
+  straightBulletSpreadAngle: 15
+  straightBulletSpawnDistance: 1
 --- !u!114 &3329585333886466443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,6 +455,7 @@ MonoBehaviour:
   GPDropAmount: 1
   deathEffectPrefab: {fileID: 4507934178083678765, guid: 9fbec09751879cf4c801d0e7bd6face9, type: 3}
   dropOrbPrefab: {fileID: 7934304021674551781, guid: 9884841c9faeb2640bc0fce6302f11aa, type: 3}
+  scoreReward: 300
 --- !u!114 &4352492627891288680
 MonoBehaviour:
   m_ObjectHideFlags: 0

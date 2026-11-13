@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class SkillGachaManager : MonoBehaviour
@@ -16,13 +17,14 @@ public class SkillGachaManager : MonoBehaviour
     [SerializeField] private GameObject gachaMainUI;
     [SerializeField] private GameObject skillResultUI;
 
-    [Header("UIテキスト設定")]
+    [Header("UIテキスト・画像設定")]
     [SerializeField] private TextMeshProUGUI resultText;
+    [SerializeField] private Image resultSkillImage; // 結果画面のアイコン表示用Image
 
-    [Header("管理対象スキルオブジェクト")]
-    [SerializeField] private GameObject shurikenObj;
-    [SerializeField] private GameObject lightningObj;
-    [SerializeField] private GameObject vampireObj;
+    [Header("スキルのアイコン画像（Sprite）")]
+    [SerializeField] private Sprite shurikenIcon;
+    [SerializeField] private Sprite lightningIcon;
+    [SerializeField] private Sprite vampireIcon;
 
     public bool HasShuriken { get; private set; } = false;
     public bool HasLightning { get; private set; } = false;
@@ -32,25 +34,33 @@ public class SkillGachaManager : MonoBehaviour
 
     void Awake()
     {
-        ResetSkillsAtAwake();
+        ResetAllSkills();
+        UpdateUIState(GachaState.None);
     }
 
     void Start()
     {
-        ResetSkillsAtAwake();
         UpdateUIState(GachaState.None);
     }
 
-    void ResetSkillsAtAwake()
+    void ResetAllSkills()
     {
         HasShuriken = false;
         HasLightning = false;
         HasVampire = false;
 
-        // ゲーム開始時はオブジェクトを非アクティブにし、スクリプトもオフにする
-        SetSkillActiveAndEnabled(shurikenObj, false);
-        SetSkillActiveAndEnabled(lightningObj, false);
-        SetSkillActiveAndEnabled(vampireObj, false);
+        GameObject playerObj = GetPlayerObject();
+        if (playerObj != null)
+        {
+            Shuriken shuriken = playerObj.GetComponent<Shuriken>();
+            if (shuriken != null) shuriken.isUnlocked = false;
+
+            LightningSkill lightning = playerObj.GetComponent<LightningSkill>();
+            if (lightning != null) lightning.isUnlocked = false;
+
+            VampireSkill vampire = playerObj.GetComponent<VampireSkill>();
+            if (vampire != null) vampire.isUnlocked = false;
+        }
     }
 
     void Update()
@@ -106,6 +116,7 @@ public class SkillGachaManager : MonoBehaviour
         if (unownedSkills.Count == 0)
         {
             if (resultText != null) resultText.text = "すべてのスキルを獲得済み！";
+            if (resultSkillImage != null) resultSkillImage.gameObject.SetActive(false); // 画像を隠すなど
             Debug.Log("【ガチャ】すべてのスキルを獲得済み！");
             UpdateUIState(GachaState.ResultScreen);
             return;
@@ -117,52 +128,63 @@ public class SkillGachaManager : MonoBehaviour
         string acquiredName = AcquireSkill(selectedSkillID);
 
         Debug.Log($"【ガチャ結果】 {acquiredName} を獲得した！");
-
-        if (resultText != null)
-        {
-            resultText.text = $"{acquiredName} を獲得した！";
-        }
-
         UpdateUIState(GachaState.ResultScreen);
     }
 
     string AcquireSkill(int skillID)
     {
+        GameObject playerObj = GetPlayerObject();
+
+        if (resultSkillImage != null) resultSkillImage.gameObject.SetActive(true); // 画像を表示状態にする
+
         switch (skillID)
         {
             case 0:
                 HasShuriken = true;
-                SetSkillActiveAndEnabled(shurikenObj, true); // オブジェクト＋スクリプトを有効化
+                if (playerObj != null)
+                {
+                    Shuriken shuriken = playerObj.GetComponent<Shuriken>();
+                    if (shuriken != null) shuriken.isUnlocked = true;
+                }
+                // ★手裏剣の画像をセット＆テキスト変更
+                if (resultSkillImage != null) resultSkillImage.sprite = shurikenIcon;
+                if (resultText != null) resultText.text = "手裏剣 を獲得した！";
                 return "手裏剣";
+
             case 1:
                 HasLightning = true;
-                SetSkillActiveAndEnabled(lightningObj, true); // オブジェクト＋スクリプトを有効化
+                if (playerObj != null)
+                {
+                    LightningSkill lightning = playerObj.GetComponent<LightningSkill>();
+                    if (lightning != null) lightning.isUnlocked = true;
+                }
+                // ★雷撃の画像をセット＆テキスト変更
+                if (resultSkillImage != null) resultSkillImage.sprite = lightningIcon;
+                if (resultText != null) resultText.text = "雷撃 を獲得した！";
                 return "雷撃";
+
             case 2:
                 HasVampire = true;
-                SetSkillActiveAndEnabled(vampireObj, true); // オブジェクト＋スクリプトを有効化
+                if (playerObj != null)
+                {
+                    VampireSkill vampire = playerObj.GetComponent<VampireSkill>();
+                    if (vampire != null) vampire.isUnlocked = true;
+                }
+                // ★吸血の画像をセット＆テキスト変更
+                if (resultSkillImage != null) resultSkillImage.sprite = vampireIcon;
+                if (resultText != null) resultText.text = "吸血 を獲得した！";
                 return "吸血";
+
             default:
                 return "";
         }
     }
 
-    // ★重要：オブジェクトの有効/無効だけでなく、アタッチされているスキルコンポーネントも確実につけ外しするヘルパー
-    void SetSkillActiveAndEnabled(GameObject skillObj, bool activeState)
+    GameObject GetPlayerObject()
     {
-        if (skillObj == null) return;
+        GameObject pObj = GameObject.Find("player2_0");
+        if (pObj != null) return pObj;
 
-        // 1. オブジェクト自体の有効/無効を設定
-        skillObj.SetActive(activeState);
-
-        // 2. オブジェクトに付いているカスタムスキル用スクリプト（Shuriken, LightningSkill, VampireSkill）を探して一括制御
-        MonoBehaviour[] scripts = skillObj.GetComponents<MonoBehaviour>();
-        foreach (var script in scripts)
-        {
-            if (script != null && script != this)
-            {
-                script.enabled = activeState;
-            }
-        }
+        return GameObject.FindWithTag("Player");
     }
 }

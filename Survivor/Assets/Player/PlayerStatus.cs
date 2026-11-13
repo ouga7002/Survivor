@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStatus : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class PlayerStatus : MonoBehaviour
 
     [Header("ガチャポイント")]
     public int CurrentGP { get; private set; } = 0;
+
+    [Header("スコア")]
+    public int CurrentScore { get; private set; } = 0;
 
     // 現在のステータス
     public float CurrentAtk { get; private set; }
@@ -91,6 +95,16 @@ public class PlayerStatus : MonoBehaviour
         );
     }
 
+    // スコアを獲得
+    public void AddScore(int amount)
+    {
+        if (amount <= 0) return;
+
+        CurrentScore += amount;
+
+        Debug.Log($"スコアを{amount}獲得！ 現在のスコア：{CurrentScore}");
+    }
+
     // ダメージを受ける
     public void TakeDamage(float damage)
     {
@@ -121,6 +135,10 @@ public class PlayerStatus : MonoBehaviour
     void Die()
     {
         Debug.Log("プレイヤーが死亡しました");
-        Destroy(gameObject);
+
+        // "ResultScene" の部分は実際のリザルト画面のシーン名に書き換えてください
+        SceneManager.LoadScene("ResultScene");
+
+        //Destroy(gameObject);
     }
 }

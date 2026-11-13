@@ -109,3 +109,4 @@ MonoBehaviour:
   attackInterval: 4
   displayDuration: 0.5
   attackRadius: 2.5
+  isUnlocked: 0

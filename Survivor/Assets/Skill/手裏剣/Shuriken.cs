@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class Shuriken : MonoBehaviour
 {
+    [Header("参照設定")]
+    [Tooltip("手裏剣のプレハブをここにアタッチする")]
+    [SerializeField] private GameObject shurikenPrefab;
+
     [Header("手裏剣のパラメータ")]
     [SerializeField] private float attackPower = 10f;
     [SerializeField] private float orbitRadius = 1.8f;
@@ -10,103 +14,68 @@ public class Shuriken : MonoBehaviour
     [SerializeField] private float activeDuration = 5.0f;
     [SerializeField] private float coolDownDuration = 3.0f;
 
+    // ガチャで獲得したかどうか
+    public bool isUnlocked = false;
+
+    private GameObject spawnedShuriken;
     private float currentAngle = 0f;
-    private Transform playerTransform;
     private float stateTimer = 0f;
     private bool isActiveState = true;
-    private SpriteRenderer spriteRenderer;
-    private Collider2D col2d;
-
-    void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        // 正しい Collider2D を取得するように修正しました
-        col2d = GetComponent<Collider2D>();
-    }
-
-    // ガチャで有効化された瞬間に呼ばれる
-    void OnEnable()
-    {
-        FindPlayer();
-        stateTimer = 0f;
-        isActiveState = true;
-        SetShurikenActive(true);
-    }
-
-    void Start()
-    {
-        FindPlayer();
-    }
-
-    void FindPlayer()
-    {
-        GameObject pObj = GameObject.Find("player2_0");
-        if (pObj != null) playerTransform = pObj.transform;
-        else
-        {
-            GameObject taggedPlayer = GameObject.FindWithTag("Player");
-            if (taggedPlayer != null) playerTransform = taggedPlayer.transform;
-        }
-    }
 
     void Update()
     {
-        if (playerTransform == null)
+        // 未取得の場合は、もし手裏剣が出ていれば消して何もしない
+        if (!isUnlocked)
         {
-            FindPlayer();
-            if (playerTransform == null) return;
-        }
-
-        stateTimer += Time.deltaTime;
-
-        if (isActiveState)
-        {
-            if (stateTimer >= activeDuration)
+            if (spawnedShuriken != null)
             {
-                isActiveState = false;
-                stateTimer = 0f;
-                SetShurikenActive(false);
-            }
-        }
-        else
-        {
-            if (stateTimer >= coolDownDuration)
-            {
-                isActiveState = true;
-                stateTimer = 0f;
-                SetShurikenActive(true);
+                Destroy(spawnedShuriken);
             }
             return;
         }
 
-        currentAngle += rotationSpeed * Time.deltaTime;
-        if (currentAngle >= 360f) currentAngle -= 360f;
-
-        float rad = currentAngle * Mathf.Deg2Rad;
-        float x = playerTransform.position.x + Mathf.Cos(rad) * orbitRadius;
-        float y = playerTransform.position.y + Mathf.Sin(rad) * orbitRadius;
-
-        transform.position = new Vector3(x, y, 0f);
-        transform.Rotate(0f, 0f, selfRotationSpeed * Time.deltaTime);
-    }
-
-    void SetShurikenActive(bool active)
-    {
-        if (spriteRenderer != null) spriteRenderer.enabled = active;
-        if (col2d != null) col2d.enabled = active;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!isActiveState) return;
-
-        if (collision.CompareTag("Enemy") || collision.name.ToLower().Contains("enemy"))
+        // 取得済みで、まだ手裏剣の実体が生成されていなければ生成する
+        if (spawnedShuriken == null && shurikenPrefab != null)
         {
-            EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
-            if (enemyHealth != null)
+            spawnedShuriken = Instantiate(shurikenPrefab, transform.position, Quaternion.identity);
+            spawnedShuriken.transform.SetParent(transform); // プレイヤーの子にする
+        }
+
+        // アクティブ（表示・攻撃中）とクールダウンの切り替え
+        if (isActiveState)
+        {
+            stateTimer += Time.deltaTime;
+            if (stateTimer >= activeDuration)
             {
-                enemyHealth.TakeDamage(attackPower);
+                isActiveState = false;
+                stateTimer = 0f;
+                if (spawnedShuriken != null) spawnedShuriken.SetActive(false);
             }
+        }
+        else
+        {
+            stateTimer += Time.deltaTime;
+            if (stateTimer >= coolDownDuration)
+            {
+                isActiveState = true;
+                stateTimer = 0f;
+                if (spawnedShuriken != null) spawnedShuriken.SetActive(true);
+            }
+            return;
+        }
+
+        // 手裏剣をプレイヤーの周りで回転させる
+        if (spawnedShuriken != null && spawnedShuriken.activeSelf)
+        {
+            currentAngle += rotationSpeed * Time.deltaTime;
+            if (currentAngle >= 360f) currentAngle -= 360f;
+
+            float rad = currentAngle * Mathf.Deg2Rad;
+            float x = Mathf.Cos(rad) * orbitRadius;
+            float y = Mathf.Sin(rad) * orbitRadius;
+
+            spawnedShuriken.transform.localPosition = new Vector3(x, y, 0f);
+            spawnedShuriken.transform.Rotate(0f, 0f, selfRotationSpeed * Time.deltaTime);
         }
     }
 }
