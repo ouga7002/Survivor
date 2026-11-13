@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class SkillGachaManager : MonoBehaviour
@@ -16,10 +17,15 @@ public class SkillGachaManager : MonoBehaviour
     [SerializeField] private GameObject gachaMainUI;
     [SerializeField] private GameObject skillResultUI;
 
-    [Header("UIテキスト設定")]
+    [Header("UIテキスト・画像設定")]
     [SerializeField] private TextMeshProUGUI resultText;
+    [SerializeField] private Image resultSkillImage; // 結果画面のアイコン表示用Image
 
-    // 所持フラグ（プレイごとにリセットされる）
+    [Header("スキルのアイコン画像（Sprite）")]
+    [SerializeField] private Sprite shurikenIcon;
+    [SerializeField] private Sprite lightningIcon;
+    [SerializeField] private Sprite vampireIcon;
+
     public bool HasShuriken { get; private set; } = false;
     public bool HasLightning { get; private set; } = false;
     public bool HasVampire { get; private set; } = false;
@@ -37,14 +43,12 @@ public class SkillGachaManager : MonoBehaviour
         UpdateUIState(GachaState.None);
     }
 
-    // 全スキルの所持フラグと、プレイヤー側のスキルをすべてリセット（未取得）にする
     void ResetAllSkills()
     {
         HasShuriken = false;
         HasLightning = false;
         HasVampire = false;
 
-        // プレイヤーを取得して、すべてのスキルの isUnlocked を false にする
         GameObject playerObj = GetPlayerObject();
         if (playerObj != null)
         {
@@ -57,8 +61,6 @@ public class SkillGachaManager : MonoBehaviour
             VampireSkill vampire = playerObj.GetComponent<VampireSkill>();
             if (vampire != null) vampire.isUnlocked = false;
         }
-
-        Debug.Log("【SkillGachaManager】全スキルの所持状態をリセットしました。");
     }
 
     void Update()
@@ -66,7 +68,6 @@ public class SkillGachaManager : MonoBehaviour
         switch (currentState)
         {
             case GachaState.None:
-                // Yボタンまたはキーボード等でガチャ画面を開く
                 if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("Fire3"))
                 {
                     UpdateUIState(GachaState.GachaScreen);
@@ -74,12 +75,10 @@ public class SkillGachaManager : MonoBehaviour
                 break;
 
             case GachaState.GachaScreen:
-                // Bボタン等でガチャを引く
                 if (Input.GetKeyDown(KeyCode.B) || Input.GetButtonDown("Fire2"))
                 {
                     DrawGacha();
                 }
-                // AボタンやESCで閉じる
                 else if (Input.GetKeyDown(KeyCode.A) || Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Escape))
                 {
                     UpdateUIState(GachaState.None);
@@ -103,7 +102,6 @@ public class SkillGachaManager : MonoBehaviour
         if (gachaMainUI != null) gachaMainUI.SetActive(currentState == GachaState.GachaScreen);
         if (skillResultUI != null) skillResultUI.SetActive(currentState == GachaState.ResultScreen);
 
-        // ガチャ画面中はゲームを一時停止（Noneのときは通常速度）
         Time.timeScale = (currentState == GachaState.None) ? 1f : 0f;
     }
 
@@ -118,6 +116,7 @@ public class SkillGachaManager : MonoBehaviour
         if (unownedSkills.Count == 0)
         {
             if (resultText != null) resultText.text = "すべてのスキルを獲得済み！";
+            if (resultSkillImage != null) resultSkillImage.gameObject.SetActive(false); // 画像を隠すなど
             Debug.Log("【ガチャ】すべてのスキルを獲得済み！");
             UpdateUIState(GachaState.ResultScreen);
             return;
@@ -129,42 +128,51 @@ public class SkillGachaManager : MonoBehaviour
         string acquiredName = AcquireSkill(selectedSkillID);
 
         Debug.Log($"【ガチャ結果】 {acquiredName} を獲得した！");
-
-        if (resultText != null)
-        {
-            resultText.text = $"{acquiredName} を獲得した！";
-        }
-
         UpdateUIState(GachaState.ResultScreen);
     }
 
     string AcquireSkill(int skillID)
     {
         GameObject playerObj = GetPlayerObject();
-        if (playerObj == null)
-        {
-            Debug.LogError("【ガチャ】プレイヤーが見つかりませんでした！");
-            return "";
-        }
+
+        if (resultSkillImage != null) resultSkillImage.gameObject.SetActive(true); // 画像を表示状態にする
 
         switch (skillID)
         {
             case 0:
                 HasShuriken = true;
-                Shuriken shuriken = playerObj.GetComponent<Shuriken>();
-                if (shuriken != null) shuriken.isUnlocked = true;
+                if (playerObj != null)
+                {
+                    Shuriken shuriken = playerObj.GetComponent<Shuriken>();
+                    if (shuriken != null) shuriken.isUnlocked = true;
+                }
+                // ★手裏剣の画像をセット＆テキスト変更
+                if (resultSkillImage != null) resultSkillImage.sprite = shurikenIcon;
+                if (resultText != null) resultText.text = "手裏剣 を獲得した！";
                 return "手裏剣";
 
             case 1:
                 HasLightning = true;
-                LightningSkill lightning = playerObj.GetComponent<LightningSkill>();
-                if (lightning != null) lightning.isUnlocked = true;
+                if (playerObj != null)
+                {
+                    LightningSkill lightning = playerObj.GetComponent<LightningSkill>();
+                    if (lightning != null) lightning.isUnlocked = true;
+                }
+                // ★雷撃の画像をセット＆テキスト変更
+                if (resultSkillImage != null) resultSkillImage.sprite = lightningIcon;
+                if (resultText != null) resultText.text = "雷撃 を獲得した！";
                 return "雷撃";
 
             case 2:
                 HasVampire = true;
-                VampireSkill vampire = playerObj.GetComponent<VampireSkill>();
-                if (vampire != null) vampire.isUnlocked = true;
+                if (playerObj != null)
+                {
+                    VampireSkill vampire = playerObj.GetComponent<VampireSkill>();
+                    if (vampire != null) vampire.isUnlocked = true;
+                }
+                // ★吸血の画像をセット＆テキスト変更
+                if (resultSkillImage != null) resultSkillImage.sprite = vampireIcon;
+                if (resultText != null) resultText.text = "吸血 を獲得した！";
                 return "吸血";
 
             default:
@@ -172,7 +180,6 @@ public class SkillGachaManager : MonoBehaviour
         }
     }
 
-    // プレイヤーオブジェクトを安全に探すヘルパーメソッド
     GameObject GetPlayerObject()
     {
         GameObject pObj = GameObject.Find("player2_0");

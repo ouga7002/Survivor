@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class Shuriken : MonoBehaviour
 {
+    [Header("参照設定")]
+    [Tooltip("手裏剣のプレハブをここにアタッチする")]
+    [SerializeField] private GameObject shurikenPrefab;
+
     [Header("手裏剣のパラメータ")]
     [SerializeField] private float attackPower = 10f;
     [SerializeField] private float orbitRadius = 1.8f;
@@ -10,104 +14,68 @@ public class Shuriken : MonoBehaviour
     [SerializeField] private float activeDuration = 5.0f;
     [SerializeField] private float coolDownDuration = 3.0f;
 
-    [Header("手裏剣の見た目設定")]
-    [Tooltip("手裏剣として表示するスプライト画像があればここにアタッチ")]
-    [SerializeField] private Sprite shurikenSprite;
-
+    // ガチャで獲得したかどうか
     public bool isUnlocked = false;
 
+    private GameObject spawnedShuriken;
     private float currentAngle = 0f;
     private float stateTimer = 0f;
     private bool isActiveState = true;
 
-    // プレイヤー本体のSpriteRendererを巻き込まないように専用のオブジェクトを作るか、自分自身を回さないようにする
-    private Transform visualChild;
-    private SpriteRenderer visualSr;
-    private Collider2D col2d;
-
-    void Start()
-    {
-        // プレイヤー自身に付いている Collider2D を誤って消さないよう、
-        // 自身のトリガー用コライダー（または手裏剣用）を安全に取得・追加する
-        col2d = GetComponent<Collider2D>();
-
-        // 手裏剣の見た目用の孫（または子）オブジェクトがなければ自動生成する
-        Transform existingVisual = transform.Find("ShurikenVisual");
-        if (existingVisual != null)
-        {
-            visualChild = existingVisual;
-            visualSr = visualChild.GetComponent<SpriteRenderer>();
-        }
-        else
-        {
-            GameObject visualObj = new GameObject("ShurikenVisual");
-            visualObj.transform.SetParent(transform);
-            visualObj.transform.localPosition = Vector3.zero;
-            visualSr = visualObj.AddComponent<SpriteRenderer>();
-            if (shurikenSprite != null) visualSr.sprite = shurikenSprite;
-            visualChild = visualObj.transform;
-        }
-
-        SetShurikenActive(false);
-    }
-
     void Update()
     {
-        if (!isUnlocked) return;
+        // 未取得の場合は、もし手裏剣が出ていれば消して何もしない
+        if (!isUnlocked)
+        {
+            if (spawnedShuriken != null)
+            {
+                Destroy(spawnedShuriken);
+            }
+            return;
+        }
 
-        if (!isActiveState)
+        // 取得済みで、まだ手裏剣の実体が生成されていなければ生成する
+        if (spawnedShuriken == null && shurikenPrefab != null)
+        {
+            spawnedShuriken = Instantiate(shurikenPrefab, transform.position, Quaternion.identity);
+            spawnedShuriken.transform.SetParent(transform); // プレイヤーの子にする
+        }
+
+        // アクティブ（表示・攻撃中）とクールダウンの切り替え
+        if (isActiveState)
+        {
+            stateTimer += Time.deltaTime;
+            if (stateTimer >= activeDuration)
+            {
+                isActiveState = false;
+                stateTimer = 0f;
+                if (spawnedShuriken != null) spawnedShuriken.SetActive(false);
+            }
+        }
+        else
         {
             stateTimer += Time.deltaTime;
             if (stateTimer >= coolDownDuration)
             {
                 isActiveState = true;
                 stateTimer = 0f;
-                SetShurikenActive(true);
+                if (spawnedShuriken != null) spawnedShuriken.SetActive(true);
             }
             return;
         }
 
-        stateTimer += Time.deltaTime;
-        if (stateTimer >= activeDuration)
+        // 手裏剣をプレイヤーの周りで回転させる
+        if (spawnedShuriken != null && spawnedShuriken.activeSelf)
         {
-            isActiveState = false;
-            stateTimer = 0f;
-            SetShurikenActive(false);
-            return;
-        }
+            currentAngle += rotationSpeed * Time.deltaTime;
+            if (currentAngle >= 360f) currentAngle -= 360f;
 
-        // プレイヤーの周囲を回転させる
-        currentAngle += rotationSpeed * Time.deltaTime;
-        if (currentAngle >= 360f) currentAngle -= 360f;
+            float rad = currentAngle * Mathf.Deg2Rad;
+            float x = Mathf.Cos(rad) * orbitRadius;
+            float y = Mathf.Sin(rad) * orbitRadius;
 
-        float rad = currentAngle * Mathf.Deg2Rad;
-        float x = Mathf.Cos(rad) * orbitRadius;
-        float y = Mathf.Sin(rad) * orbitRadius;
-
-        if (visualChild != null)
-        {
-            visualChild.localPosition = new Vector3(x, y, 0f);
-            visualChild.Rotate(0f, 0f, selfRotationSpeed * Time.deltaTime);
-        }
-    }
-
-    void SetShurikenActive(bool active)
-    {
-        if (visualSr != null) visualSr.enabled = active;
-        // ※もしプレイヤーのコライダーまで消えてしまっている場合はここのコメントアウトを調整
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!isUnlocked || !isActiveState) return;
-
-        if (collision.CompareTag("Enemy") || collision.name.ToLower().Contains("enemy"))
-        {
-            EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
-            if (enemyHealth != null)
-            {
-                enemyHealth.TakeDamage(attackPower);
-            }
+            spawnedShuriken.transform.localPosition = new Vector3(x, y, 0f);
+            spawnedShuriken.transform.Rotate(0f, 0f, selfRotationSpeed * Time.deltaTime);
         }
     }
 }

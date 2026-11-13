@@ -201,8 +201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33a3c657089c094382ad757eabc0017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shuriken
-  attackPower: 10
-  orbitRadius: 1.8
+  shurikenPrefab: {fileID: 0}
+  attackPower: 2
+  orbitRadius: 10
   rotationSpeed: 180
   selfRotationSpeed: 360
   activeDuration: 5

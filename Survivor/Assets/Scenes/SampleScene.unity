@@ -1315,8 +1315,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -708092690547096358, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -708092690547096358, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
+      propertyPath: attackPower
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -708092690547096358, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
+      propertyPath: orbitRadius
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -708092690547096358, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
+      propertyPath: shurikenPrefab
+      value: 
+      objectReference: {fileID: 3705612499590052519, guid: 00ca8fc158a2960469034aaf067311c1, type: 3}
     - target: {fileID: 725562251882949114, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
       propertyPath: m_Enabled
       value: 1
