@@ -1326,7 +1326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -708092690547096358, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
       propertyPath: attackPower
-      value: 20
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -708092690547096358, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
       propertyPath: orbitRadius
