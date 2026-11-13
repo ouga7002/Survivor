@@ -14,7 +14,6 @@ public class Shuriken : MonoBehaviour
     [SerializeField] private float activeDuration = 5.0f;
     [SerializeField] private float coolDownDuration = 3.0f;
 
-    // ガチャで獲得したかどうか
     public bool isUnlocked = false;
 
     private GameObject spawnedShuriken;
@@ -24,7 +23,6 @@ public class Shuriken : MonoBehaviour
 
     void Update()
     {
-        // 未取得の場合は、もし手裏剣が出ていれば消して何もしない
         if (!isUnlocked)
         {
             if (spawnedShuriken != null)
@@ -34,14 +32,22 @@ public class Shuriken : MonoBehaviour
             return;
         }
 
-        // 取得済みで、まだ手裏剣の実体が生成されていなければ生成する
+        // 手裏剣の生成と当たり判定のセットアップ
         if (spawnedShuriken == null && shurikenPrefab != null)
         {
             spawnedShuriken = Instantiate(shurikenPrefab, transform.position, Quaternion.identity);
-            spawnedShuriken.transform.SetParent(transform); // プレイヤーの子にする
+            spawnedShuriken.transform.SetParent(transform);
+
+            // 生成した手裏剣プレハブに当たり判定コンポーネントを自動追加して攻撃力を渡す
+            ShurikenHitbox hitbox = spawnedShuriken.GetComponent<ShurikenHitbox>();
+            if (hitbox == null)
+            {
+                hitbox = spawnedShuriken.AddComponent<ShurikenHitbox>();
+            }
+            hitbox.damage = attackPower;
         }
 
-        // アクティブ（表示・攻撃中）とクールダウンの切り替え
+        // アクティブとクールダウンの切り替え
         if (isActiveState)
         {
             stateTimer += Time.deltaTime;
@@ -64,7 +70,7 @@ public class Shuriken : MonoBehaviour
             return;
         }
 
-        // 手裏剣をプレイヤーの周りで回転させる
+        // 手裏剣の回転処理
         if (spawnedShuriken != null && spawnedShuriken.activeSelf)
         {
             currentAngle += rotationSpeed * Time.deltaTime;
@@ -76,6 +82,24 @@ public class Shuriken : MonoBehaviour
 
             spawnedShuriken.transform.localPosition = new Vector3(x, y, 0f);
             spawnedShuriken.transform.Rotate(0f, 0f, selfRotationSpeed * Time.deltaTime);
+        }
+    }
+}
+
+// ★生成された手裏剣プレハブ側で敵との接触を検知するためのクラス
+public class ShurikenHitbox : MonoBehaviour
+{
+    public float damage = 10f;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy") || collision.name.ToLower().Contains("enemy"))
+        {
+            EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(damage);
+            }
         }
     }
 }
