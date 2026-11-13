@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement; // ← シーン切り替えに必要なので追加
 using TMPro;
 
 public class CountdownTimer : MonoBehaviour
@@ -8,6 +9,10 @@ public class CountdownTimer : MonoBehaviour
 
     [Header("タイマー設定")]
     [SerializeField] private float totalTime = 300f;
+
+    [Header("シーン設定")]
+    [Tooltip("移行先のResultシーンの名前")]
+    [SerializeField] private string resultSceneName = "ResultScene"; // ← シーン名をインスペクターで指定可能に
 
     private float currentTime;
     private bool isRunning = true;
@@ -56,7 +61,9 @@ public class CountdownTimer : MonoBehaviour
     private void TimerFinished()
     {
         isRunning = false;
-        Debug.Log("タイムアップ！");
-        // ここに時間切れになったときの処理を書く
+        Debug.Log("タイムアップ！リザルトシーンへ移動します。");
+
+        // Resultシーンへ遷移
+        SceneManager.LoadScene(resultSceneName);
     }
 }
