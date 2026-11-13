@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 732797525}
   m_Layer: 0
   m_Name: MapManager
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1326,7 +1326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -708092690547096358, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
       propertyPath: attackPower
-      value: 2
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -708092690547096358, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
       propertyPath: orbitRadius
