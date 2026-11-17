@@ -973,10 +973,10 @@ MonoBehaviour:
   gachaMainUI: {fileID: 1485849976}
   skillResultUI: {fileID: 1610419585}
   resultText: {fileID: 0}
-  resultSkillImage: {fileID: 0}
-  shurikenIcon: {fileID: 0}
+  resultSkillImage: {fileID: 1610419586}
+  shurikenIcon: {fileID: -3806798141599162832, guid: 5a9eb60895be3bd45af4a91e11a1e8a1, type: 3}
   lightningIcon: {fileID: 2808115512186103975, guid: 0416b965aafba7140944dbc3ac0a128a, type: 3}
-  vampireIcon: {fileID: 0}
+  vampireIcon: {fileID: 965788036745314830, guid: 0e5356c1d3cf0924e81f7c35e1680502, type: 3}
 --- !u!1 &1135406885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1784,7 +1784,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 712375058998147014, guid: 03b31fbf971d8de4085521b1ffdead25, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
