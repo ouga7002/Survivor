@@ -410,8 +410,8 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 0}
   spawnHeight: 1
   attackInterval: 5
-  straightBulletCount: 3
-  straightBulletSpreadAngle: 15
+  straightBulletCount: 16
+  straightBulletSpreadAngle: 150
   straightBulletSpawnDistance: 1
 --- !u!114 &3329585333886466443
 MonoBehaviour:
