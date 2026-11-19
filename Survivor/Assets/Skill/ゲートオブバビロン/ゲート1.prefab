@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6930529764728691358}
   - component: {fileID: 1641520748284079716}
-  - component: {fileID: 1869363209815901419}
   m_Layer: 0
   m_Name: "\u30B2\u30FC\u30C81"
   m_TagString: Untagged
@@ -28,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.9114212, w: 0.4114747}
   m_LocalPosition: {x: -2.7904575, y: -1.5446471, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -92,21 +91,3 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &1869363209815901419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3028927856558461988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 991486b96431cdc4cbf55abf598c774f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GateSkill
-  player: {fileID: 1672311756124341919, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
-  aimCursor: {fileID: 2595502452938164658, guid: 1cfcdb2be764e3c4ba1e47c658b28b28, type: 3}
-  gate1: {fileID: 6930529764728691358}
-  gate2: {fileID: 1408738416745470928, guid: 54597ccdbba6c4b468717523ed2dab1a, type: 3}
-  backDistance: 1.8
-  spreadSpacing: 0.8
