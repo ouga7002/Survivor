@@ -8,38 +8,36 @@ public class WeaponInitializer : MonoBehaviour
 
     void Start()
     {
-        // プレイヤー（自分自身）に付いている各攻撃スクリプトを取得
+        // ゲーム開始時にも一旦現在の設定を適用
+        ApplyWeapon();
+    }
+
+    // ★武器選択が確定した瞬間に外部から呼び出すメソッド
+    public void ApplyWeapon()
+    {
         KnifeAttack knifeAttack = GetComponent<KnifeAttack>();
         GunAttack gunAttack = GetComponent<GunAttack>();
 
         string chosenWeapon = WeaponSelectManager.SelectedWeapon;
-        Debug.Log($"【初期化】選択された武器: {chosenWeapon}");
+        Debug.Log($"【武器適用】選択された武器: {chosenWeapon}");
 
         if (chosenWeapon == "Gun")
         {
-            // === 銃を選んだ場合 ===
-            // 1. 銃のオブジェクトを表示し、スクリプトを有効化する
+            // 銃を有効化、ナイフを停止
             if (gunObject != null) gunObject.SetActive(true);
             if (gunAttack != null) gunAttack.enabled = true;
 
-            // 2. ナイフのオブジェクトを非表示にし、スクリプトを完全に停止する
             if (knifeObject != null) knifeObject.SetActive(false);
             if (knifeAttack != null) knifeAttack.enabled = false;
-
-            Debug.Log("【初期化】銃モードで起動しました");
         }
         else
         {
-            // === ナイフを選んだ場合 ===
-            // 1. ナイフのオブジェクトを表示し、スクリプトを有効化する
+            // ナイフを有効化、銃を停止
             if (knifeObject != null) knifeObject.SetActive(true);
             if (knifeAttack != null) knifeAttack.enabled = true;
 
-            // 2. 銃のオブジェクトを非表示にし、スクリプトを完全に停止する
             if (gunObject != null) gunObject.SetActive(false);
             if (gunAttack != null) gunAttack.enabled = false;
-
-            Debug.Log("【初期化】ナイフモードで起動しました");
         }
     }
 }
