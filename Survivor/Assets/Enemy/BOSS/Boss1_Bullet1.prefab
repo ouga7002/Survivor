@@ -191,6 +191,7 @@ MonoBehaviour:
   GPDropAmount: 0
   deathEffectPrefab: {fileID: 0}
   dropOrbPrefab: {fileID: 0}
+  scoreReward: 0
 --- !u!114 &-8331618851414321236
 MonoBehaviour:
   m_ObjectHideFlags: 0

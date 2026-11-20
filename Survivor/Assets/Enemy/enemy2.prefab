@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -4812061307398180256}
   - component: {fileID: 7525301019504880843}
   - component: {fileID: 4184277769344814110}
+  - component: {fileID: 5547241820381158513}
   m_Layer: 6
   m_Name: enemy2
   m_TagString: Enemy
@@ -287,3 +288,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
   Attack: 2
+--- !u!114 &5547241820381158513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2847073272372498978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f2448284ec02c43b6683ddcb73e986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHitFlash
+  hitColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.1
