@@ -723,6 +723,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 911767697465250786, guid: 6fc5d1196d8f364459acf033b96cd06a, type: 3}
+      propertyPath: pools.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 911767697465250786, guid: 6fc5d1196d8f364459acf033b96cd06a, type: 3}
+      propertyPath: pools.Array.data[3].enemyPrefab
+      value: 
+      objectReference: {fileID: 8772636149481982011, guid: fcbad8c0906fb24478996bff8e42e0fd, type: 3}
+    - target: {fileID: 911767697465250786, guid: 6fc5d1196d8f364459acf033b96cd06a, type: 3}
+      propertyPath: pools.Array.data[3].initialSize
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6503537884975531097, guid: 6fc5d1196d8f364459acf033b96cd06a, type: 3}
       propertyPath: m_Name
       value: EnemyPool
@@ -2020,6 +2032,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2705623107557623577, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1418600317}
+    - targetCorrespondingSourceObject: {fileID: 2705623107557623577, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1418600325}
   m_SourcePrefab: {fileID: 100100000, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
 --- !u!1 &1328263939
 GameObject:
@@ -2273,6 +2288,37 @@ MonoBehaviour:
   swingDuration: 0.25
   distanceAheadOfCursor: 0.4
   swingAngleRange: 90
+--- !u!114 &1418600325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219960696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 991486b96431cdc4cbf55abf598c774f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GateSkill
+  aimCursor: {fileID: 1718772359}
+  gatePrefab: {fileID: 3028927856558461988, guid: 5cd3513325b97e44e829051d319f3fc4, type: 3}
+  swordPrefab: {fileID: 4666041267406133629, guid: a6860c0142466b24895b5fbe87543ed1, type: 3}
+  swordDamage: 10
+  cooldown: 6
+  shotInterval: 0.2
+  activeDuration: 10
+  gateBackDistance: 1.5
+  gateSpread: 0.8
+  gateVerticalOffset: 0.2
+  gateDepthOffsets:
+  - -0.3
+  - 0.2
+  - -0.1
+  - 0.35
+  - 0
+  gateCount: 5
+  targetSearchRadius: 10
+  isUnlocked: 1
 --- !u!1001 &1434636571
 PrefabInstance:
   m_ObjectHideFlags: 0
