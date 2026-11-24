@@ -24,6 +24,9 @@ public class BossSpawner : MonoBehaviour
     [Header("敵プール")]
     public EnemyPool enemyPool;
 
+    [Header("通常敵スポナー")]
+    public EnemySpawner enemySpawner;
+
     // ボスが生存しているかどうか
     public static bool IsBossActive { get; private set; } = false;
 
@@ -57,6 +60,12 @@ public class BossSpawner : MonoBehaviour
             {
                 IsBossActive = false;
                 currentBoss = null;
+
+                // 中ボス撃破を通常敵スポナーに通知
+                if (enemySpawner != null)
+                {
+                    enemySpawner.NotifyMidBossDefeated();
+                }
 
                 Debug.Log("ボス撃破！ゲームを再開します");
             }

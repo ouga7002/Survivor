@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d5179285097f3479d89e410e5eca6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy1Controller
-  moveSpeed: 2
+  moveSpeed: 3.5
 --- !u!114 &8383611883054376134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e2fc61206b3c9f4a849dc7424746c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
-  Attack: 1
+  Attack: 2
 --- !u!50 &7451735034127302369
 Rigidbody2D:
   serializedVersion: 5

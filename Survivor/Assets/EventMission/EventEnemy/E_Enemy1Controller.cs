@@ -1,4 +1,4 @@
-﻿
+﻿using System.Collections;
 using UnityEngine;
 
 public class E_Enemy1Controller : MonoBehaviour
@@ -17,9 +17,22 @@ public class E_Enemy1Controller : MonoBehaviour
     public float arrowDamage = 10f;
     public float arrowLifeTime = 5f;
 
+    [Header("攻撃時の画像")]
+    public Sprite attackSprite;
+    public float attackSpriteDuration = 0.3f;
+
+    [Header("向き・回転設定")]
+    public float rotationSpeed = 360f;
+    public float maxRotationAngle = 35f;
+
     private Transform player;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+
+    private Vector3 firePointDefaultPosition;
+
+    private Sprite normalSprite;
+    private Coroutine spriteCoroutine;
 
     private float nextAttackTime;
 
@@ -28,6 +41,9 @@ public class E_Enemy1Controller : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        if (spriteRenderer != null)
+            normalSprite = spriteRenderer.sprite;
+
         GameObject playerObject =
             GameObject.FindGameObjectWithTag("Player");
 
@@ -35,6 +51,11 @@ public class E_Enemy1Controller : MonoBehaviour
             player = playerObject.transform;
 
         nextAttackTime = Time.time + attackInterval;
+
+        if (firePoint != null)
+        {
+            firePointDefaultPosition = firePoint.localPosition;
+        }
     }
 
     void Update()
@@ -45,7 +66,6 @@ public class E_Enemy1Controller : MonoBehaviour
         float distance =
             Vector2.Distance(transform.position, player.position);
 
-        // 攻撃可能な距離なら弓矢を撃つ
         if (distance <= attackRange &&
             Time.time >= nextAttackTime)
         {
@@ -68,37 +88,73 @@ public class E_Enemy1Controller : MonoBehaviour
         float distance =
             Vector2.Distance(transform.position, player.position);
 
-        // プレイヤーとの距離に応じて移動
+        // プレイヤーとの距離を保つ
         if (distance > preferredDistance + distanceTolerance)
         {
-            // 遠すぎる場合は近づく
             rb.linearVelocity = direction * moveSpeed;
         }
         else if (distance < preferredDistance - distanceTolerance)
         {
-            // 近すぎる場合は後退する
             rb.linearVelocity = -direction * moveSpeed;
         }
         else
         {
-            // 適切な距離なら停止
             rb.linearVelocity = Vector2.zero;
         }
 
-        // プレイヤーの方向を向く
-        if (spriteRenderer != null)
+        // プレイヤーの左右位置に応じて向きを変更
+        bool facingLeft = direction.x < 0f;
+
+        spriteRenderer.flipX = facingLeft;
+
+        // FirePointの位置も反転
+        if (firePoint != null)
         {
-            if (direction.x > 0.01f)
-                spriteRenderer.flipX = false;
-            else if (direction.x < -0.01f)
-                spriteRenderer.flipX = true;
+            firePoint.localPosition = new Vector3(
+                facingLeft
+                    ? -firePointDefaultPosition.x
+                    : firePointDefaultPosition.x,
+                firePointDefaultPosition.y,
+                firePointDefaultPosition.z
+            );
         }
+
+        // 上下方向に合わせて体を回転
+        float targetAngle = Mathf.Atan2(
+            direction.y,
+            Mathf.Abs(direction.x)
+        ) * Mathf.Rad2Deg;
+
+        // 左向きの場合は回転方向を反転
+        if (facingLeft)
+        {
+            targetAngle = -targetAngle;
+        }
+
+        // 回転角度を制限
+        targetAngle = Mathf.Clamp(
+            targetAngle,
+            -maxRotationAngle,
+            maxRotationAngle
+        );
+
+        Quaternion targetRotation =
+            Quaternion.Euler(0f, 0f, targetAngle);
+
+        transform.rotation = Quaternion.RotateTowards(
+            transform.rotation,
+            targetRotation,
+            rotationSpeed * Time.fixedDeltaTime
+        );
     }
 
     void ShootArrow()
     {
         if (arrowPrefab == null || player == null)
             return;
+
+        // 攻撃時の画像に切り替える
+        PlayAttackSprite();
 
         Vector2 spawnPosition;
 
@@ -129,8 +185,34 @@ public class E_Enemy1Controller : MonoBehaviour
         }
         else
         {
-            Debug.LogError("矢のPrefabにE_Arrowが設定されていません！");
+            Debug.LogError(
+                "矢のPrefabにE_Arrowが設定されていません！"
+            );
+
             Destroy(arrow);
         }
+    }
+
+    // 攻撃画像に切り替える
+    void PlayAttackSprite()
+    {
+        if (spriteRenderer == null || attackSprite == null)
+            return;
+
+        if (spriteCoroutine != null)
+            StopCoroutine(spriteCoroutine);
+
+        spriteCoroutine = StartCoroutine(AttackSpriteCoroutine());
+    }
+
+    IEnumerator AttackSpriteCoroutine()
+    {
+        spriteRenderer.sprite = attackSprite;
+
+        yield return new WaitForSeconds(attackSpriteDuration);
+
+        spriteRenderer.sprite = normalSprite;
+
+        spriteCoroutine = null;
     }
 }
