@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 5746583193554820764}
   - component: {fileID: 7333534713688192173}
   - component: {fileID: -5321519534491433903}
+  - component: {fileID: -6363019259846202806}
   m_Layer: 6
   m_Name: enemy1
   m_TagString: Enemy
@@ -143,6 +144,7 @@ MonoBehaviour:
   GPDropAmount: 1
   deathEffectPrefab: {fileID: 4507934178083678765, guid: 9fbec09751879cf4c801d0e7bd6face9, type: 3}
   dropOrbPrefab: {fileID: 373015031572606197, guid: 1cff645bcedb397418df59b368fd9305, type: 3}
+  scoreReward: 10
 --- !u!114 &-6500654542399553579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,3 +371,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ab7f48a2504734ab2d8c282422020c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackManager
+--- !u!114 &-6363019259846202806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4818612936148183212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f2448284ec02c43b6683ddcb73e986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHitFlash
+  hitColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.1

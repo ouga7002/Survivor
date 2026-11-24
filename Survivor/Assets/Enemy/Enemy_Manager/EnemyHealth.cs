@@ -19,12 +19,15 @@ public class EnemyHealth : MonoBehaviour
 
     public float CurrentHP { get; private set; }
 
+    private EnemyHitFlash hitFlash;
+
     private bool isDead = false;
     private PooledEnemy pooledEnemy;
 
     void Awake()
     {
         pooledEnemy = GetComponent<PooledEnemy>();
+        hitFlash = GetComponent<EnemyHitFlash>();
     }
 
     void OnEnable()
@@ -36,6 +39,12 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         if (isDead) return;
+
+        // 被弾時に赤くする
+        if (hitFlash != null)
+        {
+            hitFlash.Flash();
+        }
 
         CurrentHP -= damage;
 
