@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -26,10 +25,24 @@ public class EnemySpawner : MonoBehaviour
     [Header("敵プール")]
     public EnemyPool enemyPool;
 
+    [Header("時間経過による出現頻度上昇")]
+    public float timeStepSeconds = 60f;
+    public float timeReduction = 0.1f;
+
+    [Header("中ボス撃破による出現頻度上昇")]
+    public float bossDefeatReduction = 0.2f;
+
+    [Header("出現間隔の最低値")]
+    public float minSpawnInterval = 0.3f;
+
     private Transform player;
+    private float startTime;
+    private int defeatedBossCount;
 
     void Start()
     {
+        startTime = Time.time;
+
         GameObject playerObject =
             GameObject.FindGameObjectWithTag("Player");
 
@@ -45,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
         foreach (EnemySpawnData data in enemies)
         {
             data.nextSpawnTime =
-                Time.time + data.spawnInterval;
+                Time.time + GetCurrentSpawnInterval(data);
         }
     }
 
@@ -62,11 +75,14 @@ public class EnemySpawner : MonoBehaviour
 
             if (Time.time < data.nextSpawnTime) continue;
 
+            float currentInterval =
+                GetCurrentSpawnInterval(data);
+
             // 最大数に達していたら出現を延期
             if (enemyPool.ActiveCount >= maxEnemyCount)
             {
                 data.nextSpawnTime =
-                    Time.time + data.spawnInterval;
+                    Time.time + currentInterval;
 
                 continue;
             }
@@ -74,7 +90,7 @@ public class EnemySpawner : MonoBehaviour
             SpawnEnemy(data);
 
             data.nextSpawnTime =
-                Time.time + data.spawnInterval;
+                Time.time + currentInterval;
         }
     }
 
@@ -94,5 +110,51 @@ public class EnemySpawner : MonoBehaviour
             spawnPosition
         );
     }
-}
 
+    // 現在の出現間隔を計算
+    float GetCurrentSpawnInterval(EnemySpawnData data)
+    {
+        int elapsedSteps = 0;
+
+        if (timeStepSeconds > 0f)
+        {
+            elapsedSteps =
+                Mathf.FloorToInt(
+                    (Time.time - startTime) / timeStepSeconds
+                );
+        }
+
+        float reduction =
+            elapsedSteps * timeReduction
+            + defeatedBossCount * bossDefeatReduction;
+
+        return Mathf.Max(
+            minSpawnInterval,
+            data.spawnInterval - reduction
+        );
+    }
+
+    // 中ボス撃破時に呼び出す
+    public void NotifyMidBossDefeated()
+    {
+        defeatedBossCount++;
+
+        // 現在の出現予定にも新しい間隔を反映
+        foreach (EnemySpawnData data in enemies)
+        {
+            if (data.enemyPrefab == null) continue;
+
+            float currentInterval =
+                GetCurrentSpawnInterval(data);
+
+            data.nextSpawnTime = Mathf.Min(
+                data.nextSpawnTime,
+                Time.time + currentInterval
+            );
+        }
+
+        Debug.Log(
+            "中ボス撃破！敵の出現頻度が上昇しました。"
+        );
+    }
+}

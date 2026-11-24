@@ -531,6 +531,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303890684}
   m_CullTransparentMesh: 1
+--- !u!114 &375875198 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3637127767848806519, guid: 7677794a5a56bb1449b85c545f680ef4, type: 3}
+  m_PrefabInstance: {fileID: 1434636571}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97c624bc12adeb438ad92227d4f5d9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
 --- !u!1 &512433004
 GameObject:
   m_ObjectHideFlags: 0
@@ -2464,6 +2475,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3637127767848806519, guid: 7677794a5a56bb1449b85c545f680ef4, type: 3}
+      propertyPath: minSpawnInterval
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637127767848806519, guid: 7677794a5a56bb1449b85c545f680ef4, type: 3}
+      propertyPath: enemies.Array.data[0].spawnInterval
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637127767848806519, guid: 7677794a5a56bb1449b85c545f680ef4, type: 3}
+      propertyPath: enemies.Array.data[1].spawnInterval
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637127767848806519, guid: 7677794a5a56bb1449b85c545f680ef4, type: 3}
+      propertyPath: enemies.Array.data[2].spawnInterval
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2840,6 +2867,10 @@ PrefabInstance:
       propertyPath: enemyPool
       value: 
       objectReference: {fileID: 1909678180}
+    - target: {fileID: -4724935807054432624, guid: 5d5d0418aa9019644bfd2af8a8d51452, type: 3}
+      propertyPath: enemySpawner
+      value: 
+      objectReference: {fileID: 375875198}
     - target: {fileID: -4724935807054432624, guid: 5d5d0418aa9019644bfd2af8a8d51452, type: 3}
       propertyPath: bosses.Array.size
       value: 1
