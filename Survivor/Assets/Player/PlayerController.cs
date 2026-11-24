@@ -1,32 +1,30 @@
+
 using UnityEngine;
-using UnityEngine.InputSystem; // 新しいInput Systemを使用
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(PlayerStatus))] // プレイヤーのステータス管理が必須
+[RequireComponent(typeof(PlayerStatus))]
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private PlayerStatus playerStatus;
     private Vector2 moveInput;
     private SpriteRenderer spriteRenderer;
+    private Animator animator; // 追加
 
     void Start()
     {
-        // 必要なコンポーネントの参照を取得
         rb = GetComponent<Rigidbody2D>();
         playerStatus = GetComponent<PlayerStatus>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>(); // 追加
 
-        // 2Dゲームで物理回転しないように固定（Z軸回転を凍結）
         rb.freezeRotation = true;
-
-        // 見下ろし型ゲームのため、重力を無効化（勝手に下に落ちないようにする）
         rb.gravityScale = 0f;
     }
 
     void Update()
     {
-        // Xboxコントローラーの入力を取得
         Gamepad gamepad = Gamepad.current;
 
         float moveX = 0f;
@@ -34,14 +32,13 @@ public class PlayerController : MonoBehaviour
 
         if (gamepad != null)
         {
-            // コントローラーが接続されている場合：左スティックの入力を取得
             moveX = gamepad.leftStick.x.ReadValue();
             moveY = gamepad.leftStick.y.ReadValue();
         }
         else
         {
-            // 【おまけ】コントローラーが未接続のときだけ、テスト用にキーボード(WASD)でも動かせるようにするフォールバック
             Keyboard keyboard = Keyboard.current;
+
             if (keyboard != null)
             {
                 if (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed) moveX += 1f;
@@ -51,16 +48,19 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // 入力値をベクトルに格納（斜め移動時の速度が速くなりすぎないようにNormalized処理）
         moveInput = new Vector2(moveX, moveY).normalized;
+
+        // 歩行アニメーションの切り替え
+        if (animator != null)
+        {
+            animator.SetBool("IsMoving", moveInput.sqrMagnitude > 0.01f);
+        }
     }
 
     void FixedUpdate()
     {
-        // 移動速度は PlayerStatus から取得した値を使う
         rb.linearVelocity = moveInput * playerStatus.MoveSpeed;
 
-        // 左右の移動方向に合わせてスプライトを反転
         if (spriteRenderer != null)
         {
             if (rb.linearVelocity.x > 0.01f)

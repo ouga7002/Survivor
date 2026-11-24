@@ -1425,6 +1425,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1672311756124341919, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1672311756124341919, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1672311756124341919, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.038269296
       objectReference: {fileID: 0}
@@ -1499,6 +1507,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2705623107557623577, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1418600301}
+    - targetCorrespondingSourceObject: {fileID: 2705623107557623577, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1418600309}
   m_SourcePrefab: {fileID: 100100000, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
 --- !u!1 &1328263939
 GameObject:
@@ -1719,6 +1730,28 @@ MonoBehaviour:
   attackInterval: 1
   aimDistance: 1.2
   showDuration: 0.2
+--- !u!95 &1418600309
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219960696}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 485464b4da5ce5b4386367975e91a040, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1434636571
 PrefabInstance:
   m_ObjectHideFlags: 0

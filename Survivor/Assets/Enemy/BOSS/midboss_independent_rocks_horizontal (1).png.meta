@@ -1,0 +1,579 @@
+fileFormatVersion: 2
+guid: 82ff9e103f8b9484b85887daa573c60c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1940012959881385654
+    second: midboss_independent_rocks_horizontal (1)_0
+  - first:
+      213: 2158607941000916505
+    second: midboss_independent_rocks_horizontal (1)_1
+  - first:
+      213: 7154760514334968017
+    second: midboss_independent_rocks_horizontal (1)_2
+  - first:
+      213: -8554906880743445624
+    second: midboss_independent_rocks_horizontal (1)_3
+  - first:
+      213: -7509150172495859850
+    second: midboss_independent_rocks_horizontal (1)_4
+  - first:
+      213: 1549176982893396020
+    second: midboss_independent_rocks_horizontal (1)_5
+  - first:
+      213: -2106995859211385883
+    second: midboss_independent_rocks_horizontal (1)_6
+  - first:
+      213: -7726235050046020260
+    second: midboss_independent_rocks_horizontal (1)_7
+  - first:
+      213: 5936558814845263512
+    second: midboss_independent_rocks_horizontal (1)_8
+  - first:
+      213: -5745072899221572985
+    second: midboss_independent_rocks_horizontal (1)_9
+  - first:
+      213: -7303777253838032775
+    second: midboss_independent_rocks_horizontal (1)_10
+  - first:
+      213: -5054375765204117688
+    second: midboss_independent_rocks_horizontal (1)_11
+  - first:
+      213: -5539345950029487846
+    second: midboss_independent_rocks_horizontal (1)_12
+  - first:
+      213: 717138088789683087
+    second: midboss_independent_rocks_horizontal (1)_13
+  - first:
+      213: -7984710942837250628
+    second: midboss_independent_rocks_horizontal (1)_14
+  - first:
+      213: 7794511919562463633
+    second: midboss_independent_rocks_horizontal (1)_15
+  - first:
+      213: 7863204723984756081
+    second: midboss_independent_rocks_horizontal (1)_16
+  - first:
+      213: 1649359740339838934
+    second: midboss_independent_rocks_horizontal (1)_17
+  - first:
+      213: -1442038180662648164
+    second: midboss_independent_rocks_horizontal (1)_18
+  - first:
+      213: -8945177800645917771
+    second: midboss_independent_rocks_horizontal (1)_19
+  - first:
+      213: -8267851696917044857
+    second: midboss_independent_rocks_horizontal (1)_20
+  - first:
+      213: 5341811856667281693
+    second: midboss_independent_rocks_horizontal (1)_21
+  - first:
+      213: -5689653871920985872
+    second: midboss_independent_rocks_horizontal (1)_22
+  - first:
+      213: -5900447385980295974
+    second: midboss_independent_rocks_horizontal (1)_23
+  - first:
+      213: 7511990940128583971
+    second: midboss_independent_rocks_horizontal (1)_24
+  - first:
+      213: -4351356888903859631
+    second: midboss_independent_rocks_horizontal (1)_25
+  - first:
+      213: -7280206360293762756
+    second: midboss_independent_rocks_horizontal (1)_26
+  - first:
+      213: -4503402081718145459
+    second: midboss_independent_rocks_horizontal (1)_27
+  - first:
+      213: 3441512391798733643
+    second: midboss_independent_rocks_horizontal (1)_28
+  - first:
+      213: -3430089434944864943
+    second: midboss_independent_rocks_horizontal (1)_29
+  - first:
+      213: 2802756787692054911
+    second: midboss_independent_rocks_horizontal (1)_30
+  - first:
+      213: 5897566544036717927
+    second: midboss_independent_rocks_horizontal (1)_31
+  - first:
+      213: 1622909058100400433
+    second: midboss_independent_rocks_horizontal (1)_32
+  - first:
+      213: 5053720313947346393
+    second: midboss_independent_rocks_horizontal (1)_33
+  - first:
+      213: 733112411079095062
+    second: midboss_independent_rocks_horizontal (1)_34
+  - first:
+      213: -225443754366712812
+    second: midboss_independent_rocks_horizontal (1)_35
+  - first:
+      213: -6109207030003409163
+    second: midboss_independent_rocks_horizontal (1)_36
+  - first:
+      213: -952551018071792225
+    second: midboss_independent_rocks_horizontal (1)_37
+  - first:
+      213: -3216303325145241512
+    second: midboss_independent_rocks_horizontal (1)_38
+  - first:
+      213: 5438646215295548819
+    second: midboss_independent_rocks_horizontal (1)_39
+  - first:
+      213: 2612595837969837303
+    second: midboss_independent_rocks_horizontal (1)_40
+  - first:
+      213: 3197775592547644357
+    second: midboss_independent_rocks_horizontal (1)_41
+  - first:
+      213: 6332019783511806665
+    second: midboss_independent_rocks_horizontal (1)_42
+  - first:
+      213: -170735575852052532
+    second: midboss_independent_rocks_horizontal (1)_43
+  - first:
+      213: -973644971704950211
+    second: midboss_independent_rocks_horizontal (1)_44
+  - first:
+      213: -9173087713526854559
+    second: midboss_independent_rocks_horizontal (1)_45
+  - first:
+      213: -1263956817762815861
+    second: midboss_independent_rocks_horizontal (1)_46
+  - first:
+      213: -6212852466798635354
+    second: midboss_independent_rocks_horizontal (1)_47
+  - first:
+      213: -1097982438607531945
+    second: midboss_independent_rocks_horizontal (1)_48
+  - first:
+      213: -2447218792071580671
+    second: midboss_independent_rocks_horizontal (1)_49
+  - first:
+      213: -7296953015908549514
+    second: midboss_independent_rocks_horizontal (1)_50
+  - first:
+      213: 4011401994317534397
+    second: midboss_independent_rocks_horizontal (1)_51
+  - first:
+      213: 8018094423145521187
+    second: midboss_independent_rocks_horizontal (1)_52
+  - first:
+      213: -7700723370870236332
+    second: midboss_independent_rocks_horizontal (1)_53
+  - first:
+      213: 8640723513354379756
+    second: midboss_independent_rocks_horizontal (1)_54
+  - first:
+      213: 1727530716455095824
+    second: midboss_independent_rocks_horizontal (1)_55
+  - first:
+      213: 7040103115355955922
+    second: midboss_independent_rocks_horizontal (1)_56
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 20
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: midboss_independent_rocks_horizontal (1)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 362
+        height: 386
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a49ad9add70b315e0800000000000000
+      internalID: -1940012959881385654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: midboss_independent_rocks_horizontal (1)_1
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 0
+        width: 362
+        height: 386
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91e62bc4c7ae4fd10800000000000000
+      internalID: 2158607941000916505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: midboss_independent_rocks_horizontal (1)_2
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 0
+        width: 362
+        height: 386
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d84dedb7c0da4360800000000000000
+      internalID: 7154760514334968017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: midboss_independent_rocks_horizontal (1)_3
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 0
+        width: 362
+        height: 386
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88bedbe848dd64980800000000000000
+      internalID: -8554906880743445624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: midboss_independent_rocks_horizontal (1)_4
+      rect:
+        serializedVersion: 2
+        x: 1448
+        y: 0
+        width: 362
+        height: 386
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67f225b04b32ac790800000000000000
+      internalID: -7509150172495859850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: midboss_independent_rocks_horizontal (1)_5
+      rect:
+        serializedVersion: 2
+        x: 1810
+        y: 0
+        width: 362
+        height: 386
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 430829f0248cf7510800000000000000
+      internalID: 1549176982893396020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: midboss_independent_rocks_horizontal (1)_6
+      rect:
+        serializedVersion: 2
+        x: 2172
+        y: 0
+        width: 362
+        height: 386
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e38c7ced6272c2e0800000000000000
+      internalID: -2106995859211385883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: midboss_independent_rocks_horizontal (1)_7
+      rect:
+        serializedVersion: 2
+        x: 2534
+        y: 0
+        width: 362
+        height: 386
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c55a5d64826e6c490800000000000000
+      internalID: -7726235050046020260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: midboss_independent_rocks_horizontal (1)_8
+      rect:
+        serializedVersion: 2
+        x: 2896
+        y: 0
+        width: 362
+        height: 386
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89ed013f9c4e26250800000000000000
+      internalID: 5936558814845263512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: midboss_independent_rocks_horizontal (1)_9
+      rect:
+        serializedVersion: 2
+        x: 3258
+        y: 0
+        width: 362
+        height: 386
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 782bc2903a66540b0800000000000000
+      internalID: -5745072899221572985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: midboss_independent_rocks_horizontal (1)_10
+      rect:
+        serializedVersion: 2
+        x: 3620
+        y: 0
+        width: 362
+        height: 386
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 970f762e845c3aa90800000000000000
+      internalID: -7303777253838032775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: midboss_independent_rocks_horizontal (1)_11
+      rect:
+        serializedVersion: 2
+        x: 3982
+        y: 0
+        width: 362
+        height: 386
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8475aa155004bd9b0800000000000000
+      internalID: -5054375765204117688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: cd1c42da3d4886141bfd897c5780a11c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":12.0,"y":1.0},"gridSpriteSize":{"x":362.0,"y":386.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      midboss_independent_rocks_horizontal (1)_0: -1940012959881385654
+      midboss_independent_rocks_horizontal (1)_1: 2158607941000916505
+      midboss_independent_rocks_horizontal (1)_10: -7303777253838032775
+      midboss_independent_rocks_horizontal (1)_11: -5054375765204117688
+      midboss_independent_rocks_horizontal (1)_2: 7154760514334968017
+      midboss_independent_rocks_horizontal (1)_3: -8554906880743445624
+      midboss_independent_rocks_horizontal (1)_4: -7509150172495859850
+      midboss_independent_rocks_horizontal (1)_5: 1549176982893396020
+      midboss_independent_rocks_horizontal (1)_6: -2106995859211385883
+      midboss_independent_rocks_horizontal (1)_7: -7726235050046020260
+      midboss_independent_rocks_horizontal (1)_8: 5936558814845263512
+      midboss_independent_rocks_horizontal (1)_9: -5745072899221572985
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
