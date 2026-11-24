@@ -12,9 +12,14 @@ GameObject:
   - component: {fileID: 7495787288997169832}
   - component: {fileID: 3791005930170182023}
   - component: {fileID: 791113497148364725}
-  m_Layer: 0
+  - component: {fileID: -8477303109801255320}
+  - component: {fileID: 1752570472136479998}
+  - component: {fileID: -3721334511308894935}
+  - component: {fileID: -2807442926279823036}
+  - component: {fileID: 1479551429705671033}
+  m_Layer: 6
   m_Name: EventEnemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +155,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -302,3 +307,72 @@ PolygonCollider2D:
       - {x: 0.745, y: -0.155}
       - {x: 0.745, y: -0.145}
   m_UseDelaunayMesh: 1
+--- !u!114 &-8477303109801255320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8482050319378856896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e7fe1cfdb732049afde80aff24f887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHP: 300
+  GPDropAmount: 1
+  deathEffectPrefab: {fileID: 4507934178083678765, guid: 9fbec09751879cf4c801d0e7bd6face9, type: 3}
+  dropOrbPrefab: {fileID: 0}
+  scoreReward: 300
+--- !u!114 &1752570472136479998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8482050319378856896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e2fc61206b3c9f4a849dc7424746c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
+  Attack: 1
+--- !u!114 &-3721334511308894935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8482050319378856896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ab7f48a2504734ab2d8c282422020c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackManager
+--- !u!114 &-2807442926279823036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8482050319378856896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3772746e69a0cea47a8564bf505eeb4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyContactAttack
+  attackInterval: 1
+--- !u!114 &1479551429705671033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8482050319378856896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f2448284ec02c43b6683ddcb73e986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHitFlash
+  hitColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.1
