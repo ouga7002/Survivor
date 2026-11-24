@@ -716,7 +716,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543396787}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ce006e8a3317f64eb1423529447d64d, type: 3}
   m_Name: 
@@ -726,8 +726,8 @@ MonoBehaviour:
   timeLimit: 30
   rewardGP: 50
   rewardScore: 1000
-  eliteEnemyPrefab: {fileID: 0}
-  spawnDistance: 7
+  eliteEnemyPrefab: {fileID: 8482050319378856896, guid: 7d74b1e6f5e38c6428ea748d8af171f1, type: 3}
+  spawnDistance: 8
 --- !u!114 &543396790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543396787}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db71fe09ebf11414ca091ead685e8aa7, type: 3}
   m_Name: 
@@ -751,12 +751,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543396787}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e7f407abae82b74a854a5c647524f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventMissionManager
-  firstTriggerDelay: 30
+  firstTriggerDelay: 3
   intervalBetweenEvents: 60
   isRandomOrder: 1
   availableMissions:
