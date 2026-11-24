@@ -686,6 +686,95 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01fef2b3f6fb53349a7e2d3c41a648b0, type: 3}
+--- !u!1 &543396787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 543396788}
+  - component: {fileID: 543396791}
+  - component: {fileID: 543396790}
+  - component: {fileID: 543396789}
+  m_Layer: 0
+  m_Name: EventMissionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &543396788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543396787}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.01781, y: 3.70903, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &543396789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543396787}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce006e8a3317f64eb1423529447d64d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EliteHuntMission
+  missionTitle: "\u7DCA\u6025\u30DF\u30C3\u30B7\u30E7\u30F3"
+  missionDescription: "\u30DF\u30C3\u30B7\u30E7\u30F3\u5185\u5BB9"
+  timeLimit: 30
+  rewardGP: 50
+  rewardScore: 1000
+  eliteEnemyPrefab: {fileID: 0}
+  spawnDistance: 7
+--- !u!114 &543396790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543396787}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db71fe09ebf11414ca091ead685e8aa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EventMissionUI
+  titleText: {fileID: 0}
+  descriptionText: {fileID: 0}
+  timerText: {fileID: 888696581}
+  resultDisplayDuration: 3
+--- !u!114 &543396791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543396787}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e7f407abae82b74a854a5c647524f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EventMissionManager
+  firstTriggerDelay: 30
+  intervalBetweenEvents: 60
+  isRandomOrder: 1
+  availableMissions:
+  - {fileID: 543396789}
+  playerTransform: {fileID: 1418600290}
+  playerStatus: {fileID: 1418600293}
+  missionUI: {fileID: 543396790}
 --- !u!1001 &599845418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -945,7 +1034,7 @@ MonoBehaviour:
   tileSize: 40
   tileRadiusX: 4
   tileRadiusY: 3
-  customSprite: {fileID: 1420819563496527457, guid: 097dcf7aeaff5324280f1e223f99d602, type: 3}
+  customSprite: {fileID: 2639457855390927616, guid: 1d98cdba6d7cd1542a9ac100de702665, type: 3}
   groundColor: {r: 1, g: 1, b: 1, a: 1}
   miniBossSprite: {fileID: 1549899388168407092, guid: c411ec91bee5b7d4faecf4889003858f, type: 3}
   finalBossSprite: {fileID: 0}
@@ -3354,3 +3443,4 @@ SceneRoots:
   - {fileID: 933645214}
   - {fileID: 1629676553}
   - {fileID: 817179105}
+  - {fileID: 543396788}
