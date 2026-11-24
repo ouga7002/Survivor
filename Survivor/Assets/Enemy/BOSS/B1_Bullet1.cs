@@ -28,6 +28,7 @@ public class B1_Bullet1 : MonoBehaviour
     }
 
     // 発射方向を設定
+
     public void Initialize(Vector2 moveDirection)
     {
         direction = moveDirection.normalized;
@@ -42,13 +43,16 @@ public class B1_Bullet1 : MonoBehaviour
             rb.linearVelocity = direction * moveSpeed;
         }
 
-        // 画像を90度回転
+        // 発射方向に合わせて弾の画像を回転
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
         transform.rotation = Quaternion.Euler(
             0f,
             0f,
-            rotationOffset
+            angle + rotationOffset
         );
     }
+
 
     void FixedUpdate()
     {

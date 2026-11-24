@@ -1,3 +1,5 @@
+
+using System.Collections;
 using UnityEngine;
 
 public class Boss1Controller : MonoBehaviour, IEnemyAttack
@@ -10,61 +12,169 @@ public class Boss1Controller : MonoBehaviour, IEnemyAttack
     private EnemyAttackManager attackManager;
 
     [Header("弾のPrefab")]
-    public GameObject bullet1; // 3方向直進弾
-    public GameObject bullet2; // 既存の追尾弾
+    public GameObject bullet1;
+    public GameObject bullet2;
 
-    // 既存の追尾弾の生成位置
     public Transform bulletSpawnPoint;
-
     public float spawnHeight = 1.0f;
 
     [Header("攻撃設定")]
-    public float attackInterval = 5f;
+    public float attackInterval = 4.5f;
+    public float firstAttackDelay = 2f;
 
-    [Header("3方向直進弾の設定")]
-    public int straightBulletCount = 3;
-    public float straightBulletSpreadAngle = 15f;
+    [Header("直進弾の設定")]
+    public int straightBulletCount = 16;
+    public float straightBulletSpreadAngle = 150f;
     public float straightBulletSpawnDistance = 1.0f;
+
+    [Header("攻撃予告設定")]
+    public float warningDuration = 0.9f;
+    public float flashInterval = 0.12f;
+
+    [Header("ボス点滅用")]
+    public SpriteRenderer warningSpriteRenderer;
+
+    [Header("魔法陣")]
+    public GameObject magicCircle;
+    public SpriteRenderer magicCircleRenderer;
+    public Color magicCircleColor = Color.yellow;
+    public float magicCircleStartScale = 0.7f;
+    public float magicCircleEndScale = 1.5f;
+
+    private Coroutine attackCoroutine;
+    private bool isAttacking = true;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        attackManager = GetComponent<EnemyAttackManager>();
 
         GameObject playerObject =
             GameObject.FindGameObjectWithTag("Player");
 
         if (playerObject != null)
-        {
             player = playerObject.transform;
+
+        if (warningSpriteRenderer != null)
+        {
+            warningSpriteRenderer.sprite = spriteRenderer.sprite;
+            warningSpriteRenderer.enabled = false;
+            warningSpriteRenderer.color =
+                new Color(1f, 0.5f, 0f, 0.7f);
         }
 
-        // 2秒後から5秒おきに攻撃
-        InvokeRepeating(nameof(Attack), 2f, attackInterval);
+        if (magicCircle != null)
+            magicCircle.SetActive(false);
 
-        attackManager = GetComponent<EnemyAttackManager>();
+        attackCoroutine = StartCoroutine(AttackLoop());
     }
 
-    void Attack()
+    IEnumerator AttackLoop()
     {
-        if (player == null) return;
+        yield return new WaitForSeconds(firstAttackDelay);
 
-        // どちらの攻撃を使うかランダムに決定
-        bool useStraightAttack =
-            bullet1 != null &&
-            (bullet2 == null || Random.value < 0.5f);
+        while (isAttacking)
+        {
+            if (player != null)
+            {
+                // 予告する攻撃を先に決める
+                bool useStraightAttack =
+                    bullet1 != null &&
+                    (bullet2 == null || Random.value < 0.5f);
 
-        if (useStraightAttack)
-        {
-            AttackStraight();
-        }
-        else
-        {
-            AttackHoming();
+                // 攻撃予告
+                yield return StartCoroutine(ShowAttackWarning());
+
+                if (!isAttacking)
+                    yield break;
+
+                // 予告終了後に攻撃
+                if (player != null)
+                {
+                    if (useStraightAttack)
+                        AttackStraight();
+                    else
+                        AttackHoming();
+                }
+            }
+
+            // 次の予告開始までの時間を調整
+            yield return new WaitForSeconds(
+                Mathf.Max(0f, attackInterval - warningDuration));
         }
     }
 
-    // 既存の追尾弾攻撃
+    IEnumerator ShowAttackWarning()
+    {
+        float elapsed = 0f;
+        bool flashVisible = false;
+
+        if (magicCircle != null)
+        {
+            magicCircle.SetActive(true);
+            magicCircle.transform.localScale =
+                Vector3.one * magicCircleStartScale;
+        }
+
+        while (elapsed < warningDuration && isAttacking)
+        {
+            // ボス本体の点滅
+            if (warningSpriteRenderer != null)
+            {
+                warningSpriteRenderer.sprite = spriteRenderer.sprite;
+                warningSpriteRenderer.flipX = spriteRenderer.flipX;
+
+                flashVisible = !flashVisible;
+                warningSpriteRenderer.enabled = flashVisible;
+            }
+
+            // 魔法陣を徐々に大きくする
+            float progress = elapsed / warningDuration;
+
+            if (magicCircle != null)
+            {
+                float scale = Mathf.Lerp(
+                    magicCircleStartScale,
+                    magicCircleEndScale,
+                    progress);
+
+                magicCircle.transform.localScale =
+                    Vector3.one * scale;
+            }
+
+            // 魔法陣を明滅させる
+            if (magicCircleRenderer != null)
+            {
+                float alpha = Mathf.Lerp(
+                    0.35f,
+                    0.9f,
+                    Mathf.PingPong(elapsed * 3f, 1f));
+
+                magicCircleRenderer.color = new Color(
+                    magicCircleColor.r,
+                    magicCircleColor.g,
+                    magicCircleColor.b,
+                    alpha);
+            }
+
+            yield return new WaitForSeconds(flashInterval);
+            elapsed += flashInterval;
+        }
+
+        HideAttackWarning();
+    }
+
+    void HideAttackWarning()
+    {
+        if (warningSpriteRenderer != null)
+            warningSpriteRenderer.enabled = false;
+
+        if (magicCircle != null)
+            magicCircle.SetActive(false);
+    }
+
+    // 追尾弾攻撃
     void AttackHoming()
     {
         if (bullet2 == null) return;
@@ -88,33 +198,31 @@ public class Boss1Controller : MonoBehaviour, IEnemyAttack
         );
 
         if (attackManager != null)
-        {
             attackManager.RegisterBullet(bullet);
-        }
     }
 
-    // 3方向直進弾攻撃
+    // 16方向の拡散弾攻撃
     void AttackStraight()
     {
-        if (bullet1 == null) return;
+        if (bullet1 == null || player == null) return;
 
-        // プレイヤーに向かう方向
         Vector2 direction =
-            ((Vector2)player.position - (Vector2)transform.position).normalized;
+            ((Vector2)player.position -
+            (Vector2)transform.position).normalized;
 
-        // ボスの目の前に生成
         Vector2 spawnPosition =
             (Vector2)transform.position +
             direction * straightBulletSpawnDistance;
 
         for (int i = 0; i < straightBulletCount; i++)
         {
-            // 3発の角度を均等にずらす
             float angle = 0f;
 
             if (straightBulletCount > 1)
             {
-                float t = (float)i / (straightBulletCount - 1);
+                float t =
+                    (float)i / (straightBulletCount - 1);
+
                 angle = Mathf.Lerp(
                     -straightBulletSpreadAngle,
                     straightBulletSpreadAngle,
@@ -135,19 +243,13 @@ public class Boss1Controller : MonoBehaviour, IEnemyAttack
                 bullet.GetComponent<B1_Bullet1>();
 
             if (straightBullet != null)
-            {
                 straightBullet.Initialize(shotDirection);
-            }
             else
-            {
                 Debug.LogError(
-                    "Bullet1にB1_StraightBulletが設定されていません！");
-            }
+                    "Bullet1にB1_Bullet1が設定されていません！");
 
             if (attackManager != null)
-            {
                 attackManager.RegisterBullet(bullet);
-            }
         }
     }
 
@@ -164,22 +266,22 @@ public class Boss1Controller : MonoBehaviour, IEnemyAttack
 
         rb.linearVelocity = direction * moveSpeed;
 
-        // 左右の移動方向に合わせてスプライトを反転
         if (spriteRenderer != null)
         {
             if (direction.x > 0.01f)
-            {
                 spriteRenderer.flipX = false;
-            }
             else if (direction.x < -0.01f)
-            {
                 spriteRenderer.flipX = true;
-            }
         }
     }
 
     public void StopAttack()
     {
-        CancelInvoke(nameof(Attack));
+        isAttacking = false;
+
+        if (attackCoroutine != null)
+            StopCoroutine(attackCoroutine);
+
+        HideAttackWarning();
     }
 }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5245addcb57a8d348a541b5cd6bb2d35
+guid: b1fb7a7264f1d644280709ddddf3245a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7929484680704774603
-    second: "\u7D2B\u9752\u306E\u53E4\u4EE3\u77F3\u7573\u30BF\u30A4\u30EB\u5730\u9762_0"
+      213: -7164662466818063879
+    second: MajickSercle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u7D2B\u9752\u306E\u53E4\u4EE3\u77F3\u7573\u30BF\u30A4\u30EB\u5730\u9762_0"
+      name: MajickSercle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1672
-        height: 941
+        width: 920
+        height: 894
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bc15f4d0e403b0e60800000000000000
-      internalID: 7929484680704774603
+      spriteID: 9f14cb94271029c90800000000000000
+      internalID: -7164662466818063879
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\u7D2B\u9752\u306E\u53E4\u4EE3\u77F3\u7573\u30BF\u30A4\u30EB\u5730\u9762_0": 7929484680704774603
+      MajickSercle_0: -7164662466818063879
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
