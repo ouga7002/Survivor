@@ -34,6 +34,10 @@ public class Boss1Controller : MonoBehaviour, IEnemyAttack
     [Header("ボス点滅用")]
     public SpriteRenderer warningSpriteRenderer;
 
+    [Header("攻撃直前の目の発光")]
+    public SpriteRenderer eyeGlowSpriteRenderer;
+    public float eyeGlowDuration = 0.1f;
+
     [Header("魔法陣")]
     public GameObject magicCircle;
     public SpriteRenderer magicCircleRenderer;
@@ -63,6 +67,9 @@ public class Boss1Controller : MonoBehaviour, IEnemyAttack
             warningSpriteRenderer.color =
                 new Color(1f, 0.5f, 0f, 0.7f);
         }
+
+        if (eyeGlowSpriteRenderer != null)
+            eyeGlowSpriteRenderer.enabled = false;
 
         if (magicCircle != null)
             magicCircle.SetActive(false);
@@ -105,10 +112,18 @@ public class Boss1Controller : MonoBehaviour, IEnemyAttack
         }
     }
 
+
     IEnumerator ShowAttackWarning()
     {
         float elapsed = 0f;
         bool flashVisible = false;
+
+        // 発光を開始するまでの時間
+        float glowDuration =
+            Mathf.Clamp(eyeGlowDuration, 0f, warningDuration);
+
+        float warningMainDuration =
+            warningDuration - glowDuration;
 
         if (magicCircle != null)
         {
@@ -117,16 +132,16 @@ public class Boss1Controller : MonoBehaviour, IEnemyAttack
                 Vector3.one * magicCircleStartScale;
         }
 
-        while (elapsed < warningDuration && isAttacking)
+        // 通常の攻撃予告
+        while (elapsed < warningMainDuration && isAttacking)
         {
             // ボス本体の点滅
-            if (warningSpriteRenderer != null)
+            if (eyeGlowSpriteRenderer != null)
             {
-                warningSpriteRenderer.sprite = spriteRenderer.sprite;
-                warningSpriteRenderer.flipX = spriteRenderer.flipX;
+                // 発光画像の向きをボス本体に合わせる
+                eyeGlowSpriteRenderer.flipX = spriteRenderer.flipX;
 
-                flashVisible = !flashVisible;
-                warningSpriteRenderer.enabled = flashVisible;
+                eyeGlowSpriteRenderer.enabled = true;
             }
 
             // 魔法陣を徐々に大きくする
@@ -158,12 +173,36 @@ public class Boss1Controller : MonoBehaviour, IEnemyAttack
                     alpha);
             }
 
-            yield return new WaitForSeconds(flashInterval);
-            elapsed += flashInterval;
+            float waitTime = Mathf.Min(
+                flashInterval,
+                warningMainDuration - elapsed);
+
+            yield return new WaitForSeconds(waitTime);
+            elapsed += waitTime;
         }
+
+        // 通常の点滅を終了
+        if (warningSpriteRenderer != null)
+            warningSpriteRenderer.enabled = false;
+
+        // 魔法陣を最大サイズにする
+        if (magicCircle != null)
+        {
+            magicCircle.transform.localScale =
+                Vector3.one * magicCircleEndScale;
+        }
+
+        // 攻撃直前に発光
+        if (eyeGlowSpriteRenderer != null)
+        {
+            eyeGlowSpriteRenderer.enabled = true;
+        }
+
+        yield return new WaitForSeconds(glowDuration);
 
         HideAttackWarning();
     }
+
 
     void HideAttackWarning()
     {
@@ -172,6 +211,9 @@ public class Boss1Controller : MonoBehaviour, IEnemyAttack
 
         if (magicCircle != null)
             magicCircle.SetActive(false);
+
+        if (eyeGlowSpriteRenderer != null)
+            eyeGlowSpriteRenderer.enabled = false;
     }
 
     // 追尾弾攻撃
@@ -266,13 +308,21 @@ public class Boss1Controller : MonoBehaviour, IEnemyAttack
 
         rb.linearVelocity = direction * moveSpeed;
 
+
         if (spriteRenderer != null)
         {
             if (direction.x > 0.01f)
                 spriteRenderer.flipX = false;
             else if (direction.x < -0.01f)
                 spriteRenderer.flipX = true;
+
+            // 目の発光画像もボス本体と同じ向きにする
+            if (eyeGlowSpriteRenderer != null)
+            {
+                eyeGlowSpriteRenderer.flipX = spriteRenderer.flipX;
+            }
         }
+
     }
 
     public void StopAttack()
