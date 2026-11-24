@@ -735,7 +735,7 @@ MonoBehaviour:
   missionTitle: "\u7DCA\u6025\u30DF\u30C3\u30B7\u30E7\u30F3"
   missionDescription: "\u30DF\u30C3\u30B7\u30E7\u30F3\u5185\u5BB9"
   timeLimit: 30
-  rewardGP: 50
+  rewardGP: 100
   rewardScore: 1000
   eliteEnemyPrefab: {fileID: 8482050319378856896, guid: 7d74b1e6f5e38c6428ea748d8af171f1, type: 3}
   spawnDistance: 8
@@ -753,7 +753,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EventMissionUI
   titleText: {fileID: 0}
   descriptionText: {fileID: 0}
-  timerText: {fileID: 888696581}
+  timerText: {fileID: 0}
   resultDisplayDuration: 3
 --- !u!114 &543396791
 MonoBehaviour:
