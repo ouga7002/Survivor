@@ -1671,9 +1671,12 @@ MonoBehaviour:
   skillResultUI: {fileID: 1610419585}
   resultText: {fileID: 0}
   resultSkillImage: {fileID: 1610419586}
-  shurikenIcon: {fileID: -3806798141599162832, guid: 5a9eb60895be3bd45af4a91e11a1e8a1, type: 3}
-  lightningIcon: {fileID: 2808115512186103975, guid: 0416b965aafba7140944dbc3ac0a128a, type: 3}
-  vampireIcon: {fileID: 965788036745314830, guid: 0e5356c1d3cf0924e81f7c35e1680502, type: 3}
+  playerObject: {fileID: 219960696}
+  skillDatabase:
+  - {fileID: 11400000, guid: d9641cbaa1c043e468658766b7b66ce2, type: 2}
+  - {fileID: 11400000, guid: e5a267765f311114c8c0d116f2adb988, type: 2}
+  - {fileID: 11400000, guid: b730288729514f6498ee49d19f200381, type: 2}
+  - {fileID: 11400000, guid: 80d9a7e1e38b97a4e91f39e2af9e9cd2, type: 2}
 --- !u!1 &1135406885
 GameObject:
   m_ObjectHideFlags: 0
@@ -2407,15 +2410,12 @@ MonoBehaviour:
   cooldown: 6
   shotInterval: 0.2
   activeDuration: 10
-  gateBackDistance: 1.5
-  gateSpread: 0.8
-  gateVerticalOffset: 0.2
-  gateDepthOffsets:
-  - -0.3
-  - 0.2
-  - -0.1
-  - 0.35
-  - 0
+  gateOffsets:
+  - {x: -1, y: 1}
+  - {x: 1, y: -1}
+  - {x: 1, y: 1}
+  - {x: -1, y: -1}
+  - {x: 0, y: 0}
   gateCount: 5
   targetSearchRadius: 10
   isUnlocked: 1

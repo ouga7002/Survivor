@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd2286843524f6843a0c4d84dd9e4208, type: 3}
+  m_Name: LightningData
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  skillId: lightning
+  skillName: "\u96F7\u6483"
+  skillIcon: {fileID: 2808115512186103975, guid: 0416b965aafba7140944dbc3ac0a128a, type: 3}
+  drawWeight: 10

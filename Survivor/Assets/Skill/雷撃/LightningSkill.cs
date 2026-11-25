@@ -1,8 +1,10 @@
+
 using UnityEngine;
 using System.Collections.Generic;
 
-public class LightningSkill : MonoBehaviour
+public class LightningSkill : MonoBehaviour, ISkillUnlockable
 {
+    [Header("雷撃設定")]
     [SerializeField] private GameObject lightningPrefab;
     [SerializeField] private float baseLightningAtk = 20f;
     [SerializeField] private float attackInterval = 4.0f;
@@ -14,11 +16,30 @@ public class LightningSkill : MonoBehaviour
     private float timer = 0f;
     private PlayerStatus playerStatus;
 
+    // =====================================
+    // 共通スキル管理
+    // =====================================
+
+    public string SkillId => "lightning";
+
+    public void SetSkillUnlocked(bool unlocked)
+    {
+        isUnlocked = unlocked;
+    }
+
+    // =====================================
+    // 初期設定
+    // =====================================
+
     void Start()
     {
         playerStatus = GetComponent<PlayerStatus>();
         timer = 0f;
     }
+
+    // =====================================
+    // 更新処理
+    // =====================================
 
     void Update()
     {
@@ -33,27 +54,48 @@ public class LightningSkill : MonoBehaviour
         }
     }
 
+    // =====================================
+    // 雷撃攻撃
+    // =====================================
+
     void StrikeLightning()
     {
         if (lightningPrefab == null) return;
 
-        // ★敵（Enemy）とボス（Boss）の両方からターゲット候補を集める
         List<GameObject> targets = new List<GameObject>();
 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if (enemies != null) targets.AddRange(enemies);
+        // 通常の敵
+        GameObject[] enemies =
+            GameObject.FindGameObjectsWithTag("Enemy");
 
-        GameObject[] bosses = GameObject.FindGameObjectsWithTag("Boss");
-        if (bosses != null) targets.AddRange(bosses);
+        if (enemies != null)
+        {
+            targets.AddRange(enemies);
+        }
 
-        // もしタグで見つからない場合の保険として名前検索も追加
-        foreach (GameObject obj in GameObject.FindObjectsByType<GameObject>(FindObjectsSortMode.None))
+        // ボス
+        GameObject[] bosses =
+            GameObject.FindGameObjectsWithTag("Boss");
+
+        if (bosses != null)
+        {
+            targets.AddRange(bosses);
+        }
+
+        // 名前による検索
+        foreach (GameObject obj in
+            GameObject.FindObjectsByType<GameObject>(
+                FindObjectsSortMode.None))
         {
             string objName = obj.name.ToLower();
-            if ((objName.Contains("enemy") || objName.Contains("boss") || objName.Contains("中ボス")) && !targets.Contains(obj))
+
+            if ((objName.Contains("enemy") ||
+                 objName.Contains("boss") ||
+                 objName.Contains("中ボス")) &&
+                !targets.Contains(obj))
             {
-                // プレイヤー自身や弾などは除外する
-                if (obj != gameObject && !obj.name.Contains("Player"))
+                if (obj != gameObject &&
+                    !obj.name.Contains("Player"))
                 {
                     targets.Add(obj);
                 }
@@ -62,36 +104,56 @@ public class LightningSkill : MonoBehaviour
 
         if (targets.Count == 0) return;
 
-        // 候補の中からランダムに1体選ぶ
-        GameObject targetEnemy = targets[Random.Range(0, targets.Count)];
+        // ランダムにターゲットを選択
+        GameObject targetEnemy =
+            targets[Random.Range(0, targets.Count)];
 
-        if (targetEnemy != null)
+        if (targetEnemy == null) return;
+
+        Vector3 spawnPos = targetEnemy.transform.position;
+
+        // 雷エフェクト生成
+        GameObject lightning = Instantiate(
+            lightningPrefab,
+            spawnPos,
+            Quaternion.identity
+        );
+
+        // 攻撃力計算
+        float totalAtk = baseLightningAtk;
+
+        if (playerStatus != null)
         {
-            Vector3 spawnPos = targetEnemy.transform.position;
-            GameObject lightning = Instantiate(lightningPrefab, spawnPos, Quaternion.identity);
+            totalAtk += playerStatus.CurrentAtk;
+        }
 
-            float totalAtk = baseLightningAtk;
-            if (playerStatus != null) totalAtk += playerStatus.CurrentAtk;
+        // 雷撃範囲内の敵を検索
+        Collider2D[] hitColliders =
+            Physics2D.OverlapCircleAll(
+                spawnPos,
+                attackRadius
+            );
 
-            // 雷の爆発範囲（円内）にいる敵やボス全員にダメージを与える
-            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(spawnPos, attackRadius);
-            foreach (var hit in hitColliders)
+        foreach (var hit in hitColliders)
+        {
+            string hitName = hit.name.ToLower();
+
+            if (hit.CompareTag("Enemy") ||
+                hit.CompareTag("Boss") ||
+                hitName.Contains("enemy") ||
+                hitName.Contains("boss") ||
+                hitName.Contains("中ボス"))
             {
-                string hitName = hit.name.ToLower();
+                EnemyHealth enemyHealth =
+                    hit.GetComponent<EnemyHealth>();
 
-                // ★敵またはボス、あるいは名前やタグにそれらを含むものを対象にする
-                if (hit.CompareTag("Enemy") || hit.CompareTag("Boss") ||
-                    hitName.Contains("enemy") || hitName.Contains("boss") || hitName.Contains("中ボス"))
+                if (enemyHealth != null)
                 {
-                    EnemyHealth enemyHealth = hit.GetComponent<EnemyHealth>();
-                    if (enemyHealth != null)
-                    {
-                        enemyHealth.TakeDamage(totalAtk);
-                    }
+                    enemyHealth.TakeDamage(totalAtk);
                 }
             }
-
-            Destroy(lightning, displayDuration);
         }
+
+        Destroy(lightning, displayDuration);
     }
 }
