@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: -2807442926279823036}
   - component: {fileID: 1479551429705671033}
   - component: {fileID: 1501551656038467276}
+  - component: {fileID: 1109889477495880529}
   m_Layer: 6
   m_Name: EventEnemy1
   m_TagString: Enemy
@@ -329,6 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitFlash
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.1
+  ignoreRenderers: []
 --- !u!114 &1501551656038467276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,3 +357,15 @@ MonoBehaviour:
   attackSpriteDuration: 0.3
   rotationSpeed: 360
   maxRotationAngle: 40
+--- !u!114 &1109889477495880529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8482050319378856896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec4ae66be80cb4b4a9ac30b7e070702a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Petrifiable

@@ -1677,6 +1677,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5a267765f311114c8c0d116f2adb988, type: 2}
   - {fileID: 11400000, guid: b730288729514f6498ee49d19f200381, type: 2}
   - {fileID: 11400000, guid: 80d9a7e1e38b97a4e91f39e2af9e9cd2, type: 2}
+  - {fileID: 11400000, guid: 70c1e0ddaaca444438f7436c87a1776c, type: 2}
 --- !u!1 &1135406885
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,6 +2139,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2705623107557623577, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1418600325}
+    - targetCorrespondingSourceObject: {fileID: 2705623107557623577, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1418600334}
   m_SourcePrefab: {fileID: 100100000, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
 --- !u!1 &1328263939
 GameObject:
@@ -2419,6 +2423,44 @@ MonoBehaviour:
   gateCount: 5
   targetSearchRadius: 10
   isUnlocked: 1
+--- !u!114 &1418600334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219960696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d53095c02fd0d46bfebe1cd749425a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cybele
+  player: {fileID: 1418600290}
+  aimCursor: {fileID: 1718772359}
+  searchRadius: 10
+  petrifyDuration: 3
+  coolDownDuration: 11
+  effectFrames:
+  - {fileID: 2379371164101922966, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
+  - {fileID: -105318231066328030, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
+  - {fileID: -8142123273483896957, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
+  - {fileID: 8098972412317044601, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
+  - {fileID: 7104788729608944089, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
+  - {fileID: 1169647711183791001, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
+  - {fileID: -8444063342288009717, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
+  - {fileID: -8333625564540620265, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
+  - {fileID: 2851338694041818637, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
+  - {fileID: 2203329922120061381, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
+  - {fileID: 943290440160196303, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
+  - {fileID: 320324003242705596, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
+  - {fileID: -6231102626994938899, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
+  - {fileID: -1796623566701194884, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
+  - {fileID: 8539214243072346057, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
+  - {fileID: 4827202792603629271, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
+  effectFramesPerSecond: 12
+  effectDistance: 1.5
+  effectScale: 2
+  effectSortingOrder: 10
 --- !u!1001 &1434636571
 PrefabInstance:
   m_ObjectHideFlags: 0
