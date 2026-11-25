@@ -1,6 +1,7 @@
+
 using UnityEngine;
 
-public class Shuriken : MonoBehaviour
+public class Shuriken : MonoBehaviour, ISkillUnlockable
 {
     [Header("参照設定")]
     [Tooltip("手裏剣のプレハブをここにアタッチする")]
@@ -21,6 +22,30 @@ public class Shuriken : MonoBehaviour
     private float stateTimer = 0f;
     private bool isActiveState = true;
 
+    // =====================================
+    // 共通スキル管理
+    // =====================================
+
+    public string SkillId => "shuriken";
+
+    public void SetSkillUnlocked(bool unlocked)
+    {
+        isUnlocked = unlocked;
+
+        if (!isUnlocked)
+        {
+            if (spawnedShuriken != null)
+            {
+                Destroy(spawnedShuriken);
+                spawnedShuriken = null;
+            }
+        }
+    }
+
+    // =====================================
+    // 更新処理
+    // =====================================
+
     void Update()
     {
         if (!isUnlocked)
@@ -28,61 +53,100 @@ public class Shuriken : MonoBehaviour
             if (spawnedShuriken != null)
             {
                 Destroy(spawnedShuriken);
+                spawnedShuriken = null;
             }
+
             return;
         }
 
+        // 手裏剣生成
         if (spawnedShuriken == null && shurikenPrefab != null)
         {
-            spawnedShuriken = Instantiate(shurikenPrefab, transform.position, Quaternion.identity);
+            spawnedShuriken = Instantiate(
+                shurikenPrefab,
+                transform.position,
+                Quaternion.identity
+            );
+
             spawnedShuriken.transform.SetParent(transform);
 
-            ShurikenHitbox hitbox = spawnedShuriken.GetComponent<ShurikenHitbox>();
+            ShurikenHitbox hitbox =
+                spawnedShuriken.GetComponent<ShurikenHitbox>();
+
             if (hitbox == null)
             {
                 hitbox = spawnedShuriken.AddComponent<ShurikenHitbox>();
             }
+
             hitbox.damage = attackPower;
         }
 
+        // 発動中
         if (isActiveState)
         {
             stateTimer += Time.deltaTime;
+
             if (stateTimer >= activeDuration)
             {
                 isActiveState = false;
                 stateTimer = 0f;
-                if (spawnedShuriken != null) spawnedShuriken.SetActive(false);
+
+                if (spawnedShuriken != null)
+                {
+                    spawnedShuriken.SetActive(false);
+                }
             }
         }
+        // クールタイム中
         else
         {
             stateTimer += Time.deltaTime;
+
             if (stateTimer >= coolDownDuration)
             {
                 isActiveState = true;
                 stateTimer = 0f;
-                if (spawnedShuriken != null) spawnedShuriken.SetActive(true);
+
+                if (spawnedShuriken != null)
+                {
+                    spawnedShuriken.SetActive(true);
+                }
             }
+
             return;
         }
 
+        // 手裏剣の回転
         if (spawnedShuriken != null && spawnedShuriken.activeSelf)
         {
             currentAngle += rotationSpeed * Time.deltaTime;
-            if (currentAngle >= 360f) currentAngle -= 360f;
+
+            if (currentAngle >= 360f)
+            {
+                currentAngle -= 360f;
+            }
 
             float rad = currentAngle * Mathf.Deg2Rad;
+
             float x = Mathf.Cos(rad) * orbitRadius;
             float y = Mathf.Sin(rad) * orbitRadius;
 
-            spawnedShuriken.transform.localPosition = new Vector3(x, y, 0f);
-            spawnedShuriken.transform.Rotate(0f, 0f, selfRotationSpeed * Time.deltaTime);
+            spawnedShuriken.transform.localPosition =
+                new Vector3(x, y, 0f);
+
+            spawnedShuriken.transform.Rotate(
+                0f,
+                0f,
+                selfRotationSpeed * Time.deltaTime
+            );
         }
     }
 }
 
-// ★ボスや通常の敵どちらにもヒットするように条件を拡張したクラス
+// =====================================
+// 手裏剣の当たり判定
+// =====================================
+
 public class ShurikenHitbox : MonoBehaviour
 {
     public float damage = 10f;
@@ -91,21 +155,18 @@ public class ShurikenHitbox : MonoBehaviour
     {
         string objName = collision.name.ToLower();
 
-        // 敵（Enemy）またはボス（Boss）、あるいは名前やタグにそれらを含むものを対象にする
-        if (collision.CompareTag("Enemy") || collision.CompareTag("Boss") ||
-            objName.Contains("enemy") || objName.Contains("boss") || objName.Contains("中ボス"))
+        if (collision.CompareTag("Enemy") ||
+            collision.CompareTag("Boss") ||
+            objName.Contains("enemy") ||
+            objName.Contains("boss") ||
+            objName.Contains("中ボス"))
         {
-            // ボス側が「EnemyHealth」を持っているか、あるいは共通のダメージ処理コンポーネントを持っているか
-            EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
+            EnemyHealth enemyHealth =
+                collision.GetComponent<EnemyHealth>();
+
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(damage);
-            }
-            else
-            {
-                // もしボス専用の別コンポーネント（例: BossHealth など）があればここで取得してダメージを与えることも可能です
-                // BossHealth bossHealth = collision.GetComponent<BossHealth>();
-                // if (bossHealth != null) bossHealth.TakeDamage(damage);
             }
         }
     }
