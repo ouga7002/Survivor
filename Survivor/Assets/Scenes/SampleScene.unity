@@ -1034,9 +1034,9 @@ MonoBehaviour:
   tileSize: 40
   tileRadiusX: 4
   tileRadiusY: 3
-  customSprite: {fileID: 2639457855390927616, guid: 1d98cdba6d7cd1542a9ac100de702665, type: 3}
+  customSprite: {fileID: -5199838105610449493, guid: a7198e4bd48ddd045a64e953061ef82d, type: 3}
   groundColor: {r: 1, g: 1, b: 1, a: 1}
-  miniBossSprite: {fileID: 1549899388168407092, guid: c411ec91bee5b7d4faecf4889003858f, type: 3}
+  miniBossSprite: {fileID: 2639457855390927616, guid: 1d98cdba6d7cd1542a9ac100de702665, type: 3}
   finalBossSprite: {fileID: 0}
   bossTag: Boss
 --- !u!1 &817179103
