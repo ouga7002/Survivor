@@ -2407,15 +2407,12 @@ MonoBehaviour:
   cooldown: 6
   shotInterval: 0.2
   activeDuration: 10
-  gateBackDistance: 1.5
-  gateSpread: 0.8
-  gateVerticalOffset: 0.2
-  gateDepthOffsets:
-  - -0.3
-  - 0.2
-  - -0.1
-  - 0.35
-  - 0
+  gateOffsets:
+  - {x: -1, y: 1}
+  - {x: 1, y: -1}
+  - {x: 1, y: 1}
+  - {x: -1, y: -1}
+  - {x: 0, y: 0}
   gateCount: 5
   targetSearchRadius: 10
   isUnlocked: 1
