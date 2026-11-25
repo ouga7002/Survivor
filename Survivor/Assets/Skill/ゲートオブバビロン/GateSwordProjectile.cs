@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -5,10 +6,10 @@ public class GateSwordProjectile : MonoBehaviour
 {
     [Header("剣の設定")]
     [SerializeField] private float swordSpeed = 12f;
-    [SerializeField] private float damage = 10f;
     [SerializeField] private float lifeTime = 3f;
 
     private Vector2 moveDirection;
+    private float damage;
 
     private Rigidbody2D rb;
     private bool hasHit = false;
@@ -18,26 +19,22 @@ public class GateSwordProjectile : MonoBehaviour
     // =========================================
     public void Initialize(
         Vector2 direction,
-        float attackPower,
-        Transform targetTransform = null)
+        float attackPower)
     {
-        // 射出時の方向を固定
+        // 射出方向を固定
         moveDirection = direction.normalized;
 
         // 攻撃力設定
         damage = attackPower;
 
-        // targetTransformは使用しない
-        // 射出後は敵を追尾しない
-
-        // 自動消滅
+        // 3秒後に消滅
         Destroy(gameObject, lifeTime);
     }
 
     // =========================================
     // 初期設定
     // =========================================
-    private void Awake()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
 
@@ -47,13 +44,13 @@ public class GateSwordProjectile : MonoBehaviour
     }
 
     // =========================================
-    // 移動
+    // 剣の移動
     // =========================================
-    private void Update()
+    void Update()
     {
         if (hasHit) return;
 
-        // 射出時に決定した方向へ直進
+        // 射出時の方向に直進
         transform.position +=
             (Vector3)(moveDirection * swordSpeed * Time.deltaTime);
 
@@ -70,15 +67,15 @@ public class GateSwordProjectile : MonoBehaviour
     // =========================================
     // 敵との衝突
     // =========================================
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (hasHit) return;
 
-        // EnemyHealthを取得
+        // EnemyHealth取得
         EnemyHealth enemyHealth =
             collision.GetComponent<EnemyHealth>();
 
-        // Colliderが子オブジェクトの場合
+        // 子オブジェクトの場合
         if (enemyHealth == null)
         {
             enemyHealth =
@@ -86,15 +83,11 @@ public class GateSwordProjectile : MonoBehaviour
         }
 
         // 敵以外は無視
-        if (enemyHealth == null)
-        {
-            return;
-        }
+        if (enemyHealth == null) return;
 
         // ダメージ処理
         enemyHealth.TakeDamage(damage);
 
-        // 命中済みにする
         hasHit = true;
 
         // 剣を消滅

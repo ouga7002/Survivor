@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections;
 
@@ -15,49 +16,40 @@ public class GateSkill : MonoBehaviour
     [SerializeField] private float activeDuration = 10f;
 
     [Header("ゲート配置設定")]
-    [Tooltip("Playerからゲートまでの距離")]
-    [SerializeField] private float gateBackDistance = 1.2f;
-
-    [Tooltip("ゲート同士の横方向の間隔")]
-    [SerializeField] private float gateSpread = 1.0f;
-
-    [Tooltip("ゲート全体を下にずらす量")]
-    [SerializeField] private float gateVerticalOffset = 0.2f;
-
-    [Tooltip("ゲートごとの前後位置のずれ")]
+    [Tooltip("ゲート1～5の位置を個別に調整")]
     [SerializeField]
-    private float[] gateDepthOffsets =
-    {
-        -0.3f,
-         0.2f,
-        -0.1f,
-         0.35f,
-         0.0f
-    };
+    private Vector2[] gateOffsets =
+{
+    new Vector2(-1.6f, 1.0f),
+    new Vector2(-0.9f, 1.5f),
+    new Vector2( 0.0f, 1.7f),
+    new Vector2( 0.9f, 1.5f),
+    new Vector2( 1.6f, 1.0f)
+};
 
     [Header("ゲート設定")]
     [SerializeField] private int gateCount = 5;
 
     [Header("敵自動検知設定")]
-    [Tooltip("Playerを中心に敵を探す範囲")]
     [SerializeField] private float targetSearchRadius = 10f;
 
-    [Header("スキル状態")]
+    [Header("スキル解放設定")]
     [SerializeField] private bool isUnlocked = false;
 
     private float cooldownTimer = 0f;
     private bool isAttacking = false;
 
     private GameObject[] gates;
-
-    // 前回射出したゲート番号
     private int previousGateIndex = -1;
 
     public bool IsUnlocked => isUnlocked;
 
+    // =========================================
+    // 初期設定
+    // =========================================
     void Start()
     {
-        // AimCursorを自動取得
+        // カーソル取得
         if (aimCursor == null)
         {
             GameObject cursorObj = GameObject.Find("AimCursor");
@@ -74,18 +66,20 @@ public class GateSkill : MonoBehaviour
             }
         }
 
-        // 最初はすぐ発動できる状態
+        // 最初は発動可能
         cooldownTimer = cooldown;
     }
 
+    // =========================================
+    // 更新処理
+    // =========================================
     void Update()
     {
         if (!isUnlocked) return;
-        if (aimCursor == null) return;
 
-        // スキル発動中
         if (isAttacking)
         {
+            // Playerの移動に合わせてゲートも移動
             UpdateGatePositions();
             return;
         }
@@ -102,59 +96,100 @@ public class GateSkill : MonoBehaviour
     }
 
     // =========================================
-    // スキル発動処理
+    // スキル発動
     // =========================================
     IEnumerator GateAttackRoutine()
     {
         isAttacking = true;
-
         previousGateIndex = -1;
 
-        // ゲート配列を作成
+        // ゲート生成
         gates = new GameObject[gateCount];
 
-        // ゲートを生成
         for (int i = 0; i < gateCount; i++)
         {
             gates[i] = Instantiate(gatePrefab);
+
+            // Playerより後ろに描画
+            SetGateSortingOrder(gates[i]);
         }
 
-        // ゲートの位置を設定
         UpdateGatePositions();
 
         float elapsedTime = 0f;
 
-        // 10秒間射出
+        // 10秒間剣を射出
         while (elapsedTime < activeDuration)
         {
-            if (aimCursor == null)
-            {
-                break;
-            }
-
-            // ゲート位置を常に更新
+            // ゲート位置更新
             UpdateGatePositions();
 
             // ランダムなゲートを選択
-            int randomGateIndex = GetRandomGateIndex();
+            int randomIndex = GetRandomGateIndex();
 
-            // 選択したゲートから剣を射出
-            ShootSword(gates[randomGateIndex]);
+            // 剣を射出
+            ShootSword(gates[randomIndex]);
 
-            // 0.3秒待機
             yield return new WaitForSeconds(shotInterval);
 
             elapsedTime += shotInterval;
         }
 
-        // 全ゲートを消す
+        // ゲート消去
         DestroyAllGates();
 
-        // スキル終了
         isAttacking = false;
 
-        // クールタイムをリセット
+        // クールタイム開始
         cooldownTimer = 0f;
+    }
+
+    // =========================================
+    // ゲートの描画順設定
+    // =========================================
+    void SetGateSortingOrder(GameObject gate)
+    {
+        if (gate == null) return;
+
+        SpriteRenderer playerRenderer =
+            GetComponent<SpriteRenderer>();
+
+        if (playerRenderer == null) return;
+
+        SpriteRenderer[] gateRenderers =
+            gate.GetComponentsInChildren<SpriteRenderer>(true);
+
+        foreach (SpriteRenderer renderer in gateRenderers)
+        {
+            renderer.sortingLayerID =
+                playerRenderer.sortingLayerID;
+
+            renderer.sortingOrder =
+                playerRenderer.sortingOrder - 1;
+        }
+    }
+
+    // =========================================
+    // ゲート位置更新
+    // Playerを囲むように固定配置
+    // =========================================
+    void UpdateGatePositions()
+    {
+        if (gates == null) return;
+
+        for (int i = 0; i < gates.Length; i++)
+        {
+            if (gates[i] == null) continue;
+
+            if (gateOffsets == null || i >= gateOffsets.Length)
+                continue;
+
+            // Playerの位置を基準に配置
+            Vector2 gatePosition =
+                (Vector2)transform.position + gateOffsets[i];
+
+            gates[i].transform.position = gatePosition;
+        }
     }
 
     // =========================================
@@ -162,17 +197,14 @@ public class GateSkill : MonoBehaviour
     // =========================================
     int GetRandomGateIndex()
     {
-        if (gateCount <= 1)
-        {
+        if (gates == null || gates.Length <= 1)
             return 0;
-        }
 
         int randomIndex;
 
-        // 前回と同じゲートを避ける
         do
         {
-            randomIndex = Random.Range(0, gateCount);
+            randomIndex = Random.Range(0, gates.Length);
         }
         while (randomIndex == previousGateIndex);
 
@@ -182,68 +214,15 @@ public class GateSkill : MonoBehaviour
     }
 
     // =========================================
-    // ゲートの位置更新
-    // =========================================
-    void UpdateGatePositions()
-    {
-        if (aimCursor == null) return;
-        if (gates == null) return;
-
-        // Playerからカーソル方向
-        Vector2 aimDirection =
-            ((Vector2)aimCursor.position -
-            (Vector2)transform.position).normalized;
-
-        // 照準の反対方向
-        Vector2 backwardDirection = -aimDirection;
-
-        // 照準方向に対して垂直
-        Vector2 perpendicularDirection =
-            new Vector2(-aimDirection.y, aimDirection.x);
-
-        // ゲートの基準位置
-        Vector2 basePosition =
-            (Vector2)transform.position
-            + backwardDirection * gateBackDistance
-            + Vector2.down * gateVerticalOffset;
-
-        // 各ゲートの位置を設定
-        for (int i = 0; i < gates.Length; i++)
-        {
-            if (gates[i] == null) continue;
-
-            // 横方向の位置
-            float spreadOffset =
-                (i - (gateCount - 1) / 2f) * gateSpread;
-
-            // 前後方向の位置ずれ
-            float depthOffset = 0f;
-
-            if (gateDepthOffsets != null &&
-                i < gateDepthOffsets.Length)
-            {
-                depthOffset = gateDepthOffsets[i];
-            }
-
-            // ゲート位置
-            Vector2 gatePosition =
-                basePosition
-                + perpendicularDirection * spreadOffset
-                + backwardDirection * depthOffset;
-
-            gates[i].transform.position = gatePosition;
-        }
-    }
-
-    // =========================================
     // 最も近い敵を検索
     // =========================================
     Transform FindNearestEnemy()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(
-            transform.position,
-            targetSearchRadius
-        );
+        Collider2D[] colliders =
+            Physics2D.OverlapCircleAll(
+                transform.position,
+                targetSearchRadius
+            );
 
         Transform nearestEnemy = null;
         float nearestDistance = float.MaxValue;
@@ -252,37 +231,26 @@ public class GateSkill : MonoBehaviour
         {
             if (col == null) continue;
 
-            // EnemyHealthを取得
             EnemyHealth enemyHealth =
                 col.GetComponent<EnemyHealth>();
 
-            // Colliderが子にある場合
             if (enemyHealth == null)
             {
                 enemyHealth =
                     col.GetComponentInParent<EnemyHealth>();
             }
 
-            // EnemyHealthがなければ対象外
-            if (enemyHealth == null)
-            {
-                continue;
-            }
+            if (enemyHealth == null) continue;
 
-            Transform enemyTransform =
-                enemyHealth.transform;
-
-            // Playerとの距離
             float distance = Vector2.Distance(
                 transform.position,
-                enemyTransform.position
+                enemyHealth.transform.position
             );
 
-            // 最も近い敵を選択
             if (distance < nearestDistance)
             {
                 nearestDistance = distance;
-                nearestEnemy = enemyTransform;
+                nearestEnemy = enemyHealth.transform;
             }
         }
 
@@ -297,28 +265,27 @@ public class GateSkill : MonoBehaviour
         if (gate == null) return;
         if (swordPrefab == null) return;
 
-        // 最も近い敵を検索
+        // 射出時点で敵を検索
         Transform target = FindNearestEnemy();
 
         Vector2 direction;
 
-        // 敵が存在する場合
         if (target != null)
         {
+            // 敵がいる場合は敵の方向へ直進
             direction = (
                 (Vector2)target.position -
                 (Vector2)gate.transform.position
             ).normalized;
         }
-        // 敵がいない場合はカーソル方向
         else if (aimCursor != null)
         {
+            // 敵がいない場合はカーソル方向
             direction = (
                 (Vector2)aimCursor.position -
                 (Vector2)transform.position
             ).normalized;
         }
-        // どちらも取得できない場合
         else
         {
             direction = Vector2.right;
@@ -331,7 +298,6 @@ public class GateSkill : MonoBehaviour
             Quaternion.identity
         );
 
-        // GateSwordProjectileを取得
         GateSwordProjectile swordScript =
             swordObj.GetComponent<GateSwordProjectile>();
 
@@ -339,8 +305,7 @@ public class GateSkill : MonoBehaviour
         {
             swordScript.Initialize(
                 direction,
-                swordDamage,
-                target
+                swordDamage
             );
         }
         else
@@ -348,21 +313,23 @@ public class GateSkill : MonoBehaviour
             Debug.LogError(
                 "[GateSkill] 剣PrefabにGateSwordProjectileがありません。"
             );
+
+            Destroy(swordObj);
         }
     }
 
     // =========================================
-    // ゲートの消去
+    // ゲート消去
     // =========================================
     void DestroyAllGates()
     {
         if (gates == null) return;
 
-        for (int i = 0; i < gates.Length; i++)
+        foreach (GameObject gate in gates)
         {
-            if (gates[i] != null)
+            if (gate != null)
             {
-                Destroy(gates[i]);
+                Destroy(gate);
             }
         }
 
@@ -385,7 +352,6 @@ public class GateSkill : MonoBehaviour
     {
         isUnlocked = false;
 
-        // 発動中ならゲートを消す
         if (isAttacking)
         {
             StopAllCoroutines();
@@ -397,9 +363,9 @@ public class GateSkill : MonoBehaviour
     }
 
     // =========================================
-    // 検知範囲の確認（Sceneビュー）
+    // 検知範囲の表示
     // =========================================
-    private void OnDrawGizmosSelected()
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
 
