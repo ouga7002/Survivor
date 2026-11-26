@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillId: cybele
   skillName: "\u77F3\u5316\u306E\u9B54\u773C"
-  skillIcon: {fileID: 0}
+  skillIcon: {fileID: 1450067626576301462, guid: 6be37065837c48f4b9b6cdccebbd7976, type: 3}
   drawWeight: 30

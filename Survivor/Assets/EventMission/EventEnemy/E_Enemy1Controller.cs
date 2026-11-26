@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using UnityEngine;
 
 public class E_Enemy1Controller : MonoBehaviour
@@ -29,6 +30,9 @@ public class E_Enemy1Controller : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
+    // 石化管理
+    private Petrifiable petrifiable;
+
     private Vector3 firePointDefaultPosition;
 
     private Sprite normalSprite;
@@ -40,6 +44,9 @@ public class E_Enemy1Controller : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // 石化管理スクリプトを取得
+        petrifiable = GetComponent<Petrifiable>();
 
         if (spriteRenderer != null)
             normalSprite = spriteRenderer.sprite;
@@ -60,6 +67,12 @@ public class E_Enemy1Controller : MonoBehaviour
 
     void Update()
     {
+        // 石化中は攻撃しない
+        if (petrifiable != null && petrifiable.IsPetrified())
+        {
+            return;
+        }
+
         if (player == null)
             return;
 
@@ -76,6 +89,13 @@ public class E_Enemy1Controller : MonoBehaviour
 
     void FixedUpdate()
     {
+        // 石化中は移動しない
+        if (petrifiable != null && petrifiable.IsPetrified())
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
         if (player == null)
         {
             rb.linearVelocity = Vector2.zero;
@@ -150,6 +170,10 @@ public class E_Enemy1Controller : MonoBehaviour
 
     void ShootArrow()
     {
+        // 石化中は矢を撃たない
+        if (petrifiable != null && petrifiable.IsPetrified())
+            return;
+
         if (arrowPrefab == null || player == null)
             return;
 
@@ -209,7 +233,18 @@ public class E_Enemy1Controller : MonoBehaviour
     {
         spriteRenderer.sprite = attackSprite;
 
-        yield return new WaitForSeconds(attackSpriteDuration);
+        float elapsed = 0f;
+
+        // 石化中は攻撃画像の時間を進めない
+        while (elapsed < attackSpriteDuration)
+        {
+            if (petrifiable == null || !petrifiable.IsPetrified())
+            {
+                elapsed += Time.deltaTime;
+            }
+
+            yield return null;
+        }
 
         spriteRenderer.sprite = normalSprite;
 

@@ -8,6 +8,9 @@ public class EnemySpawner : MonoBehaviour
         public GameObject enemyPrefab;
         public float spawnInterval = 1f;
 
+        [Header("出現条件")]
+        public bool requiresMidBossDefeat = false;
+
         [HideInInspector]
         public float nextSpawnTime;
     }
@@ -38,6 +41,7 @@ public class EnemySpawner : MonoBehaviour
     private Transform player;
     private float startTime;
     private int defeatedBossCount;
+    private bool midBossDefeated;
 
     void Start()
     {
@@ -72,6 +76,10 @@ public class EnemySpawner : MonoBehaviour
         foreach (EnemySpawnData data in enemies)
         {
             if (data.enemyPrefab == null) continue;
+
+            // 中ボス撃破前は対象の敵を出現させない
+            if (data.requiresMidBossDefeat && !midBossDefeated)
+                continue;
 
             if (Time.time < data.nextSpawnTime) continue;
 
@@ -138,6 +146,7 @@ public class EnemySpawner : MonoBehaviour
     public void NotifyMidBossDefeated()
     {
         defeatedBossCount++;
+        midBossDefeated = true;
 
         // 現在の出現予定にも新しい間隔を反映
         foreach (EnemySpawnData data in enemies)

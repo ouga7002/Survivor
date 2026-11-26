@@ -1,0 +1,754 @@
+fileFormatVersion: 2
+guid: 07628b56e087a6448a8f2c238c20df62
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4712543290797242741
+    second: Gun_HitSpark_5f_0
+  - first:
+      213: -4349434363435962158
+    second: Gun_HitSpark_5f_1
+  - first:
+      213: -8050126237407379289
+    second: Gun_HitSpark_5f_2
+  - first:
+      213: -4594644883904173836
+    second: Gun_HitSpark_5f_3
+  - first:
+      213: 4624481896888373894
+    second: Gun_HitSpark_5f_4
+  - first:
+      213: -7687072981469953203
+    second: Gun_HitSpark_5f_5
+  - first:
+      213: -3522742593759817033
+    second: Gun_HitSpark_5f_6
+  - first:
+      213: -5491216795125935647
+    second: Gun_HitSpark_5f_7
+  - first:
+      213: -5783893533254155102
+    second: Gun_HitSpark_5f_8
+  - first:
+      213: 2386881100683190490
+    second: Gun_HitSpark_5f_9
+  - first:
+      213: 7519062142686306057
+    second: Gun_HitSpark_5f_10
+  - first:
+      213: -1097066873130589722
+    second: Gun_HitSpark_5f_11
+  - first:
+      213: 7046045370893862630
+    second: Gun_HitSpark_5f_12
+  - first:
+      213: 672919672734728687
+    second: Gun_HitSpark_5f_13
+  - first:
+      213: 1179188119227238370
+    second: Gun_HitSpark_5f_14
+  - first:
+      213: -3111643311336844295
+    second: Gun_HitSpark_5f_15
+  - first:
+      213: 7125710438484697470
+    second: Gun_HitSpark_5f_16
+  - first:
+      213: 851722739526333416
+    second: Gun_HitSpark_5f_17
+  - first:
+      213: 4533758093214772214
+    second: Gun_HitSpark_5f_18
+  - first:
+      213: -5123395602846265841
+    second: Gun_HitSpark_5f_19
+  - first:
+      213: -5381035067436526239
+    second: Gun_HitSpark_5f_20
+  - first:
+      213: -3713297523761774410
+    second: Gun_HitSpark_5f_21
+  - first:
+      213: -659789436060697598
+    second: Gun_HitSpark_5f_22
+  - first:
+      213: -1695599434369564853
+    second: Gun_HitSpark_5f_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_0
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 91
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 579be94a721566140800000000000000
+      internalID: 4712543290797242741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_1
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 17
+        width: 78
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d0b581ad74b3a3c0800000000000000
+      internalID: -4349434363435962158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_2
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 5
+        width: 54
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a00846a6d4384090800000000000000
+      internalID: -8050126237407379289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_3
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 83
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f863d152da8c30c0800000000000000
+      internalID: -4594644883904173836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_4
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 0
+        width: 84
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 682914e98c57d2040800000000000000
+      internalID: 4624481896888373894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_5
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 71
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d430bf8e9d7025590800000000000000
+      internalID: -7687072981469953203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_6
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 17
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b2dec77644bc1fc0800000000000000
+      internalID: -3522742593759817033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_7
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 75
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e11cd52b674bc3b0800000000000000
+      internalID: -5491216795125935647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_8
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 69
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a405b3d97b7bbfa0800000000000000
+      internalID: -5783893533254155102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_9
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 65
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad0a05ff6b7ef1120800000000000000
+      internalID: 2386881100683190490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_10
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 61
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90f97ea5e23195860800000000000000
+      internalID: 7519062142686306057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_11
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 63
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e1e33ccd7f66c0f0800000000000000
+      internalID: -1097066873130589722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_12
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 63
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e60a6beee498c160800000000000000
+      internalID: 7046045370893862630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_13
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 55
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe1c9b780e0b65900800000000000000
+      internalID: 672919672734728687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_14
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 33
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e786e9c8515d5010800000000000000
+      internalID: 1179188119227238370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_15
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 57
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f31c0005e831d4d0800000000000000
+      internalID: -3111643311336844295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_16
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 31
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e716c22e3eb93e260800000000000000
+      internalID: 7125710438484697470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_17
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 33
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e3f698a15de1db00800000000000000
+      internalID: 851722739526333416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_18
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 27
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fb6e9307f42bee30800000000000000
+      internalID: 4533758093214772214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_19
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 17
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0ecc8818da06e8b0800000000000000
+      internalID: -5123395602846265841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_20
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 23
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1659689bd19b255b0800000000000000
+      internalID: -5381035067436526239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_21
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 23
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b087d67397b77cc0800000000000000
+      internalID: -3713297523761774410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_22
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 13
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20cfb0de005f7d6f0800000000000000
+      internalID: -659789436060697598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gun_HitSpark_5f_23
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 5
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4f7c015c450878e0800000000000000
+      internalID: -1695599434369564853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Gun_HitSpark_5f_0: 4712543290797242741
+      Gun_HitSpark_5f_1: -4349434363435962158
+      Gun_HitSpark_5f_10: 7519062142686306057
+      Gun_HitSpark_5f_11: -1097066873130589722
+      Gun_HitSpark_5f_12: 7046045370893862630
+      Gun_HitSpark_5f_13: 672919672734728687
+      Gun_HitSpark_5f_14: 1179188119227238370
+      Gun_HitSpark_5f_15: -3111643311336844295
+      Gun_HitSpark_5f_16: 7125710438484697470
+      Gun_HitSpark_5f_17: 851722739526333416
+      Gun_HitSpark_5f_18: 4533758093214772214
+      Gun_HitSpark_5f_19: -5123395602846265841
+      Gun_HitSpark_5f_2: -8050126237407379289
+      Gun_HitSpark_5f_20: -5381035067436526239
+      Gun_HitSpark_5f_21: -3713297523761774410
+      Gun_HitSpark_5f_22: -659789436060697598
+      Gun_HitSpark_5f_23: -1695599434369564853
+      Gun_HitSpark_5f_3: -4594644883904173836
+      Gun_HitSpark_5f_4: 4624481896888373894
+      Gun_HitSpark_5f_5: -7687072981469953203
+      Gun_HitSpark_5f_6: -3522742593759817033
+      Gun_HitSpark_5f_7: -5491216795125935647
+      Gun_HitSpark_5f_8: -5783893533254155102
+      Gun_HitSpark_5f_9: 2386881100683190490
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
