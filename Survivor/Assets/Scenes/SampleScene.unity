@@ -705,7 +705,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &543396788
 Transform:
   m_ObjectHideFlags: 0
@@ -728,7 +728,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543396787}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ce006e8a3317f64eb1423529447d64d, type: 3}
   m_Name: 
@@ -747,7 +747,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543396787}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db71fe09ebf11414ca091ead685e8aa7, type: 3}
   m_Name: 
@@ -763,7 +763,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543396787}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e7f407abae82b74a854a5c647524f4e, type: 3}
   m_Name: 
@@ -772,7 +772,6 @@ MonoBehaviour:
   intervalBetweenEvents: 60
   isRandomOrder: 1
   availableMissions:
-  - {fileID: 543396789}
   - {fileID: 543396789}
   playerTransform: {fileID: 1418600290}
   playerStatus: {fileID: 1418600293}
@@ -784,7 +783,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543396787}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf622f4938cedb64a8b0c7036f3400d4, type: 3}
   m_Name: 
@@ -1053,12 +1052,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InfiniteTileMap
   player: {fileID: 1418600290}
-  tileSize: 40
+  tileSize: 25
   tileRadiusX: 4
   tileRadiusY: 3
-  customSprite: {fileID: -5190633722336128592, guid: 9a0d0c9a656ef1744b5a4df2b60035d4, type: 3}
+  customSprite: {fileID: -7308945897221502408, guid: 0225984da029ac74eafb33cae3357658, type: 3}
   groundColor: {r: 1, g: 1, b: 1, a: 1}
-  miniBossSprite: {fileID: 6767017074175680402, guid: 473f9419a623ade41a44a96e22961572, type: 3}
+  miniBossSprite: {fileID: -2068749302328236308, guid: 5eaa88bfd8576f44d84f0958b1fe6e37, type: 3}
   finalBossSprite: {fileID: 0}
   bossTag: Boss
 --- !u!1 &817179103
