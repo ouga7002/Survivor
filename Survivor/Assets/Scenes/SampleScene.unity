@@ -2461,7 +2461,7 @@ MonoBehaviour:
   aimCursor: {fileID: 1718772359}
   searchRadius: 10
   petrifyDuration: 3
-  coolDownDuration: 11
+  coolDownDuration: 8
   effectFrames:
   - {fileID: 2379371164101922966, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
   - {fileID: -105318231066328030, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
@@ -2480,7 +2480,7 @@ MonoBehaviour:
   - {fileID: 8539214243072346057, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
   - {fileID: 4827202792603629271, guid: 269bdf38f4b9bca4dbfe528c390d329f, type: 3}
   effectFramesPerSecond: 12
-  effectDistance: 1.5
+  effectLocalOffset: {x: 0, y: 2}
   effectScale: 2
   effectSortingOrder: 10
 --- !u!1001 &1434636571
