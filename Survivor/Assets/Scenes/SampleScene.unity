@@ -698,6 +698,7 @@ GameObject:
   - component: {fileID: 543396791}
   - component: {fileID: 543396790}
   - component: {fileID: 543396789}
+  - component: {fileID: 543396792}
   m_Layer: 0
   m_Name: EventMissionManager
   m_TagString: Untagged
@@ -772,9 +773,30 @@ MonoBehaviour:
   isRandomOrder: 1
   availableMissions:
   - {fileID: 543396789}
+  - {fileID: 543396789}
   playerTransform: {fileID: 1418600290}
   playerStatus: {fileID: 1418600293}
   missionUI: {fileID: 543396790}
+--- !u!114 &543396792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543396787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf622f4938cedb64a8b0c7036f3400d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TreasureHuntMission
+  missionTitle: "\u7DCA\u6025\u30DF\u30C3\u30B7\u30E7\u30F3"
+  missionDescription: "\u30DF\u30C3\u30B7\u30E7\u30F3\u5185\u5BB9"
+  timeLimit: 30
+  rewardGP: 50
+  rewardScore: 1000
+  treasureEnemyPrefab: {fileID: 543396787}
+  arrowUIPrefab: {fileID: 0}
+  spawnDistance: 6
 --- !u!1001 &599845418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1034,9 +1056,9 @@ MonoBehaviour:
   tileSize: 40
   tileRadiusX: 4
   tileRadiusY: 3
-  customSprite: {fileID: -5199838105610449493, guid: a7198e4bd48ddd045a64e953061ef82d, type: 3}
+  customSprite: {fileID: -5190633722336128592, guid: 9a0d0c9a656ef1744b5a4df2b60035d4, type: 3}
   groundColor: {r: 1, g: 1, b: 1, a: 1}
-  miniBossSprite: {fileID: 2639457855390927616, guid: 1d98cdba6d7cd1542a9ac100de702665, type: 3}
+  miniBossSprite: {fileID: 6767017074175680402, guid: 473f9419a623ade41a44a96e22961572, type: 3}
   finalBossSprite: {fileID: 0}
   bossTag: Boss
 --- !u!1 &817179103
