@@ -15,9 +15,17 @@ public class Cybele : MonoBehaviour, ISkillUnlockable
 
     [Header("魔眼エフェクト設定")]
     [SerializeField] private Sprite[] effectFrames;
+
+    [Tooltip("エフェクトのアニメーション速度")]
     [SerializeField] private float effectFramesPerSecond = 12f;
-    [SerializeField] private float effectDistance = 1.5f;
+
+    [Tooltip("Playerを基準にしたエフェクトの生成位置")]
+    [SerializeField] private Vector2 effectLocalOffset = new Vector2(0f, 1.2f);
+
+    [Tooltip("エフェクトの大きさ")]
     [SerializeField] private float effectScale = 2f;
+
+    [Tooltip("エフェクトの描画順")]
     [SerializeField] private int effectSortingOrder = 10;
 
     // スキルガチャ用
@@ -88,9 +96,9 @@ public class Cybele : MonoBehaviour, ISkillUnlockable
             ((Vector2)aimCursor.position - playerPosition).normalized;
 
         // 魔眼エフェクトを再生
-        PlayEffect(aimDirection);
+        PlayEffect();
 
-        // 敵を検索
+        // シーン内の石化可能な敵を検索
         Petrifiable[] enemies = FindObjectsOfType<Petrifiable>();
 
         foreach (Petrifiable enemy in enemies)
@@ -101,6 +109,8 @@ public class Cybele : MonoBehaviour, ISkillUnlockable
             }
 
             Vector2 enemyPosition = enemy.transform.position;
+
+            // プレイヤーから敵への方向
             Vector2 toEnemy = enemyPosition - playerPosition;
 
             // 距離判定
@@ -129,21 +139,33 @@ public class Cybele : MonoBehaviour, ISkillUnlockable
     }
 
     // 魔眼エフェクトを生成
-    private void PlayEffect(Vector2 direction)
+    private void PlayEffect()
     {
         if (effectFrames == null || effectFrames.Length == 0)
         {
             return;
         }
 
-        // エフェクト生成位置
-        Vector2 spawnPosition =
-            (Vector2)player.position + direction * effectDistance;
+        if (player == null)
+        {
+            return;
+        }
 
         // エフェクト用オブジェクトを作成
         GameObject effectObject = new GameObject("CybeleEffect");
 
-        effectObject.transform.position = spawnPosition;
+        // Playerの子オブジェクトにする
+        effectObject.transform.SetParent(player, false);
+
+        // Playerを基準に生成位置を設定
+        effectObject.transform.localPosition =
+            new Vector3(
+                effectLocalOffset.x,
+                effectLocalOffset.y,
+                0f
+            );
+
+        // エフェクトの大きさ
         effectObject.transform.localScale =
             Vector3.one * effectScale;
 
@@ -155,7 +177,9 @@ public class Cybele : MonoBehaviour, ISkillUnlockable
         sr.sortingOrder = effectSortingOrder;
 
         // アニメーション開始
-        StartCoroutine(PlayEffectAnimation(effectObject, sr));
+        StartCoroutine(
+            PlayEffectAnimation(effectObject, sr)
+        );
     }
 
     // スプライトシートのアニメーション再生
@@ -163,7 +187,8 @@ public class Cybele : MonoBehaviour, ISkillUnlockable
         GameObject effectObject,
         SpriteRenderer sr)
     {
-        float frameInterval = 1f / Mathf.Max(1f, effectFramesPerSecond);
+        float frameInterval =
+            1f / Mathf.Max(1f, effectFramesPerSecond);
 
         for (int i = 0; i < effectFrames.Length; i++)
         {
