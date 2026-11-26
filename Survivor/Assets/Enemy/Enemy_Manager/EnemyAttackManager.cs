@@ -5,6 +5,7 @@ using UnityEngine;
 public interface IEnemyAttack
 {
     void StopAttack();
+    //void ResumeAttack();
 }
 
 public class EnemyAttackManager : MonoBehaviour

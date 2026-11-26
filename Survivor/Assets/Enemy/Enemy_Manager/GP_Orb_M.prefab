@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GPOrb
   effectType: 0
-  effectAmount: 10
+  effectAmount: 20
   duration: 10
   attractionRange: 5
   moveSpeed: 8

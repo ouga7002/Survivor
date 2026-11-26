@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 4756709080151119584}
   - component: {fileID: 781829731719936188}
   - component: {fileID: 4352492627891288680}
+  - component: {fileID: -1477500845838163484}
   m_Layer: 6
   m_Name: R_Boss
   m_TagString: Enemy
@@ -470,6 +471,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ab7f48a2504734ab2d8c282422020c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackManager
+--- !u!114 &-1477500845838163484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536135667274760269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec4ae66be80cb4b4a9ac30b7e070702a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Petrifiable
 --- !u!1 &2826815309607636674
 GameObject:
   m_ObjectHideFlags: 0

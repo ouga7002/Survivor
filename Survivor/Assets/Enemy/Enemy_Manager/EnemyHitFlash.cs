@@ -7,13 +7,15 @@ public class EnemyHitFlash : MonoBehaviour
     public Color hitColor = Color.red;
     public float flashDuration = 0.1f;
 
+    [Header("被弾時に色を変更しないSpriteRenderer")]
+    public SpriteRenderer[] ignoreRenderers;
+
     private SpriteRenderer[] spriteRenderers;
     private Color[] originalColors;
     private Coroutine flashCoroutine;
 
     void Awake()
     {
-        // 子オブジェクトも含めてSpriteRendererを取得
         spriteRenderers =
             GetComponentsInChildren<SpriteRenderer>(true);
 
@@ -27,7 +29,6 @@ public class EnemyHitFlash : MonoBehaviour
 
     void OnEnable()
     {
-        // プールから再利用されたときに色を元に戻す
         RestoreColor();
     }
 
@@ -43,10 +44,10 @@ public class EnemyHitFlash : MonoBehaviour
 
     IEnumerator FlashCoroutine()
     {
-        // 赤くする
         for (int i = 0; i < spriteRenderers.Length; i++)
         {
-            if (spriteRenderers[i] != null)
+            if (spriteRenderers[i] != null &&
+                !IsIgnored(spriteRenderers[i]))
             {
                 spriteRenderers[i].color = hitColor;
             }
@@ -54,10 +55,22 @@ public class EnemyHitFlash : MonoBehaviour
 
         yield return new WaitForSeconds(flashDuration);
 
-        // 元の色に戻す
         RestoreColor();
 
         flashCoroutine = null;
+    }
+
+    bool IsIgnored(SpriteRenderer target)
+    {
+        if (ignoreRenderers == null) return false;
+
+        foreach (SpriteRenderer ignored in ignoreRenderers)
+        {
+            if (ignored == target)
+                return true;
+        }
+
+        return false;
     }
 
     void RestoreColor()
@@ -75,4 +88,3 @@ public class EnemyHitFlash : MonoBehaviour
         flashCoroutine = null;
     }
 }
-
