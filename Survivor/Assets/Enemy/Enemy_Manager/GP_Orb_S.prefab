@@ -104,6 +104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972ade2c438e97d4a8f291c06ddd0591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GPOrb
+  effectType: 0
+  effectAmount: 10
+  duration: 10
   attractionRange: 5
   moveSpeed: 8
   pickupRange: 0.3
