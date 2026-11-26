@@ -7,12 +7,15 @@ public class Hakkei : MonoBehaviour, ISkillUnlockable
     [SerializeField] private Transform player;
     [SerializeField] private Transform aimCursor;
 
-    [Header("発勁の設定")]
-    [SerializeField] private float attackRange = 5f;
-    [SerializeField] private float attackAngle = 180f;
-    [SerializeField] private int damage = 1;
+    [Header("衝撃波設定")]
+    [SerializeField] private GameObject shockwavePrefab;
+    [SerializeField] private float spawnDistance = 1.5f;
+    [SerializeField] private float projectileSpeed = 12f;
+    [SerializeField] private float projectileLifetime = 2f;
+    [SerializeField] private float projectileScale = 2f;
 
-    [Header("ノックバック設定")]
+    [Header("攻撃設定")]
+    [SerializeField] private int damage = 1;
     [SerializeField] private float knockbackForce = 15f;
     [SerializeField] private float knockbackDuration = 0.25f;
 
@@ -22,33 +25,28 @@ public class Hakkei : MonoBehaviour, ISkillUnlockable
     private bool isUnlocked = false;
     private float nextUseTime = 0f;
 
-    // ガチャ管理用のスキルID
     public string SkillId => "hakkei";
 
     private void Start()
     {
-        // プレイヤーを自動取得
+        // プレイヤーを取得
         if (player == null)
         {
             GameObject playerObject =
                 GameObject.FindGameObjectWithTag("Player");
 
             if (playerObject != null)
-            {
                 player = playerObject.transform;
-            }
         }
 
-        // 照準カーソルを自動取得
+        // 照準カーソルを取得
         if (aimCursor == null)
         {
             GameObject cursorObject =
                 GameObject.Find("AimCursor");
 
             if (cursorObject != null)
-            {
                 aimCursor = cursorObject.transform;
-            }
         }
     }
 
@@ -63,88 +61,78 @@ public class Hakkei : MonoBehaviour, ISkillUnlockable
         if (player == null || aimCursor == null)
             return;
 
-        UseHakkei();
+        if (shockwavePrefab == null)
+            return;
 
+        UseHakkei();
         nextUseTime = Time.time + cooldown;
     }
 
-    // ガチャによる解放・未解放の切り替え
+    // ガチャによる解放
     public void SetSkillUnlocked(bool unlocked)
     {
         isUnlocked = unlocked;
 
         if (unlocked)
         {
-            // 解放直後に発動できるようにする
             nextUseTime = Time.time;
         }
     }
 
+    // 発勁を発射
     private void UseHakkei()
     {
-        // 照準方向を取得
-        Vector2 aimDirection =
+        Vector2 direction =
             ((Vector2)aimCursor.position -
              (Vector2)player.position).normalized;
 
-        if (aimDirection == Vector2.zero)
+        if (direction == Vector2.zero)
             return;
 
-        // ノックバック対象を検索
-        KnockbackReceiver[] enemies =
-            FindObjectsOfType<KnockbackReceiver>();
+        // プレイヤーの前方に生成
+        Vector3 spawnPosition =
+            player.position +
+            (Vector3)(direction * spawnDistance);
 
-        foreach (KnockbackReceiver enemy in enemies)
+        // 衝撃波の向きを照準方向に合わせる
+        float angle =
+            Mathf.Atan2(direction.y, direction.x) *
+            Mathf.Rad2Deg;
+
+        Quaternion rotation =
+            Quaternion.Euler(0f, 0f, angle);
+
+        GameObject projectile = Instantiate(
+            shockwavePrefab,
+            spawnPosition,
+            rotation
+        );
+
+        projectile.transform.localScale =
+            Vector3.one * projectileScale;
+
+        // 衝撃波の初期設定
+        HakkeiProjectile projectileScript =
+            projectile.GetComponent<HakkeiProjectile>();
+
+        if (projectileScript != null)
         {
-            if (enemy == null)
-                continue;
-
-            // 石化中の敵は対象外
-            Petrifiable petrifiable =
-                enemy.GetComponent<Petrifiable>();
-
-            if (petrifiable != null &&
-                petrifiable.IsPetrified())
-            {
-                continue;
-            }
-
-            Vector2 enemyPosition = enemy.transform.position;
-
-            // プレイヤーから敵までの方向と距離
-            Vector2 toEnemy =
-                enemyPosition - (Vector2)player.position;
-
-            float distance = toEnemy.magnitude;
-
-            // 攻撃範囲外なら対象外
-            if (distance > attackRange)
-                continue;
-
-            // 前方180度の範囲を判定
-            float angle =
-                Vector2.Angle(aimDirection, toEnemy);
-
-            if (angle > attackAngle / 2f)
-                continue;
-
-            // ダメージを与える
-            enemy.SendMessageUpwards(
-                "TakeDamage",
+            projectileScript.Initialize(
+                direction,
+                projectileSpeed,
+                projectileLifetime,
                 damage,
-                SendMessageOptions.DontRequireReceiver
-            );
-
-            // ノックバック方向を計算
-            Vector2 knockbackDirection =
-                toEnemy.normalized;
-
-            // 敵を吹き飛ばす
-            enemy.ApplyKnockback(
-                knockbackDirection,
                 knockbackForce,
                 knockbackDuration
             );
+        }
+        else
+        {
+            Debug.LogError(
+                "衝撃波PrefabにHakkeiProjectileがありません。"
+            );
+
+            Destroy(projectile);
         }
     }
 }

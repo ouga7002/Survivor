@@ -29,6 +29,16 @@ public class Enemy2Controller : MonoBehaviour
 
     void FixedUpdate()
     {
+        //ノックバック
+        KnockbackReceiver knockback =
+    GetComponent<KnockbackReceiver>();
+
+        if (knockback != null && knockback.IsKnockedBack())
+        {
+            return;
+        }
+        //
+
         if (player == null)
         {
             rb.linearVelocity = Vector2.zero;
