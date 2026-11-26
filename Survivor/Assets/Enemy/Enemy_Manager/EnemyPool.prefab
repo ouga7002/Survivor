@@ -51,3 +51,5 @@ MonoBehaviour:
     initialSize: 30
   - enemyPrefab: {fileID: 8772636149481982011, guid: fcbad8c0906fb24478996bff8e42e0fd, type: 3}
     initialSize: 20
+  - enemyPrefab: {fileID: 7164345444577715059, guid: 9db39d61cd012cd4fa1c9eb519e938a2, type: 3}
+    initialSize: 20

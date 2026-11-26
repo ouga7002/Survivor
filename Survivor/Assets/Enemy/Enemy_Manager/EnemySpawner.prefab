@@ -47,14 +47,25 @@ MonoBehaviour:
   enemies:
   - enemyPrefab: {fileID: 4818612936148183212, guid: e6c2957c9ddd0ce46a71774fc6cad3ca, type: 3}
     spawnInterval: 1.5
+    requiresMidBossDefeat: 0
     nextSpawnTime: 0
   - enemyPrefab: {fileID: 2847073272372498978, guid: bd48b52748ad84b4b848d9e8a609a268, type: 3}
     spawnInterval: 2
+    requiresMidBossDefeat: 0
     nextSpawnTime: 0
   - enemyPrefab: {fileID: 8772636149481982011, guid: fcbad8c0906fb24478996bff8e42e0fd, type: 3}
-    spawnInterval: 10
+    spawnInterval: 20
+    requiresMidBossDefeat: 0
     nextSpawnTime: 0
-  minSpawnDistance: 5
-  maxSpawnDistance: 10
+  - enemyPrefab: {fileID: 7164345444577715059, guid: 9db39d61cd012cd4fa1c9eb519e938a2, type: 3}
+    spawnInterval: 5
+    requiresMidBossDefeat: 1
+    nextSpawnTime: 0
+  minSpawnDistance: 8
+  maxSpawnDistance: 20
   maxEnemyCount: 100
   enemyPool: {fileID: 911767697465250786, guid: 6fc5d1196d8f364459acf033b96cd06a, type: 3}
+  timeStepSeconds: 60
+  timeReduction: 0.1
+  bossDefeatReduction: 0.2
+  minSpawnInterval: 0.3
