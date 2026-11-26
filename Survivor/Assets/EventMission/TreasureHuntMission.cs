@@ -4,7 +4,7 @@ public class TreasureHuntMission : BaseEventMission
 {
     [Header("レアモンスター討伐固有の設定")]
     [SerializeField] private GameObject treasureEnemyPrefab;
-    [SerializeField] private GameObject arrowUIPrefab; // 矢印のUIプレハブをここに設定
+    [SerializeField] private GameObject arrowUIPrefab; // インスペクターで矢印UIプレハブを設定
     [SerializeField] private float spawnDistance = 6f;
 
     private GameObject spawnedTreasureEnemy;
@@ -23,13 +23,12 @@ public class TreasureHuntMission : BaseEventMission
         {
             spawnedTreasureEnemy = Instantiate(treasureEnemyPrefab, spawnPos, Quaternion.identity);
 
-            // 逃げる敵が生成されたら、矢印インジケーターをアタッチして追跡を開始する
+            // 逃げる敵が生成されたら、矢印インジケーターを生成してターゲットを紐付ける
             if (arrowUIPrefab != null)
             {
                 arrowIndicatorObj = new GameObject("ArrowIndicator_Controller");
                 MissionArrowIndicator indicator = arrowIndicatorObj.AddComponent<MissionArrowIndicator>();
-                // ※インスペクターからプレハブを渡せない場合の簡易的なセットアップ用拡張も可能ですが、
-                // 上記スクリプトの [SerializeField] private GameObject arrowUIPrefab にプレハブをセットしておく形が一番簡単です。
+                indicator.Init(arrowUIPrefab, spawnedTreasureEnemy.transform);
             }
         }
     }
