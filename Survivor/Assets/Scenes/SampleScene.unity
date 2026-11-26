@@ -2164,6 +2164,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2705623107557623577, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1418600334}
+    - targetCorrespondingSourceObject: {fileID: 2705623107557623577, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1418600343}
   m_SourcePrefab: {fileID: 100100000, guid: 42a837d8f2d0b464a97939b49cd16d9d, type: 3}
 --- !u!1 &1328263939
 GameObject:
@@ -2483,6 +2486,26 @@ MonoBehaviour:
   effectLocalOffset: {x: 0, y: 2}
   effectScale: 2
   effectSortingOrder: 10
+--- !u!114 &1418600343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219960696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9caa455858b24544b0c35ab104a876c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hakkei
+  player: {fileID: 1418600290}
+  aimCursor: {fileID: 1718772359}
+  attackRange: 5
+  attackAngle: 180
+  damage: 1
+  knockbackForce: 15
+  knockbackDuration: 0.23
+  cooldown: 10
 --- !u!1001 &1434636571
 PrefabInstance:
   m_ObjectHideFlags: 0

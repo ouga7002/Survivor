@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: -539448754479553957}
   - component: {fileID: -4024906934649019204}
   - component: {fileID: -2453793208425085427}
+  - component: {fileID: -7042292642284700910}
   m_Layer: 6
   m_Name: enemy1
   m_TagString: Enemy
@@ -341,3 +342,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec4ae66be80cb4b4a9ac30b7e070702a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Petrifiable
+--- !u!114 &-7042292642284700910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4818612936148183212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba0aee7bdad67940a5c062f2f3c7a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KnockbackReceiver
+  rb: {fileID: 7451735034127302369}
