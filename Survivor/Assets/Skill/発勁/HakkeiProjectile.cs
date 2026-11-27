@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
@@ -17,24 +18,24 @@ public class HakkeiProjectile : MonoBehaviour
     private float knockbackDuration;
 
     private bool initialized = false;
-    private bool hasHit = false;
+
+    // すでに攻撃した敵を記録
+    private HashSet<KnockbackReceiver> hitEnemies =
+        new HashSet<KnockbackReceiver>();
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         projectileCollider = GetComponent<Collider2D>();
 
-        // 衝撃波の物理設定
         rb.bodyType = RigidbodyType2D.Kinematic;
         rb.gravityScale = 0f;
         rb.collisionDetectionMode =
             CollisionDetectionMode2D.Continuous;
 
-        // Trigger判定にする
         projectileCollider.isTrigger = true;
     }
 
-    // Hakkei.csから設定を受け取る
     public void Initialize(
         Vector2 attackDirection,
         float projectileSpeed,
@@ -53,27 +54,28 @@ public class HakkeiProjectile : MonoBehaviour
 
         initialized = true;
 
-        // 衝撃波を飛ばす
         rb.linearVelocity = direction * speed;
 
-        // 一定時間後に消滅
         Destroy(gameObject, lifetime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!initialized || hasHit)
+        if (!initialized)
             return;
 
         // 敵のノックバックコンポーネントを取得
         KnockbackReceiver enemy =
             other.GetComponentInParent<KnockbackReceiver>();
 
-        // 敵以外には反応しない
         if (enemy == null)
             return;
 
-        // 石化中の敵には当たらない
+        // 同じ敵に複数回当たらないようにする
+        if (hitEnemies.Contains(enemy))
+            return;
+
+        // 石化中の敵は対象外
         Petrifiable petrifiable =
             enemy.GetComponent<Petrifiable>();
 
@@ -83,7 +85,8 @@ public class HakkeiProjectile : MonoBehaviour
             return;
         }
 
-        hasHit = true;
+        // 攻撃済みとして記録
+        hitEnemies.Add(enemy);
 
         // ダメージを与える
         enemy.gameObject.SendMessageUpwards(
@@ -99,10 +102,6 @@ public class HakkeiProjectile : MonoBehaviour
             knockbackDuration
         );
 
-        // 衝撃波を停止
-        rb.linearVelocity = Vector2.zero;
-
-        // 衝撃波を削除
-        Destroy(gameObject);
+        // 衝撃波は消さずに飛び続ける
     }
 }

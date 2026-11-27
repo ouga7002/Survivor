@@ -14,42 +14,45 @@ public class KnockbackReceiver : MonoBehaviour
 
     private void Awake()
     {
-        // Rigidbody2Dを取得
         if (rb == null)
         {
             rb = GetComponent<Rigidbody2D>();
         }
 
-        // 石化コンポーネントを取得
         petrifiable = GetComponent<Petrifiable>();
     }
 
-    // ノックバック中かどうかを取得
     public bool IsKnockedBack()
     {
         return isKnockedBack;
     }
 
-    // 発勁などから呼び出すノックバック処理
     public void ApplyKnockback(
         Vector2 direction,
         float force,
         float duration)
     {
+        // 非アクティブな敵には処理しない
+        if (!gameObject.activeInHierarchy ||
+            !isActiveAndEnabled)
+        {
+            return;
+        }
+
         if (rb == null)
             return;
 
-        // 石化中はノックバックを受けない
+        // 石化中はノックバックしない
         if (petrifiable != null &&
             petrifiable.IsPetrified())
         {
             return;
         }
 
-        // すでにノックバック中なら前の処理を終了
         if (knockbackCoroutine != null)
         {
             StopCoroutine(knockbackCoroutine);
+            knockbackCoroutine = null;
         }
 
         knockbackCoroutine = StartCoroutine(
@@ -64,22 +67,32 @@ public class KnockbackReceiver : MonoBehaviour
     {
         isKnockedBack = true;
 
-        // 吹き飛ばす方向を正規化
         direction = direction.normalized;
 
-        // 既存の速度をリセット
         rb.linearVelocity = Vector2.zero;
-
-        // ノックバック速度を設定
         rb.linearVelocity = direction * force;
 
-        // 指定時間だけ吹き飛ばす
         yield return new WaitForSeconds(duration);
 
-        // ノックバック終了
-        rb.linearVelocity = Vector2.zero;
+        // オブジェクトが非アクティブになっていないか確認
+        if (gameObject.activeInHierarchy && rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
 
         isKnockedBack = false;
         knockbackCoroutine = null;
+    }
+
+    private void OnDisable()
+    {
+        // 無効化された場合はコルーチンを停止
+        if (knockbackCoroutine != null)
+        {
+            StopCoroutine(knockbackCoroutine);
+            knockbackCoroutine = null;
+        }
+
+        isKnockedBack = false;
     }
 }
