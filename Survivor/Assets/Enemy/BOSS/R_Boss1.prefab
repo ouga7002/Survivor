@@ -149,6 +149,9 @@ MonoBehaviour:
   spreadBulletCount: 32
   spreadAngle: 360
   spreadBulletSpawnDistance: 1
+  rockSpikePrefab: {fileID: 1618431917351482523, guid: 9765e11896e4f374e9abb7fd40941ba6, type: 3}
+  rockSpikeCount: 3
+  rockSpikeInterval: 0.6
   flashInterval: 0.12
   warningSpriteRenderer: {fileID: 0}
   eyeGlowSpriteRenderer: {fileID: 0}

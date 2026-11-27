@@ -26,6 +26,11 @@ public class R_Boss1Controller : MonoBehaviour, IEnemyAttack
     public float spreadAngle = 360f;
     public float spreadBulletSpawnDistance = 1.0f;
 
+    [Header("岩の棘")]
+    public GameObject rockSpikePrefab;
+    public int rockSpikeCount = 3;
+    public float rockSpikeInterval = 0.6f;
+
     [Header("攻撃予告設定")]
     public float flashInterval = 0.12f;
 
@@ -288,11 +293,30 @@ public class R_Boss1Controller : MonoBehaviour, IEnemyAttack
     // プレイヤー足元の岩の棘3連
     IEnumerator AttackRockSpike()
     {
-        Debug.Log("岩の棘3連");
+        if (rockSpikePrefab == null || player == null)
+            yield break;
 
-        // 後で実装
+        for (int i = 0; i < rockSpikeCount; i++)
+        {
+            if (player == null || isDead)
+                yield break;
 
-        yield return null;
+            // 出現時点でのプレイヤー位置を狙う
+            Vector3 spawnPosition = player.position;
+
+            GameObject spike = Instantiate(
+                rockSpikePrefab,
+                spawnPosition,
+                Quaternion.identity
+            );
+
+            if (attackManager != null)
+                attackManager.RegisterBullet(spike);
+
+            // 次の棘まで待機
+            if (i < rockSpikeCount - 1)
+                yield return new WaitForSeconds(rockSpikeInterval);
+        }
     }
 
     // 岩の牢獄
