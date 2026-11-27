@@ -8,6 +8,11 @@ public class EnemyHealth : MonoBehaviour
     [Header("ガチャポイントドロップ")]
     public int GPDropAmount = 1;
 
+    [Header("オーブドロップ設定")]
+    [SerializeField] private int dropOrbCountOnHit = 0;     // 被弾時に落とすオーブの数（普通の敵は0、レア敵は1など）
+    [SerializeField] private int dropOrbCountOnDeath = 1;   // 撃破時に落とすオーブの数（レア敵は多めの5個など）
+    [SerializeField] private float dropSpreadRadius = 1.0f; // オーブが散らばる範囲
+
     [Header("撃破エフェクト")]
     public GameObject deathEffectPrefab;
 
@@ -48,6 +53,12 @@ public class EnemyHealth : MonoBehaviour
 
         CurrentHP -= damage;
 
+        // ★被弾時にオーブをドロップ（数が0より大きい場合のみ）
+        if (dropOrbCountOnHit > 0)
+        {
+            DropOrbs(dropOrbCountOnHit);
+        }
+
         if (CurrentHP < 0)
         {
             CurrentHP = 0;
@@ -56,6 +67,20 @@ public class EnemyHealth : MonoBehaviour
         if (CurrentHP <= 0)
         {
             Die();
+        }
+    }
+
+    // 指定した数だけランダムな位置にオーブをスポーンさせる共通メソッド
+    private void DropOrbs(int count)
+    {
+        if (dropOrbPrefab == null || GPOrbPool.Instance == null) return;
+
+        for (int i = 0; i < count; i++)
+        {
+            Vector2 randomOffset = Random.insideUnitCircle * dropSpreadRadius;
+            Vector3 spawnPos = transform.position + new Vector3(randomOffset.x, randomOffset.y, 0f);
+
+            GPOrbPool.Instance.Spawn(dropOrbPrefab, spawnPos);
         }
     }
 
@@ -90,13 +115,10 @@ public class EnemyHealth : MonoBehaviour
             attackManager.StopAllAttacks();
         }
 
-        // オーブを生成
-        if (dropOrbPrefab != null && GPOrbPool.Instance != null)
+        // ★撃破時は設定された数のオーブを生成
+        if (dropOrbCountOnDeath > 0)
         {
-            GPOrbPool.Instance.Spawn(
-                dropOrbPrefab,
-                transform.position
-            );
+            DropOrbs(dropOrbCountOnDeath);
         }
 
         // 撃破エフェクトを生成

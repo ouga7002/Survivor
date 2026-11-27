@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2635120712484309420}
   - component: {fileID: 836476968839425084}
   - component: {fileID: 2657496428790367349}
-  - component: {fileID: 5818649258800787787}
   - component: {fileID: 3580773440499893463}
   - component: {fileID: 4702757611327856427}
+  - component: {fileID: 4399337134441530122}
   m_Layer: 6
   m_Name: EventEnemy2
   m_TagString: Enemy
@@ -153,7 +153,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -259,23 +259,6 @@ PolygonCollider2D:
       - {x: -0.1650936, y: 0.8526179}
       - {x: -0.25360924, y: 0.9300691}
   m_UseDelaunayMesh: 1
---- !u!114 &5818649258800787787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706884075637792176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3e7fe1cfdb732049afde80aff24f887, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHP: 30
-  GPDropAmount: 1
-  deathEffectPrefab: {fileID: 0}
-  dropOrbPrefab: {fileID: 0}
-  scoreReward: 500
 --- !u!114 &3580773440499893463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,3 +286,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab8a94a38a388a4ba5530c473946da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::E_Enemy2Contoroller
+  moveSpeed: 2
+--- !u!114 &4399337134441530122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706884075637792176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c2fea056cb00e439989252b6e4ae9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::E_Enemy2Health
+  maxHP: 10
+  GPDropAmount: 1
+  dropOrbCountOnHit: 1
+  dropOrbCountOnDeath: 5
+  dropSpreadRadius: 1
+  deathEffectPrefab: {fileID: 8736383580459821464, guid: 5b12dd08f1e2ce748b38698bbbf83c44, type: 3}
+  dropOrbPrefab: {fileID: 5719624584010537925, guid: a97bcf08cb9f8764d9e7ea4ca7afb183, type: 3}
+  scoreReward: 10
