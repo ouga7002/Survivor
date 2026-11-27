@@ -159,8 +159,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 30
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4950b5b88f531364b996b40898faa27e, type: 2}
+  m_sharedMaterial: {fileID: -7633837444182134153, guid: 4950b5b88f531364b996b40898faa27e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -713,8 +713,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 154}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 157.52249}
+  m_SizeDelta: {x: 893.077, y: 61.0707}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &447869505
 CanvasRenderer:
@@ -746,8 +746,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4950b5b88f531364b996b40898faa27e, type: 2}
+  m_sharedMaterial: {fileID: -7633837444182134153, guid: 4950b5b88f531364b996b40898faa27e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1043,7 +1043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7f407abae82b74a854a5c647524f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventMissionManager
-  firstTriggerDelay: 60
+  firstTriggerDelay: 3
   intervalBetweenEvents: 60
   isRandomOrder: 1
   availableMissions:
@@ -1980,31 +1980,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1706884075637792176, guid: b1313015453e9ac49a3b3805b1ccc44c, type: 3}
   m_PrefabInstance: {fileID: 1951711323}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1015064114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1015064113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d94dc28f63f06fa4dbf2e72e951ada53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TreasureEnemyController
-  moveSpeed: 3.5
-  wanderStrength: 0.4
-  wanderChangeInterval: 0.8
-  maxHp: 100
-  dropOrbCountOnHit: 2
-  dropSpreadRadius: 1
-  currentHp: 0
-  player: {fileID: 0}
-  rb: {fileID: 0}
-  spriteRenderer: {fileID: 0}
-  wanderOffset: {x: 0, y: 0}
-  wanderTimer: 0
-  gpOrbPrefab: {fileID: 5719624584010537925, guid: a97bcf08cb9f8764d9e7ea4ca7afb183, type: 3}
 --- !u!114 &1015064122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2019,6 +1994,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::E_Enemy2Controller
   moveSpeed: 1.5
   contactDamage: 1
+--- !u!114 &1015064123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015064113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e7fe1cfdb732049afde80aff24f887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHP: 100
+  GPDropAmount: 1
+  dropOrbCountOnHit: 1
+  dropOrbCountOnDeath: 1
+  dropSpreadRadius: 1
+  deathEffectPrefab: {fileID: 8736383580459821464, guid: 5b12dd08f1e2ce748b38698bbbf83c44, type: 3}
+  dropOrbPrefab: {fileID: 5719624584010537925, guid: a97bcf08cb9f8764d9e7ea4ca7afb183, type: 3}
+  scoreReward: 10
 --- !u!1 &1123851486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2092,7 +2087,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -149}
-  m_SizeDelta: {x: 20, y: 20}
+  m_SizeDelta: {x: 15, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1135406885
 GameObject:
@@ -2595,7 +2590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CountdownTimer
   timerText: {fileID: 888696581}
-  totalTime: 60
+  totalTime: 120
   resultSceneName: ResultScene
 --- !u!4 &1328263941
 Transform:
@@ -3799,9 +3794,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 836476968839425084, guid: b1313015453e9ac49a3b3805b1ccc44c, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 836476968839425084, guid: b1313015453e9ac49a3b3805b1ccc44c, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1706884075637792176, guid: b1313015453e9ac49a3b3805b1ccc44c, type: 3}
       propertyPath: m_Name
       value: EventEnemy2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975393311897077784, guid: b1313015453e9ac49a3b3805b1ccc44c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975393311897077784, guid: b1313015453e9ac49a3b3805b1ccc44c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975393311897077784, guid: b1313015453e9ac49a3b3805b1ccc44c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 7975393311897077784, guid: b1313015453e9ac49a3b3805b1ccc44c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3843,16 +3858,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4702757611327856427, guid: b1313015453e9ac49a3b3805b1ccc44c, type: 3}
+    - {fileID: 4399337134441530122, guid: b1313015453e9ac49a3b3805b1ccc44c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1706884075637792176, guid: b1313015453e9ac49a3b3805b1ccc44c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1015064114}
+      addedObject: {fileID: 1015064122}
     - targetCorrespondingSourceObject: {fileID: 1706884075637792176, guid: b1313015453e9ac49a3b3805b1ccc44c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1015064122}
+      addedObject: {fileID: 1015064123}
   m_SourcePrefab: {fileID: 100100000, guid: b1313015453e9ac49a3b3805b1ccc44c, type: 3}
 --- !u!1 &1995031616
 GameObject:
@@ -4069,8 +4086,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 95}
-  m_SizeDelta: {x: 690.8743, y: 50}
+  m_AnchoredPosition: {x: -0.0012856, y: 88.961426}
+  m_SizeDelta: {x: 893.08, y: 62.0772}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2044153545
 CanvasRenderer:
@@ -4102,8 +4119,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4950b5b88f531364b996b40898faa27e, type: 2}
+  m_sharedMaterial: {fileID: -7633837444182134153, guid: 4950b5b88f531364b996b40898faa27e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
