@@ -138,26 +138,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d49851e17bb8b04fb0176d90d02b4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::R_Boss1Controller
-  moveSpeed: 2
-  bullet1: {fileID: 3639169759883516571, guid: 5f308b1578933174483a572862439301, type: 3}
-  bullet2: {fileID: 7606331075079873860, guid: 7ed30077a30ef47468d2e38128be8667, type: 3}
+  homingBullet: {fileID: 7606331075079873860, guid: 7ed30077a30ef47468d2e38128be8667, type: 3}
+  straightBullet: {fileID: 3639169759883516571, guid: 5f308b1578933174483a572862439301, type: 3}
   bulletSpawnPoint: {fileID: 0}
   spawnHeight: 1
   attackInterval: 4
   firstAttackDelay: 2
-  straightBulletCount: 32
-  straightBulletSpreadAngle: 150
-  straightBulletSpawnDistance: 1
-  warningDuration: 0.9
+  attackWarningDuration: 1.5
+  attackBetweenDelay: 0.5
+  spreadBulletCount: 32
+  spreadAngle: 360
+  spreadBulletSpawnDistance: 1
   flashInterval: 0.12
   warningSpriteRenderer: {fileID: 0}
   eyeGlowSpriteRenderer: {fileID: 0}
   eyeGlowDuration: 0.1
-  magicCircle: {fileID: 0}
-  magicCircleRenderer: {fileID: 0}
-  magicCircleColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  magicCircleStartScale: 0.7
-  magicCircleEndScale: 1.5
 --- !u!114 &7020503594132685723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +193,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHP: 1000
   GPDropAmount: 1
+  dropOrbCountOnHit: 0
+  dropOrbCountOnDeath: 1
+  dropSpreadRadius: 1
   deathEffectPrefab: {fileID: 4507934178083678765, guid: 9fbec09751879cf4c801d0e7bd6face9, type: 3}
   dropOrbPrefab: {fileID: 7934304021674551781, guid: 9884841c9faeb2640bc0fce6302f11aa, type: 3}
   scoreReward: 500

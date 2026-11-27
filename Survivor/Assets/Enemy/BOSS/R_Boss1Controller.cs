@@ -1,33 +1,32 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class R_Boss1Controller : MonoBehaviour, IEnemyAttack
 {
-    public float moveSpeed = 2;
-
     private Transform player;
-    private Rigidbody2D rb;
-    private SpriteRenderer spriteRenderer;
     private EnemyAttackManager attackManager;
 
     [Header("弾のPrefab")]
-    public GameObject bullet1;
-    public GameObject bullet2;
+    public GameObject homingBullet;
+    public GameObject straightBullet;
 
+    [Header("弾の生成位置")]
     public Transform bulletSpawnPoint;
     public float spawnHeight = 1.0f;
 
     [Header("攻撃設定")]
-    public float attackInterval = 4.5f;
+    public float attackInterval = 5f;
     public float firstAttackDelay = 2f;
+    public float attackWarningDuration = 1.5f;
+    public float attackBetweenDelay = 0.5f;
 
-    [Header("直進弾の設定")]
-    public int straightBulletCount = 16;
-    public float straightBulletSpreadAngle = 150f;
-    public float straightBulletSpawnDistance = 1.0f;
+    [Header("32方向拡散弾の設定")]
+    public int spreadBulletCount = 32;
+    public float spreadAngle = 360f;
+    public float spreadBulletSpawnDistance = 1.0f;
 
     [Header("攻撃予告設定")]
-    public float warningDuration = 0.9f;
     public float flashInterval = 0.12f;
 
     [Header("ボス点滅用")]
@@ -37,20 +36,21 @@ public class R_Boss1Controller : MonoBehaviour, IEnemyAttack
     public SpriteRenderer eyeGlowSpriteRenderer;
     public float eyeGlowDuration = 0.1f;
 
-    [Header("魔法陣")]
-    public GameObject magicCircle;
-    public SpriteRenderer magicCircleRenderer;
-    public Color magicCircleColor = Color.yellow;
-    public float magicCircleStartScale = 0.7f;
-    public float magicCircleEndScale = 1.5f;
-
     private Coroutine attackCoroutine;
     private bool isAttacking = true;
+    private bool isDead;
+
+    private enum AttackType
+    {
+        Homing,
+        Spread32,
+        RockSpike,
+        RockPrison,
+        SplitBullet
+    }
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         attackManager = GetComponent<EnemyAttackManager>();
 
         GameObject playerObject =
@@ -59,9 +59,14 @@ public class R_Boss1Controller : MonoBehaviour, IEnemyAttack
         if (playerObject != null)
             player = playerObject.transform;
 
+        SpriteRenderer spriteRenderer =
+            GetComponent<SpriteRenderer>();
+
         if (warningSpriteRenderer != null)
         {
-            warningSpriteRenderer.sprite = spriteRenderer.sprite;
+            if (spriteRenderer != null)
+                warningSpriteRenderer.sprite = spriteRenderer.sprite;
+
             warningSpriteRenderer.enabled = false;
             warningSpriteRenderer.color =
                 new Color(1f, 0.5f, 0f, 0.7f);
@@ -70,9 +75,6 @@ public class R_Boss1Controller : MonoBehaviour, IEnemyAttack
         if (eyeGlowSpriteRenderer != null)
             eyeGlowSpriteRenderer.enabled = false;
 
-        if (magicCircle != null)
-            magicCircle.SetActive(false);
-
         attackCoroutine = StartCoroutine(AttackLoop());
     }
 
@@ -80,257 +82,260 @@ public class R_Boss1Controller : MonoBehaviour, IEnemyAttack
     {
         yield return new WaitForSeconds(firstAttackDelay);
 
-        while (isAttacking)
+        while (isAttacking && !isDead)
         {
-            if (player != null)
+            if (player == null)
+                yield break;
+
+            // 5種類の攻撃から選択
+            List<AttackType> attacks = new List<AttackType>
             {
-                // 予告する攻撃を先に決める
-                bool useStraightAttack =
-                    bullet1 != null &&
-                    (bullet2 == null || Random.value < 0.5f);
+                AttackType.Homing,
+                AttackType.Spread32,
+                AttackType.RockSpike,
+                AttackType.RockPrison,
+                AttackType.SplitBullet
+            };
 
-                // 攻撃予告
-                yield return StartCoroutine(ShowAttackWarning());
+            // 1つ目をランダム選択
+            AttackType attack1 =
+                attacks[Random.Range(0, attacks.Count)];
 
-                if (!isAttacking)
-                    yield break;
+            attacks.Remove(attack1);
 
-                // 予告終了後に攻撃
-                if (player != null)
-                {
-                    if (useStraightAttack)
-                        AttackStraight();
-                    else
-                        AttackHoming();
-                }
-            }
+            // 残り4種類から2つ目を選択
+            AttackType attack2 =
+                attacks[Random.Range(0, attacks.Count)];
 
-            // 次の予告開始までの時間を調整
-            yield return new WaitForSeconds(
-                Mathf.Max(0f, attackInterval - warningDuration));
+            // 攻撃予告
+            yield return StartCoroutine(ShowAttackWarning());
+
+            if (!isAttacking || isDead)
+                yield break;
+
+            // 1つ目の攻撃
+            yield return StartCoroutine(ExecuteAttack(attack1));
+
+            if (!isAttacking || isDead)
+                yield break;
+
+            yield return new WaitForSeconds(attackBetweenDelay);
+
+            // 2つ目の攻撃
+            yield return StartCoroutine(ExecuteAttack(attack2));
+
+            // 次の攻撃周期まで待機
+            yield return new WaitForSeconds(attackInterval);
         }
     }
 
-
+    // 攻撃予告
     IEnumerator ShowAttackWarning()
     {
         float elapsed = 0f;
-        bool flashVisible = false;
 
-        // 発光を開始するまでの時間
         float glowDuration =
-            Mathf.Clamp(eyeGlowDuration, 0f, warningDuration);
+            Mathf.Clamp(eyeGlowDuration, 0f, attackWarningDuration);
 
-        float warningMainDuration =
-            warningDuration - glowDuration;
+        float warningDuration =
+            attackWarningDuration - glowDuration;
 
-        if (magicCircle != null)
+        // 通常の点滅予告
+        while (elapsed < warningDuration && isAttacking)
         {
-            magicCircle.SetActive(true);
-            magicCircle.transform.localScale =
-                Vector3.one * magicCircleStartScale;
-        }
-
-        // 通常の攻撃予告
-        while (elapsed < warningMainDuration && isAttacking)
-        {
-            // ボス本体の点滅
-            if (eyeGlowSpriteRenderer != null)
-            {
-                // 発光画像の向きをボス本体に合わせる
-                eyeGlowSpriteRenderer.flipX = spriteRenderer.flipX;
-
-                eyeGlowSpriteRenderer.enabled = true;
-            }
-
-            // 魔法陣を徐々に大きくする
-            float progress = elapsed / warningDuration;
-
-            if (magicCircle != null)
-            {
-                float scale = Mathf.Lerp(
-                    magicCircleStartScale,
-                    magicCircleEndScale,
-                    progress);
-
-                magicCircle.transform.localScale =
-                    Vector3.one * scale;
-            }
-
-            // 魔法陣を明滅させる
-            if (magicCircleRenderer != null)
-            {
-                float alpha = Mathf.Lerp(
-                    0.35f,
-                    0.9f,
-                    Mathf.PingPong(elapsed * 3f, 1f));
-
-                magicCircleRenderer.color = new Color(
-                    magicCircleColor.r,
-                    magicCircleColor.g,
-                    magicCircleColor.b,
-                    alpha);
-            }
+            if (warningSpriteRenderer != null)
+                warningSpriteRenderer.enabled = true;
 
             float waitTime = Mathf.Min(
                 flashInterval,
-                warningMainDuration - elapsed);
+                warningDuration - elapsed);
 
             yield return new WaitForSeconds(waitTime);
-            elapsed += waitTime;
+
+            if (warningSpriteRenderer != null)
+                warningSpriteRenderer.enabled = false;
+
+            yield return new WaitForSeconds(waitTime);
+
+            elapsed += waitTime * 2f;
         }
 
-        // 通常の点滅を終了
-        if (warningSpriteRenderer != null)
-            warningSpriteRenderer.enabled = false;
-
-        // 魔法陣を最大サイズにする
-        if (magicCircle != null)
-        {
-            magicCircle.transform.localScale =
-                Vector3.one * magicCircleEndScale;
-        }
-
-        // 攻撃直前に発光
+        // 攻撃直前の発光
         if (eyeGlowSpriteRenderer != null)
-        {
             eyeGlowSpriteRenderer.enabled = true;
-        }
 
         yield return new WaitForSeconds(glowDuration);
 
         HideAttackWarning();
     }
 
-
     void HideAttackWarning()
     {
         if (warningSpriteRenderer != null)
             warningSpriteRenderer.enabled = false;
 
-        if (magicCircle != null)
-            magicCircle.SetActive(false);
-
         if (eyeGlowSpriteRenderer != null)
             eyeGlowSpriteRenderer.enabled = false;
     }
 
-    // 追尾弾攻撃
-    void AttackHoming()
+    // 選択した攻撃を実行
+    IEnumerator ExecuteAttack(AttackType attack)
     {
-        if (bullet2 == null) return;
-
-        Vector3 createPosition;
-
-        if (bulletSpawnPoint != null)
+        switch (attack)
         {
-            createPosition = bulletSpawnPoint.position;
-        }
-        else
-        {
-            createPosition = transform.position;
-            createPosition.y += spawnHeight;
-        }
+            case AttackType.Homing:
+                yield return StartCoroutine(AttackHoming());
+                break;
 
-        GameObject bullet = Instantiate(
-            bullet2,
-            createPosition,
+            case AttackType.Spread32:
+                yield return StartCoroutine(AttackSpread32());
+                break;
+
+            case AttackType.RockSpike:
+                yield return StartCoroutine(AttackRockSpike());
+                break;
+
+            case AttackType.RockPrison:
+                yield return StartCoroutine(AttackRockPrison());
+                break;
+
+            case AttackType.SplitBullet:
+                yield return StartCoroutine(AttackSplitBullet());
+                break;
+        }
+    }
+
+    // 追尾弾2発
+    IEnumerator AttackHoming()
+    {
+        if (homingBullet == null)
+            yield break;
+
+        Vector3 basePosition = GetSpawnPosition();
+
+        // 左右に2発生成
+        GameObject bullet1 = Instantiate(
+            homingBullet,
+            basePosition + Vector3.left * 0.5f,
+            Quaternion.identity
+        );
+
+        GameObject bullet2 = Instantiate(
+            homingBullet,
+            basePosition + Vector3.right * 0.5f,
             Quaternion.identity
         );
 
         if (attackManager != null)
-            attackManager.RegisterBullet(bullet);
+        {
+            attackManager.RegisterBullet(bullet1);
+            attackManager.RegisterBullet(bullet2);
+        }
+
+        yield return null;
     }
 
-    // 16方向の拡散弾攻撃
-    void AttackStraight()
+    // 32方向拡散弾
+    IEnumerator AttackSpread32()
     {
-        if (bullet1 == null || player == null) return;
+        if (straightBullet == null || player == null)
+            yield break;
 
-        Vector2 direction =
+        Vector2 baseDirection =
             ((Vector2)player.position -
             (Vector2)transform.position).normalized;
 
-        Vector2 spawnPosition =
-            (Vector2)transform.position +
-            direction * straightBulletSpawnDistance;
+        float baseAngle =
+            Mathf.Atan2(baseDirection.y, baseDirection.x)
+            * Mathf.Rad2Deg;
 
-        for (int i = 0; i < straightBulletCount; i++)
+        Vector2 spawnPosition = GetSpawnPosition();
+
+        float angleStep = spreadAngle / spreadBulletCount;
+
+        for (int i = 0; i < spreadBulletCount; i++)
         {
-            float angle = 0f;
+            float angle =
+                baseAngle - spreadAngle / 2f + angleStep * i;
 
-            if (straightBulletCount > 1)
-            {
-                float t =
-                    (float)i / (straightBulletCount - 1);
+            Vector2 direction = new Vector2(
+                Mathf.Cos(angle * Mathf.Deg2Rad),
+                Mathf.Sin(angle * Mathf.Deg2Rad)
+            );
 
-                angle = Mathf.Lerp(
-                    -straightBulletSpreadAngle,
-                    straightBulletSpreadAngle,
-                    t
-                );
-            }
-
-            Vector2 shotDirection =
-                Quaternion.Euler(0, 0, angle) * direction;
+            Vector2 createPosition =
+                spawnPosition + direction * spreadBulletSpawnDistance;
 
             GameObject bullet = Instantiate(
-                bullet1,
-                spawnPosition,
+                straightBullet,
+                createPosition,
                 Quaternion.identity
             );
 
-            B1_Bullet1 straightBullet =
+            B1_Bullet1 bulletScript =
                 bullet.GetComponent<B1_Bullet1>();
 
-            if (straightBullet != null)
-                straightBullet.Initialize(shotDirection);
-            else
-                Debug.LogError(
-                    "Bullet1にB1_Bullet1が設定されていません！");
+            if (bulletScript != null)
+                bulletScript.Initialize(direction);
 
             if (attackManager != null)
                 attackManager.RegisterBullet(bullet);
         }
+
+        yield return null;
     }
 
-    void FixedUpdate()
+    // プレイヤー足元の岩の棘3連
+    IEnumerator AttackRockSpike()
     {
-        if (player == null)
-        {
-            rb.linearVelocity = Vector2.zero;
-            return;
-        }
+        Debug.Log("岩の棘3連");
 
-        Vector2 direction =
-            ((Vector2)player.position - rb.position).normalized;
+        // 後で実装
 
-        rb.linearVelocity = direction * moveSpeed;
-
-
-        if (spriteRenderer != null)
-        {
-            if (direction.x > 0.01f)
-                spriteRenderer.flipX = false;
-            else if (direction.x < -0.01f)
-                spriteRenderer.flipX = true;
-
-            // 目の発光画像もボス本体と同じ向きにする
-            if (eyeGlowSpriteRenderer != null)
-            {
-                eyeGlowSpriteRenderer.flipX = spriteRenderer.flipX;
-            }
-        }
-
+        yield return null;
     }
 
+    // 岩の牢獄
+    IEnumerator AttackRockPrison()
+    {
+        Debug.Log("岩の牢獄");
+
+        // 後で実装
+
+        yield return null;
+    }
+
+    // 4分裂炸裂弾
+    IEnumerator AttackSplitBullet()
+    {
+        Debug.Log("4分裂炸裂弾");
+
+        // 後で実装
+
+        yield return null;
+    }
+
+    // 弾の生成位置取得
+    Vector3 GetSpawnPosition()
+    {
+        if (bulletSpawnPoint != null)
+            return bulletSpawnPoint.position;
+
+        Vector3 position = transform.position;
+        position.y += spawnHeight;
+
+        return position;
+    }
+
+    // 攻撃停止
     public void StopAttack()
     {
+        isDead = true;
         isAttacking = false;
+
+        HideAttackWarning();
 
         if (attackCoroutine != null)
             StopCoroutine(attackCoroutine);
-
-        HideAttackWarning();
     }
 }
