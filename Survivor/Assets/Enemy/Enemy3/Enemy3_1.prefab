@@ -328,6 +328,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHP: 1
   GPDropAmount: 0
+  dropOrbCountOnHit: 0
+  dropOrbCountOnDeath: 1
+  dropSpreadRadius: 1
   deathEffectPrefab: {fileID: 4507934178083678765, guid: 9fbec09751879cf4c801d0e7bd6face9, type: 3}
   dropOrbPrefab: {fileID: 0}
   scoreReward: 10
@@ -659,6 +662,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHP: 1
   GPDropAmount: 0
+  dropOrbCountOnHit: 0
+  dropOrbCountOnDeath: 1
+  dropSpreadRadius: 1
   deathEffectPrefab: {fileID: 4507934178083678765, guid: 9fbec09751879cf4c801d0e7bd6face9, type: 3}
   dropOrbPrefab: {fileID: 0}
   scoreReward: 10
@@ -1050,6 +1056,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHP: 30
   GPDropAmount: 1
+  dropOrbCountOnHit: 0
+  dropOrbCountOnDeath: 1
+  dropSpreadRadius: 1
   deathEffectPrefab: {fileID: 4507934178083678765, guid: 9fbec09751879cf4c801d0e7bd6face9, type: 3}
   dropOrbPrefab: {fileID: 5719624584010537925, guid: a97bcf08cb9f8764d9e7ea4ca7afb183, type: 3}
   scoreReward: 50
@@ -1093,6 +1102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2623aab5500ac0439192d7271d9284c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy3Controller
-  chargeSpeed: 1
+  chargeSpeed: 9
   faceDuration: 0.5
   invisibleDestroyTime: 3
