@@ -1,0 +1,902 @@
+fileFormatVersion: 2
+guid: 7ed1bb0c05a75b944b378c14e6d26f48
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4245936641920398044
+    second: "Hakkei\u753B\u50CF_0"
+  - first:
+      213: -9065788351050532338
+    second: "Hakkei\u753B\u50CF_1"
+  - first:
+      213: 2620018706887887047
+    second: "Hakkei\u753B\u50CF_2"
+  - first:
+      213: -2559083667752548907
+    second: "Hakkei\u753B\u50CF_3"
+  - first:
+      213: -5939475228974652181
+    second: "Hakkei\u753B\u50CF_4"
+  - first:
+      213: 3736376370704476650
+    second: "Hakkei\u753B\u50CF_5"
+  - first:
+      213: 6145211572848682262
+    second: "Hakkei\u753B\u50CF_6"
+  - first:
+      213: -2576969575955037908
+    second: "Hakkei\u753B\u50CF_7"
+  - first:
+      213: -1080152374900977641
+    second: "Hakkei\u753B\u50CF_8"
+  - first:
+      213: -8476435265487825509
+    second: "Hakkei\u753B\u50CF_9"
+  - first:
+      213: 1254178598103283075
+    second: "Hakkei\u753B\u50CF_10"
+  - first:
+      213: 2869889508260236999
+    second: "Hakkei\u753B\u50CF_11"
+  - first:
+      213: -8677312805265870638
+    second: "Hakkei\u753B\u50CF_12"
+  - first:
+      213: -4960851599780365465
+    second: "Hakkei\u753B\u50CF_13"
+  - first:
+      213: -3151587696848876212
+    second: "Hakkei\u753B\u50CF_14"
+  - first:
+      213: 506138378258302610
+    second: "Hakkei\u753B\u50CF_15"
+  - first:
+      213: -2314251978816034446
+    second: "Hakkei\u753B\u50CF_16"
+  - first:
+      213: 6065248153560013813
+    second: "Hakkei\u753B\u50CF_17"
+  - first:
+      213: 8010796490919922258
+    second: "Hakkei\u753B\u50CF_18"
+  - first:
+      213: 4801420479204645569
+    second: "Hakkei\u753B\u50CF_19"
+  - first:
+      213: -7179525442885832120
+    second: "Hakkei\u753B\u50CF_20"
+  - first:
+      213: 4882157471300741694
+    second: "Hakkei\u753B\u50CF_21"
+  - first:
+      213: -404955445689164593
+    second: "Hakkei\u753B\u50CF_22"
+  - first:
+      213: -8457623563383469261
+    second: "Hakkei\u753B\u50CF_23"
+  - first:
+      213: 431090024180337470
+    second: "Hakkei\u753B\u50CF_24"
+  - first:
+      213: 376756282693648249
+    second: "Hakkei\u753B\u50CF_25"
+  - first:
+      213: -3159494306491800581
+    second: "Hakkei\u753B\u50CF_26"
+  - first:
+      213: -2145414512695795945
+    second: "Hakkei\u753B\u50CF_27"
+  - first:
+      213: 849209879957228283
+    second: "Hakkei\u753B\u50CF_28"
+  - first:
+      213: 1014719166631222787
+    second: "Hakkei\u753B\u50CF_29"
+  - first:
+      213: 7222452500573686534
+    second: "Hakkei\u753B\u50CF_30"
+  - first:
+      213: -2077874534624899882
+    second: "Hakkei\u753B\u50CF_31"
+  - first:
+      213: 4985732824280737677
+    second: "Hakkei\u753B\u50CF_32"
+  - first:
+      213: -2234302425940932596
+    second: "Hakkei\u753B\u50CF_33"
+  - first:
+      213: -711698218082030260
+    second: "Hakkei\u753B\u50CF_34"
+  - first:
+      213: 3647731579375016181
+    second: "Hakkei\u753B\u50CF_35"
+  - first:
+      213: 2111615046124645065
+    second: "Hakkei\u753B\u50CF_36"
+  - first:
+      213: -8122677722376510989
+    second: "Hakkei\u753B\u50CF_37"
+  - first:
+      213: -3795683297973204666
+    second: "Hakkei\u753B\u50CF_38"
+  - first:
+      213: 5182466830491845072
+    second: "Hakkei\u753B\u50CF_39"
+  - first:
+      213: -69665602799170086
+    second: "Hakkei\u753B\u50CF_40"
+  - first:
+      213: -6089309440466620191
+    second: "Hakkei\u753B\u50CF_41"
+  - first:
+      213: 7036750785034572559
+    second: "Hakkei\u753B\u50CF_42"
+  - first:
+      213: -143948654681866218
+    second: "Hakkei\u753B\u50CF_43"
+  - first:
+      213: -6325649828845900557
+    second: "Hakkei\u753B\u50CF_44"
+  - first:
+      213: -1551841834382411556
+    second: "Hakkei\u753B\u50CF_45"
+  - first:
+      213: 8109039243681193184
+    second: "Hakkei\u753B\u50CF_46"
+  - first:
+      213: -8338574122423540931
+    second: "Hakkei\u753B\u50CF_47"
+  - first:
+      213: 7008136440618746963
+    second: "Hakkei\u753B\u50CF_48"
+  - first:
+      213: -8242147774475701733
+    second: "Hakkei\u753B\u50CF_49"
+  - first:
+      213: -7264535741595172149
+    second: "Hakkei\u753B\u50CF_50"
+  - first:
+      213: -8579981908187130942
+    second: "Hakkei\u753B\u50CF_51"
+  - first:
+      213: -4701481930934743622
+    second: "Hakkei\u753B\u50CF_52"
+  - first:
+      213: -1545128788637734382
+    second: "Hakkei\u753B\u50CF_53"
+  - first:
+      213: -8533080052641098574
+    second: "Hakkei\u753B\u50CF_54"
+  - first:
+      213: 2156296257771578354
+    second: "Hakkei\u753B\u50CF_55"
+  - first:
+      213: -1969383065609007384
+    second: "Hakkei\u753B\u50CF_56"
+  - first:
+      213: -8774195440449267600
+    second: "Hakkei\u753B\u50CF_57"
+  - first:
+      213: -3120113655824928960
+    second: "Hakkei\u753B\u50CF_58"
+  - first:
+      213: 2112112703852068113
+    second: "Hakkei\u753B\u50CF_59"
+  - first:
+      213: 3033489117358193129
+    second: "Hakkei\u753B\u50CF_60"
+  - first:
+      213: 3198531723908553281
+    second: "Hakkei\u753B\u50CF_61"
+  - first:
+      213: -8253112660786742361
+    second: "Hakkei\u753B\u50CF_62"
+  - first:
+      213: -4310262573877792357
+    second: "Hakkei\u753B\u50CF_63"
+  - first:
+      213: -8640435082442532672
+    second: "Hakkei\u753B\u50CF_64"
+  - first:
+      213: 5450068313158038883
+    second: "Hakkei\u753B\u50CF_65"
+  - first:
+      213: -3023357090730824000
+    second: "Hakkei\u753B\u50CF_66"
+  - first:
+      213: -3980816858021814729
+    second: "Hakkei\u753B\u50CF_67"
+  - first:
+      213: 8768046222559905252
+    second: "Hakkei\u753B\u50CF_68"
+  - first:
+      213: -1183096095169432222
+    second: "Hakkei\u753B\u50CF_69"
+  - first:
+      213: 4045526930692060156
+    second: "Hakkei\u753B\u50CF_70"
+  - first:
+      213: 4802854641249802023
+    second: "Hakkei\u753B\u50CF_71"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_0"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42d058fbe176315c0800000000000000
+      internalID: -4245936641920398044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_1"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0a32cef689df2280800000000000000
+      internalID: -9065788351050532338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_2"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c84ee8e12d2c5420800000000000000
+      internalID: 2620018706887887047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_3"
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d50b1976fe4c7cd0800000000000000
+      internalID: -2559083667752548907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_4"
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be4ebb87fbeb29da0800000000000000
+      internalID: -5939475228974652181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_5"
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae9e00353864ad330800000000000000
+      internalID: 3736376370704476650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_6"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 615e345ed5d284550800000000000000
+      internalID: 6145211572848682262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_7"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c210634f2d3cc3cd0800000000000000
+      internalID: -2576969575955037908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_8"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7109bbe43278201f0800000000000000
+      internalID: -1080152374900977641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_9"
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b95110f3907ad5a80800000000000000
+      internalID: -8476435265487825509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_10"
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 385f7d04accb76110800000000000000
+      internalID: 1254178598103283075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_11"
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cec87c6d45e3d720800000000000000
+      internalID: 2869889508260236999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_12"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d0fd2d5afdf39780800000000000000
+      internalID: -8677312805265870638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_13"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76bb9a3f0c3872bb0800000000000000
+      internalID: -4960851599780365465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_14"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4dc4d200bf4344d0800000000000000
+      internalID: -3151587696848876212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_15"
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29647436c2a260700800000000000000
+      internalID: 506138378258302610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_16"
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 279ece1361022efd0800000000000000
+      internalID: -2314251978816034446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_17"
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fbd9838f071c2450800000000000000
+      internalID: 6065248153560013813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_18"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25a4a3927f01c2f60800000000000000
+      internalID: 8010796490919922258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_19"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ca5740ac7212a240800000000000000
+      internalID: 4801420479204645569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_20"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84239e006a33d5c90800000000000000
+      internalID: -7179525442885832120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_21"
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3a66667a58e0c340800000000000000
+      internalID: 4882157471300741694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_22"
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcc56ddea2f416af0800000000000000
+      internalID: -404955445689164593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Hakkei\u753B\u50CF_23"
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33b0e84fd2c70aa80800000000000000
+      internalID: -8457623563383469261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d3f9b413190f51b4997c1887e92754ac
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceOnImport
+        value: False
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":4.0},"gridSpriteSize":{"x":768.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      "Hakkei\u753B\u50CF_0": -4245936641920398044
+      "Hakkei\u753B\u50CF_1": -9065788351050532338
+      "Hakkei\u753B\u50CF_10": 1254178598103283075
+      "Hakkei\u753B\u50CF_11": 2869889508260236999
+      "Hakkei\u753B\u50CF_12": -8677312805265870638
+      "Hakkei\u753B\u50CF_13": -4960851599780365465
+      "Hakkei\u753B\u50CF_14": -3151587696848876212
+      "Hakkei\u753B\u50CF_15": 506138378258302610
+      "Hakkei\u753B\u50CF_16": -2314251978816034446
+      "Hakkei\u753B\u50CF_17": 6065248153560013813
+      "Hakkei\u753B\u50CF_18": 8010796490919922258
+      "Hakkei\u753B\u50CF_19": 4801420479204645569
+      "Hakkei\u753B\u50CF_2": 2620018706887887047
+      "Hakkei\u753B\u50CF_20": -7179525442885832120
+      "Hakkei\u753B\u50CF_21": 4882157471300741694
+      "Hakkei\u753B\u50CF_22": -404955445689164593
+      "Hakkei\u753B\u50CF_23": -8457623563383469261
+      "Hakkei\u753B\u50CF_3": -2559083667752548907
+      "Hakkei\u753B\u50CF_4": -5939475228974652181
+      "Hakkei\u753B\u50CF_5": 3736376370704476650
+      "Hakkei\u753B\u50CF_6": 6145211572848682262
+      "Hakkei\u753B\u50CF_7": -2576969575955037908
+      "Hakkei\u753B\u50CF_8": -1080152374900977641
+      "Hakkei\u753B\u50CF_9": -8476435265487825509
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

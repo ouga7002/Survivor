@@ -51,6 +51,7 @@ MonoBehaviour:
   - bossPrefab: {fileID: 1536135667274760269, guid: ca6a81415726d9c4ab7344133e9065aa, type: 3}
     spawnTime: 300
     hasSpawned: 0
-  minSpawnDistance: 7
-  maxSpawnDistance: 10
-  enemyPool: {fileID: 0}
+  minSpawnDistance: 10
+  maxSpawnDistance: 12
+  enemyPool: {fileID: 911767697465250786, guid: 6fc5d1196d8f364459acf033b96cd06a, type: 3}
+  enemySpawner: {fileID: 3637127767848806519, guid: 7677794a5a56bb1449b85c545f680ef4, type: 3}

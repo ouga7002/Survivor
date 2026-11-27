@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3211091591798859781}
   - component: {fileID: 6436666862538002755}
   - component: {fileID: 6571362585447496546}
+  - component: {fileID: 3703790157242516185}
   m_Layer: 6
   m_Name: Enemy3_3
   m_TagString: Untagged
@@ -313,6 +314,23 @@ PolygonCollider2D:
       - {x: 1.05, y: -3.83}
       - {x: 1.03, y: -3.81}
   m_UseDelaunayMesh: 1
+--- !u!114 &3703790157242516185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5982337662180640319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e7fe1cfdb732049afde80aff24f887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHP: 1
+  GPDropAmount: 0
+  deathEffectPrefab: {fileID: 4507934178083678765, guid: 9fbec09751879cf4c801d0e7bd6face9, type: 3}
+  dropOrbPrefab: {fileID: 0}
+  scoreReward: 10
 --- !u!1 &6389403027723739258
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +342,7 @@ GameObject:
   - component: {fileID: 7564461014217836002}
   - component: {fileID: 5823599922811534230}
   - component: {fileID: 1911356580159188578}
+  - component: {fileID: 8294274478948036078}
   m_Layer: 6
   m_Name: Enemy3_2
   m_TagString: Untagged
@@ -626,6 +645,23 @@ PolygonCollider2D:
       - {x: 1.05, y: -3.83}
       - {x: 1.03, y: -3.81}
   m_UseDelaunayMesh: 1
+--- !u!114 &8294274478948036078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6389403027723739258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e7fe1cfdb732049afde80aff24f887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHP: 1
+  GPDropAmount: 0
+  deathEffectPrefab: {fileID: 4507934178083678765, guid: 9fbec09751879cf4c801d0e7bd6face9, type: 3}
+  dropOrbPrefab: {fileID: 0}
+  scoreReward: 10
 --- !u!1 &7164345444577715059
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,6 +1093,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2623aab5500ac0439192d7271d9284c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy3Controller
-  chargeSpeed: 9
+  chargeSpeed: 1
   faceDuration: 0.5
   invisibleDestroyTime: 3

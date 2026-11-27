@@ -89,6 +89,16 @@ public class E_Enemy1Controller : MonoBehaviour
 
     void FixedUpdate()
     {
+        //ノックバック
+        KnockbackReceiver knockback =
+    GetComponent<KnockbackReceiver>();
+
+        if (knockback != null && knockback.IsKnockedBack())
+        {
+            return;
+        }
+        //
+
         // 石化中は移動しない
         if (petrifiable != null && petrifiable.IsPetrified())
         {
